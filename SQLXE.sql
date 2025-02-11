@@ -1,7 +1,14 @@
 ﻿-- Bảng NgườiDung: Quản lý thông tin người dùng, bao gồm cả khách hàng và quản trị viên
+--USE master;
+--ALTER DATABASE QLChuyenXe2 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+--DROP DATABASE QLChuyenXe2;
 Create Database QLChuyenXe
+go
 use QLChuyenXe;
 GO
+
+
+
 CREATE TABLE NguoiDung (
     MaNguoiDung INT PRIMARY KEY IDENTITY,
     TenDangNhap NVARCHAR(50) UNIQUE,
@@ -15,7 +22,12 @@ CREATE TABLE NguoiDung (
 );
 
 -- Bảng ChuyenXe: Quản lý thông tin các chuyến xe
-
+CREATE TABLE XeKhach (
+    MaXe INT PRIMARY KEY IDENTITY,
+    BienSoXe NVARCHAR(20),
+    LoaiXe NVARCHAR(50),
+    SoChoNgoi INT
+);
 CREATE TABLE ChuyenXe (
     MaChuyenXe INT PRIMARY KEY IDENTITY,
     DiemDi NVARCHAR(100),
@@ -43,12 +55,7 @@ CREATE TABLE DiemDonTraKhach (
 
 
 -- Bảng XeKhach: Quản lý thông tin các xe khách
-CREATE TABLE XeKhach (
-    MaXe INT PRIMARY KEY IDENTITY,
-    BienSoXe NVARCHAR(20),
-    LoaiXe NVARCHAR(50),
-    SoChoNgoi INT
-);
+
 
 -- Bảng GheNgoi: Quản lý thông tin ghế ngồi trên các chuyến xe
 CREATE TABLE GheNgoi (
@@ -156,10 +163,7 @@ VALUES
 (2, 30, 0, NULL, NULL);
 
 -- Bảng DatVe: Thêm thông tin đặt vé của khách hàng
-INSERT INTO DatVe (MaKhachHang, MaChuyenXe, MaGhe, NgayDatVe, TrangThai, SoDienThoaiLienHe, TenLienHe)
-VALUES
-(2, 1, 1, '2025-01-14 10:00:00', N'DaDat', '0900000002', N'Nguyễn Văn A'),
-(3, 2, 1, '2025-01-14 11:00:00', N'DaDat', '0900000003', N'Tran Thi B');
+
 
 -- Cập nhật trạng thái ghế đã được đặt
 UPDATE GheNgoi
@@ -238,8 +242,8 @@ SELECT * FROM GheNgoi;
 
 
 -- Xem dữ liệu đã chèn
-SELECT * FROM NguoiDung ;
-select * from DiemDonTraKhach;
+SELECT * FROM DatVe ;
+select * from ChuyenXe;
 
 
 
