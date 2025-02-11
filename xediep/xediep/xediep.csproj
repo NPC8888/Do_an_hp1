@@ -199,6 +199,7 @@
       <DependentUpon>DatVe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ChuyenXe.cs" />
+    <Compile Include="Models\DanhGia.cs" />
     <Compile Include="Models\DatVe.cs" />
     <Compile Include="Models\DiemDonTraKhach.cs" />
     <Compile Include="Models\GheNgoi.cs" />
