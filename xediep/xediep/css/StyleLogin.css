@@ -1,0 +1,86 @@
+﻿
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.login-container {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+    .login-container h2 {
+        margin-bottom: 1.5rem;
+        font-size: 24px;
+    }
+
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+/* Cải tiến nút button */
+.btn {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+    .btn:hover {
+        background: linear-gradient(to right, #2575fc, #6a11cb);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+
+.extra-links {
+    margin-top: 1rem;
+    font-size: 14px;
+}
+
+    .extra-links a {
+        color: #2575fc;
+        text-decoration: none;
+        margin: 0 0.5rem;
+    }
+
+        .extra-links a:hover {
+            text-decoration: underline;
+        }

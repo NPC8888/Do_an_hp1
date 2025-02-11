@@ -1,0 +1,59 @@
+﻿
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.trip {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .trip:last-child {
+        border-bottom: none;
+    }
+
+.trip-info {
+    display: flex;
+    gap: 20px;
+}
+
+    .trip-info div {
+        margin: 0;
+    }
+
+    .trip-info .route {
+        font-weight: bold;
+    }
+
+    .trip-info .details {
+        color: #555;
+    }
+
+.trip-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+.trip-btn {
+    padding: 8px 15px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .trip-btn:hover {
+        background: #2980b9;
+    }

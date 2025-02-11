@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Backgroud.master.cs" Inherits="xediep.Backgroud" %>
+<%@ Register Src="webControl/ThanhTimKiem.ascx" TagPrefix="uc" TagName="TimKiem" %>
+<%@ Register Src="~/webControl/BtnLogin.ascx" TagPrefix="uc" TagName="BtnLogin" %>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+  
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="background-color:white">
+           <div class="menu" style=" cursor:pointer; background-color:seagreen; display:flex; align-items:center; padding:10px;">
+    <img onclick="iconlgclik()" src="jpg/iconlg.png" style="height:150px; width:auto; margin-left:10px;"/>
+    
+    <div style="margin-left:auto; margin-right:10px;">
+        <uc:BtnLogin runat="server" ID="BtnLogin"/>
+    </div>
+</div>
+        </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div style="margin:0px 20% 0px 20%; background-color:black; color:white;text-align:center">
+            <a>© Trung tâm dịch vụ thông tin Đi xe khách - Công ty Cổ phần Vận tải Hải Hà</a>
+            <br />
+
+            <a>Địa chỉ: Hải Thanh - Hải Hậu - Nam Định.</a>
+            <br />
+
+            <a>Đặt vé: 1900 2053 - 0868 480 480 - Góp ý: 0912 459 752</a>
+        </div>
+    </form>
+    <script>
+        function iconlgclik() {
+            window.location.href="TrangChu.aspx"
+        }
+    </script>
+</body>
+    
+</html>

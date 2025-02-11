@@ -1,0 +1,21 @@
+﻿ //getjson
+                string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ThongTinWeb.json");
+                string json =File.ReadAllText(jsonPath);
+                JsonDocument doc = JsonDocument.Parse(json);
+                var root = doc.RootElement.GetProperty("Title");
+
+                Response.Write(root);
+ // setjson
+                var updatedData = new
+                {
+                    Title = "helo điệp",
+                    SupportPhone = "84 123 456 789",
+                    About = "Thong Tin"
+                };
+                string updatedJson = JsonSerializer.Serialize(updatedData);
+
+                // Ghi lại dữ liệu đã sửa vào file
+                File.WriteAllText(jsonPath, updatedJson, Encoding.UTF8);
+//thuvien using System.text.json;
+
+
