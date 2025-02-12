@@ -24,6 +24,7 @@ namespace xediep.webControl
         {
             if (!IsPostBack)
             {
+                txtDateTime.Text = DateTime.Now.ToString("yyyy-MM-dd");//dat ngay la hom nay
                 // Danh sách các tỉnh thành Việt Nam
                 List<string> tinhThanh = new List<string>
         {
@@ -60,7 +61,9 @@ namespace xediep.webControl
             string diemDen=ddlDiemDen.Text;
             ChuyenXeDAL.diemdi = ddlDiemDI.SelectedIndex;
             ChuyenXeDAL.diemden = ddlDiemDen.SelectedIndex;
+            Session["DateSh"] = txtDateTime.Text;
             Response.Redirect($"ListChuyenXe.aspx?diemdi={diemDi}&diemDen={diemDen}");
+            
 
 
         }

@@ -16,9 +16,15 @@ namespace xediep
         {   
             string diemdi = Request.QueryString["diemdi"];
             string diemden = Request.QueryString["diemDen"];
-            lChuyenXe=ChuyenXeDAL.Instance.SearchChuyenXeByName(diemdi, diemden);
-            ListChuyenXe.lchuyenxe = lChuyenXe;
-            ListChuyenXe.DataBind();
+            if (Session["DateSh"] != null) {
+                string date = Session["DateSh"].ToString();
+                Response.Write(date);
+                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByName(diemdi, diemden, date);
+                ListChuyenXe.lchuyenxe = lChuyenXe;
+                ListChuyenXe.DataBind();
+            }
+            
+            
             // Hiển thị kết quả
 
         }

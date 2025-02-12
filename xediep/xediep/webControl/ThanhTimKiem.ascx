@@ -84,6 +84,7 @@
         <h1>Bến Xe DNC</h1>
         
         <div class="search-section">
+            
             <!-- Departure DropDownList -->
             <asp:DropDownList ID="ddlDiemDI" runat="server" style="flex: 1;">
                
@@ -93,6 +94,9 @@
             <asp:DropDownList ID="ddlDiemDen" runat="server" style="flex: 1;">
                
             </asp:DropDownList>
+           <asp:TextBox ID="txtDateTime" runat="server" TextMode="Date"></asp:TextBox>
+            
+
 
             <button class="btn" runat="server" onserverclick="TKChuyenXe">Tìm</button>
         </div>

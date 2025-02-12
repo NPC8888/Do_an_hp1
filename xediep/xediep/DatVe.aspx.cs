@@ -32,7 +32,9 @@ namespace xediep
                     Response.Write("ID chuyến xe không hợp lệ.");
                     Response.End();
                 }
-
+               
+                LvDanhGia.DataSource = DanhGiaBLL.Instance.GetDanhGiaByMaCX(int.Parse(idChuyenXe));
+                LvDanhGia.DataBind();
                 trangThaiGhe = new string[TotalSeats];
                 for (int i = 0; i < TotalSeats; i++)
                 {
@@ -67,7 +69,7 @@ namespace xediep
             string selectedValue = ddlDiemDon.SelectedValue;
             ViewState["DiemDon"]= selectedValue;
             Session["DiemDon"] = selectedValue;
-            Response.Write(Session["DiemDon"]);
+           
 
             
 

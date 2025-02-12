@@ -1,4 +1,4 @@
-﻿-- Bảng NgườiDung: Quản lý thông tin người dùng, bao gồm cả khách hàng và quản trị viên
+﻿	-- Bảng NgườiDung: Quản lý thông tin người dùng, bao gồm cả khách hàng và quản trị viên
 --USE master;
 --ALTER DATABASE QLChuyenXe2 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 --DROP DATABASE QLChuyenXe2;
@@ -91,11 +91,13 @@ CREATE TABLE DatVe (
 
 -- Bảng DanhGia: Quản lý đánh giá của khách hàng về chuyến xe
 CREATE TABLE DanhGia (
+	MaNguoiDung Int,
     MaDanhGia INT PRIMARY KEY IDENTITY,
-    MaDatVe INT, -- Liên kết với bảng DatVe
+    MaCX INT, -- Liên kết với bảng DatVe
     DiemDanhGia INT, -- Thang điểm 1 đến 5
     BinhLuan NVARCHAR(500),
-    FOREIGN KEY (MaDatVe) REFERENCES DatVe(MaDatVe)
+    FOREIGN KEY (MaCX) REFERENCES ChuyenXe(MaChuyenXe),
+	FOREIGN KEY (MaNguoiDung) REFERENCES NguoiDung(MaNguoiDung)
 );
 
 -- Bảng BaoCao: Quản lý thông tin thống kê và báo cáo
@@ -124,10 +126,10 @@ VALUES
 
 
 -- Bảng ChuyenXe: Thêm thông tin các chuyến xe
-INSERT INTO ChuyenXe (DiemDi, DiemDen, ThoiGianKhoiHanh, ThoiGianDen, MaTaiXe, MaXe, TrangThai)
+INSERT INTO ChuyenXe (DiemDi, DiemDen, ThoiGianKhoiHanh, ThoiGianDen, MaTaiXe, MaXe, TrangThai,price)
 VALUES
-(N'Hà Nội', N'Hải Phòng', '2025-01-15 08:00:00', '2025-01-15 10:00:00', 4, 1, N'ConVe'),
-(N'Hà Nội', N'Nam Định', '2025-01-15 09:00:00', '2025-01-15 11:00:00', 4, 2, N'ConVe');
+(N'Cần Thơ', N'An Giang', '2025-2-12 08:00:00', '2025/2/12 10:00:00', 4, 1, N'ConVe',100000),
+(N'Hà Nội', N'Hải Phòng','2025-2-12 09:00:00', '2025-2-12 11:00:00', 4, 2, N'ConVe',100000);
 INSERT INTO DiemDonTraKhach (MaChuyenXe, TenDiem, DiaChi, LoaiDiem, ThoiGian)
 VALUES
 (1, N'Cần Thơ', N'Số 1 đường Lý Tự Trọng, TP Cần Thơ', N'Don', '2025-02-15 08:00:00'),
@@ -186,48 +188,19 @@ VALUES
 (N'Ngay', '2025-01-14', '2025-01-14', 2, 500000),
 (N'Thang', '2025-01-01', '2025-01-31', 50, 12500000);
 
-select *from ChuyenXe
--- Tạo dữ liệu mẫu cho bảng GheNgoi
--- Kiểm tra và khắc phục nếu `SoGhe` có khả năng bị NULL
-SET NOCOUNT ON;
+INSERT INTO DanhGia (MaNguoiDung, MaCX, DiemDanhGia, BinhLuan) 
+VALUES 
+(1, 7, 5, N'Chuyến xe rất tốt, tài xế lái xe an toàn và thoải mái.'),
+(1, 7, 4, N'Chuyến xe ok, nhưng cần cải thiện thêm về thời gian đến.'),
+(1, 7, 3, N'Xe hơi cũ, có chút mùi nhưng nhìn chung chấp nhận được.'),
+(1, 7, 4, N'Dịch vụ tốt, nhưng ghế hơi chật.'),
+(1, 7, 5, N'Rất tuyệt vời, chuyến đi rất thoải mái, tôi sẽ đi lại.'),
+(1, 8, 3, N'Xe đến trễ, tôi không hài lòng lắm.'),
+(1, 8, 4, N'Chuyến xe tương đối tốt, nhưng nên kiểm tra kỹ ghế ngồi.'),
+(1, 8, 2, N'Xe có vấn đề về điều hòa, cần sửa chữa.'),
+(1, 8, 5, N'Xe rất sạch sẽ, tài xế thân thiện và nhiệt tình.'),
+(1, 8, 4, N'Chuyến đi khá tốt, nhưng giá vé hơi cao.');
 
-DECLARE @i INT = 1; -- Bộ đếm cho vòng lặp
-DECLARE @MaChuyenXe INT; -- Mã chuyến xe (1 hoặc 2)
-DECLARE @SoGhe INT; -- Số ghế sẽ được chọn để chèn
-
--- Lặp qua 50 lần để chèn dữ liệu
-WHILE @i <= 50
-BEGIN
-    -- Xác định mã chuyến xe (luân phiên giữa 1 và 2)
-    SET @MaChuyenXe = CASE WHEN @i % 2 = 0 THEN 2 ELSE 1 END;
-
-    -- Tìm số ghế chưa được sử dụng trong mã chuyến xe hiện tại
-    SELECT TOP 1 @SoGhe = SoGhe
-    FROM (
-        SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS SoGhe
-        FROM master.dbo.spt_values -- Tạo danh sách số từ 1 đến 36
-        WHERE type = 'P' AND number BETWEEN 1 AND 36
-        EXCEPT
-        SELECT SoGhe FROM GheNgoi WHERE MaChuyenXe = @MaChuyenXe
-    ) AS AvailableSeats
-    ORDER BY NEWID(); -- Chọn số ghế ngẫu nhiên từ danh sách còn lại
-
-    -- Nếu không còn số ghế khả dụng, dừng vòng lặp
-    IF @SoGhe IS NULL
-    BEGIN
-        PRINT 'Không còn số ghế khả dụng cho mã chuyến xe ' + CAST(@MaChuyenXe AS NVARCHAR(10));
-        BREAK;
-    END;
-
-    -- Chèn dữ liệu vào bảng
-    INSERT INTO GheNgoi (MaChuyenXe, SoGhe, DaDat, MaKhachHang, ThoiGianDat)
-    VALUES (@MaChuyenXe, @SoGhe, 0, NULL, NULL);
-
-    -- Tăng bộ đếm
-    SET @i = @i + 1;
-END;
-
-SET NOCOUNT OFF;
 
 -- Kiểm tra dữ liệu đã chèn
 SELECT * FROM GheNgoi ORDER BY MaChuyenXe, SoGhe;
@@ -238,13 +211,8 @@ SELECT * FROM GheNgoi ORDER BY MaChuyenXe, SoGhe;
 
 
 -- Xem dữ liệu đã chèn
-SELECT * FROM GheNgoi;
+SELECT * FROM ChuyenXe;
 
 
 -- Xem dữ liệu đã chèn
-SELECT * FROM DatVe ;
-select * from ChuyenXe;
-
-
-
-SELECT SCOPE_IDENTITY() AS NewGheID;
+	

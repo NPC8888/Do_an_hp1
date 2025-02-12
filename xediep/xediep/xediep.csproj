@@ -170,6 +170,7 @@
     <Compile Include="Backgroud.Master.designer.cs">
       <DependentUpon>Backgroud.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\DanhGiaBLL.cs" />
     <Compile Include="BLL\DatVeBLL.cs" />
     <Compile Include="BLL\DiemDonTraKhachBLL.cs" />
     <Compile Include="BLL\NguoiDungBLL.cs" />
@@ -181,6 +182,7 @@
       <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\ChuyenXeDAL.cs" />
+    <Compile Include="DAL\DanhGiaDAL.cs" />
     <Compile Include="DAL\DataProvider.cs" />
     <Compile Include="DAL\DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>

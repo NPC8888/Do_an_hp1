@@ -6,7 +6,11 @@
             max-width: 600px;
             margin: 20px auto;
             text-align: center;
+              display:flex-start;
         }
+        
+
+
         .seat-grid {
             display: grid;
             grid-template-columns: repeat(4, 60px); /* 4 cột mỗi hàng */
@@ -131,7 +135,6 @@
     outline: none;
 }
 
-
     </style>
 
     <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
@@ -163,19 +166,48 @@
       
     </asp:DropDownList>
 </div>
-
+        <button id="btnShow" type="button" onclick="show"></button>
 <div class="dropdown-container">
     <label for="ddlDiemTra">🎯 Điểm trả:</label>
     <asp:DropDownList ID="ddlDiemTra" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddltrachang">
      
     </asp:DropDownList>
 </div>
-
-
+        
+            <div class="container">
+</div>
         <div class="seat-grid" id="seatGrid"></div>
         <p>Ghế đã chọn: <span id="selectedSeats">Không có</span></p>
-    </div>
+       <div> 
+       <div>
+            <h2>Danh Sách Đánh Giá</h2>
 
+<asp:ListView ID="LvDanhGia" runat="server">
+    <LayoutTemplate>
+        <div class="comment-container">
+            <div id="itemPlaceholder" runat="server"></div>
+        </div>
+    </LayoutTemplate>
+    <ItemTemplate>
+        <div class="comment">
+            <div class="comment-header">
+                <span class="user-name"><%# Eval("_Star") %></span>
+                
+            </div>
+
+           
+
+            <!-- Nội dung bình luận -->
+            <div class="comment-content">
+                <%# Eval("BinhLuan") %>
+            </div>
+        </div>
+    </ItemTemplate>
+</asp:ListView>
+       </div>
+   </div>
+        </div>
+        
     <div id="StepContent2" class="container" style="display: none;">
          <h2>Bước 2: Nhập thông tin</h2>
     <div class="form-container">
@@ -204,7 +236,7 @@
     </div>
 
     <asp:HiddenField ID="hdnSelectedSeats" runat="server" />
-
+   
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const totalSteps = 3; // Tổng số bước
@@ -294,5 +326,6 @@
                 }
             });
         });
+        
     </script>
 </asp:Content>

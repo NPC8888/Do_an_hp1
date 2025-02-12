@@ -16,15 +16,18 @@
                 <p><strong>Giờ đến:</strong> <%# Eval("TgDen") %></p>
                 <p class="price">Giá vé: <%# Eval("Price", "{0:C}") %></p>
                 <a class="btn-add-to-cart" href='<%# "DatVe.aspx?id=" + Eval("MaCx") %>'>Đặt vé ngay</a>
-
-                   
+             
+        
             </div>
         </div>
     </ItemTemplate>
 </asp:ListView>
 
 
-    <style>
+
+
+<style>
+ 
 /* Container chính */
 .bus-ticket-container {
     display: flex;
@@ -147,11 +150,4 @@
         transform: scale(1);
     }
 }
-
-    </style>
-    <script>
-      
-
-
-    </script>
-
+</style>

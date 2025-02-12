@@ -38,10 +38,10 @@ namespace DAL
 
         }
 
-        public List<ChuyenXe> SearchChuyenXeByName(string DiemDi ,string DiemDen)
+        public List<ChuyenXe> SearchChuyenXeByName(string DiemDi ,string DiemDen,string date)
         {
             List<ChuyenXe> list = new List<ChuyenXe>();
-            string query = string.Format("SELECT * FROM ChuyenXe WHERE DiemDi LIKE N'%' + N'{0}' + '%' and DiemDen LIKE N'%' + N'{1}' + '%'", DiemDi,DiemDen);
+            string query = string.Format("SELECT * FROM ChuyenXe WHERE DiemDi LIKE N'%' + N'{0}' + '%' and DiemDen LIKE N'%' + N'{1}' + '%' and CAST(ThoiGianKhoiHanh AS DATE) = '{2}'", DiemDi,DiemDen,date);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {

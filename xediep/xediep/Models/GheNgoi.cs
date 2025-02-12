@@ -33,7 +33,7 @@ namespace Models
 
 
 
-
+        
 
         private int maGhe;
         public int MaGhe { get => maGhe; set => maGhe = value; }
