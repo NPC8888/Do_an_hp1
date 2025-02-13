@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListChuyenXe.ascx.cs" Inherits="xediep.webControl.ListChuyenXe" %>
-<asp:ListView ID="ListView1" runat="server">
+<asp:ListView ID="ListView1" runat="server" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
     <LayoutTemplate>
         <div class="bus-ticket-container">
             <div id="itemPlaceholder" runat="server"></div>
@@ -16,13 +16,12 @@
                 <p><strong>Giờ đến:</strong> <%# Eval("TgDen") %></p>
                 <p class="price">Giá vé: <%# Eval("Price", "{0:C}") %></p>
                 <a class="btn-add-to-cart" href='<%# "DatVe.aspx?id=" + Eval("MaCx") %>'>Đặt vé ngay</a>
-             
+           
         
             </div>
         </div>
     </ItemTemplate>
 </asp:ListView>
-
 
 
 
@@ -151,3 +150,4 @@
     }
 }
 </style>
+

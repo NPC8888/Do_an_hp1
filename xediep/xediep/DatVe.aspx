@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Đặt Vé" Language="C#" MasterPageFile="~/Backgroud.Master" AutoEventWireup="true" CodeBehind="DatVe.aspx.cs" Inherits="xediep.DatVe" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!DOCTYPE html>
+  
     <style>
         .container {
             max-width: 600px;
@@ -79,6 +79,9 @@
              cursor: pointer;
              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
              transition: all 0.3s ease;
+        }
+        .aaa{
+            display:flex;
         }
 
 .form-group .form-control {
@@ -166,7 +169,7 @@
       
     </asp:DropDownList>
 </div>
-        <button id="btnShow" type="button" onclick="show"></button>
+        
 <div class="dropdown-container">
     <label for="ddlDiemTra">🎯 Điểm trả:</label>
     <asp:DropDownList ID="ddlDiemTra" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddltrachang">
@@ -174,40 +177,42 @@
     </asp:DropDownList>
 </div>
         
-            <div class="container">
-</div>
+            
+
+    <div class="aaa">
+        <div class="container">
         <div class="seat-grid" id="seatGrid"></div>
         <p>Ghế đã chọn: <span id="selectedSeats">Không có</span></p>
-       <div> 
-       <div>
-            <h2>Danh Sách Đánh Giá</h2>
-
-<asp:ListView ID="LvDanhGia" runat="server">
-    <LayoutTemplate>
-        <div class="comment-container">
-            <div id="itemPlaceholder" runat="server"></div>
         </div>
-    </LayoutTemplate>
-    <ItemTemplate>
-        <div class="comment">
-            <div class="comment-header">
-                <span class="user-name"><%# Eval("_Star") %></span>
-                
-            </div>
+     <div style="position: absolute;">
+    
+    <!-- Nút bấm hiển thị/ẩn -->
+    <p style="cursor:pointer; background-color:chocolate" href="javascript:void(0);" onclick="toggleDanhGia()">Dánh Giá<i class="fas fa-comment-dots"></i> </p>
 
-           
-
-            <!-- Nội dung bình luận -->
-            <div class="comment-content">
-                <%# Eval("BinhLuan") %>
-            </div>
-        </div>
-    </ItemTemplate>
-</asp:ListView>
-       </div>
-   </div>
+    <!-- Div chứa danh sách đánh giá, ẩn mặc định -->
+    <div id="danhGiaContainer" style="display: none; margin-top: 10px; background-color:aquamarine">
+        <asp:ListView ID="LvDanhGia" runat="server">
+            <LayoutTemplate>
+                <div class="comment-container">
+                    <div id="itemPlaceholder" runat="server"></div>
+                </div>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="user-name"><%# Eval("_Star") %></span>
+                    </div>
+                    <div class="comment-content">
+                        <%# Eval("BinhLuan") %>
+                    </div>
+                </div>
+            </ItemTemplate>
+        </asp:ListView>
+    </div>
+</div>
         </div>
         
+        </div>
     <div id="StepContent2" class="container" style="display: none;">
          <h2>Bước 2: Nhập thông tin</h2>
     <div class="form-container">
@@ -326,6 +331,10 @@
                 }
             });
         });
-        
+        function toggleDanhGia() {
+            var container = document.getElementById('danhGiaContainer');
+            container.style.display = (container.style.display === 'none' || container.style.display === '') ? 'block' : 'none';
+        }
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </asp:Content>

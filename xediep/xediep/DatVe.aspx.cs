@@ -151,30 +151,6 @@ namespace xediep
             }
         }
 
-        [WebMethod]
-        public static string SaveSelectedSeats(string selectedSeatsJson)
-        {
-
-            try
-            {
-                var selectedSeats = JsonConvert.DeserializeObject<List<int>>(selectedSeatsJson);
-                if (selectedSeats != null && selectedSeats.Count > 0)
-                {
-                    string selectedSeatsDisplay = string.Join(", ", selectedSeats);
-
-                    // Lưu vào Session (hoặc cơ sở dữ liệu nếu cần)
-                    HttpContext.Current.Session["DanhSachGhe"] = selectedSeatsDisplay;
-                    ScriptManager.RegisterStartupScript(HttpContext.Current.Handler as Page, typeof(Page), "Reload", "window.location.reload();", true);
-                    return $"Thành Công Đặt Ghế Số: {selectedSeatsDisplay}";
-                    
-                }
-                return "Không có ghế nào được chọn.";
-
-            }
-            catch (Exception ex)
-            {
-                return "Lỗi: " + ex.Message;
-            }
-        }
+      
     }
 }
