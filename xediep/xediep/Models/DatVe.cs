@@ -12,18 +12,18 @@ namespace Models
         {
             this.maDatVe = row["MaDatVe"] != DBNull.Value ? Convert.ToInt32(row["MaDatVe"]) : 0;
             this.maGhe = row["MaGhe"] != DBNull.Value ? Convert.ToInt32(row["MaGhe"]) : 0;
-            this.maDiemDon = row["MaDiemDon"] != DBNull.Value ? Convert.ToInt32(row["MaDiemDon"]) : 0;
-            this.maDiemTra = row["MaDiemTra"] != DBNull.Value ? Convert.ToInt32(row["MaDiemTra"]) : 0;
+            this.maDiemDon = row["DiemDon"] != DBNull.Value ? Convert.ToInt32(row["DiemDon"]) : 0;
+            this.maDiemTra = row["DiemTra"] != DBNull.Value ? Convert.ToInt32(row["DiemTra"]) : 0;
             this.maChuyenXe = row["MaChuyenXe"] != DBNull.Value ? Convert.ToInt32(row["MaChuyenXe"]) : 0;
             this.maKH = row["MaKhachHang"] != DBNull.Value ? Convert.ToInt32(row["MaKhachHang"]) : 0;
-            this.trangThai = row["DaDat"] != DBNull.Value ? Convert.ToByte(row["DaDat"]) : (byte)0;
+            this.trangThai = row["TrangThai"] != DBNull.Value ? row["TrangThai"].ToString() : "";
             this.hoTen = row["HoTen"] != DBNull.Value ? (row["HoTen"]).ToString() : "";
             this.soDT = row["SoDT"] != DBNull.Value ? (row["SoDT"]).ToString() : "";
-            this.ngayDat = row["ThoiGianDat"] != DBNull.Value
-                ? DateTime.Parse(row["ThoiGianDat"].ToString())
+            this.ngayDat = row["NgayDatVe"] != DBNull.Value
+                ? DateTime.Parse(row["NgayDatVe"].ToString())
                 : DateTime.MinValue;
         }
-        public DatVe(int maDatVe,int maGhe,int maChuyenXe,int maKH,byte trangThai,DateTime ngayDat,string hoten,string sodt,int madiemdon,int madiemtra)
+        public DatVe(int maDatVe,int maGhe,int maChuyenXe,int maKH,string trangThai,DateTime ngayDat,string hoten,string sodt,int madiemdon,int madiemtra)
         {
             this.MaDatVe = maDatVe;
             this.maGhe = maGhe;
@@ -70,8 +70,8 @@ namespace Models
         public string HoTen { get => hoTen; set => hoTen = value; }
         private string soDT;
         public string SoDT { get => soDT; set => soDT = value; }
-        private byte trangThai;
-        public byte TrangThai { get => trangThai; set => trangThai = value; }
+        private string trangThai;
+        public string TrangThai { get => trangThai; set => trangThai = value; }
         private DateTime ngayDat;
         public DateTime NgayDat { get => ngayDat; set => ngayDat = value; }
 

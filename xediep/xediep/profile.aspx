@@ -15,16 +15,17 @@
             <!-- Vé xe đã đặt -->
             <div class="ticket-history">
                 <h2>Vé xe đã đặt</h2>
-                <asp:GridView ID="gvTickets" runat="server" CssClass="ticket-table"
-                    AutoGenerateColumns="False" BorderStyle="None">
-                    <Columns>
-                        <asp:BoundField DataField="MaVe" HeaderText="Mã Vé" />
-                        <asp:BoundField DataField="DDi" HeaderText="Điểm đi" />
-                        <asp:BoundField DataField="DDen" HeaderText="Điểm đến" />
-                        <asp:BoundField DataField="NgayDi" HeaderText="Ngày đi" DataFormatString="{0:dd/MM/yyyy}" />
-                        <asp:BoundField DataField="Gia" HeaderText="Giá" DataFormatString="{0:C}" />
-                    </Columns>
-                </asp:GridView>
+               <asp:GridView ID="gvTickets" runat="server" CssClass="ticket-table" DataKeyNames="MaChuyenXe" AutoGenerateColumns="False" BorderStyle="None" >
+    <Columns>
+        <asp:BoundField DataField="HoTen" HeaderText="Họ Tên" />
+        <asp:BoundField DataField="soDT" HeaderText="Số Điện Thoại" />
+        <asp:BoundField DataField="TenDiemDon" HeaderText="Điểm đi" />
+        <asp:BoundField DataField="TenDiemTra" HeaderText="Điểm đến" />
+        <asp:BoundField DataField="NgayDatVe" HeaderText="Ngày đi" DataFormatString="{0:dd/MM/yyyy}" />
+       
+    </Columns>
+</asp:GridView>
+
             </div>
 
             <!-- Nút Đăng xuất -->
@@ -270,6 +271,13 @@ input[type="email"]:focus {
         });
         function iconlgclik() {
             window.location.href = "TrangChu.aspx"
+        }
+        function handleEditClick(maChuyenXe) {
+            // Hiển thị mã chuyến xe trên console hoặc thực hiện hành động khác
+            console.log("Đánh giá chuyến xe với mã: " + maChuyenXe);
+
+            // Bạn có thể thực hiện các hành động khác, như hiển thị modal hoặc gửi dữ liệu đến server bằng AJAX
+            return false; // Ngừng hành động mặc định của nút (không gửi yêu cầu đến server)
         }
     </script>
 

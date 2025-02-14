@@ -32,9 +32,6 @@ namespace xediep.webControl
             return danhGias;
         }
 
-        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Write("a");
-        }
+        
     }
 }

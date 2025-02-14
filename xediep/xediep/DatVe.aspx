@@ -138,9 +138,38 @@
     outline: none;
 }
 
-    </style>
+/*css cua pnel xac nhan thanh toan*/
+    .booking-confirmation {
+        width: 400px;
+        margin:15%;
+        
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        font-family: Arial;
+    }
 
-    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
+    .booking-confirmation h2 {
+        text-align: center;
+        color: #007bff;
+        
+    }
+
+    .booking-confirmation p {
+        font-size: 16px;
+       
+    }
+
+    .booking-confirmation strong {
+        color: #333;
+    }
+
+</style>
+
+    
+
+    <asp:ScriptManager runat="server" EnablePageMethods="true" />
+
 
     <!-- Thanh trạng thái -->
     <div style="display: flex; justify-content: center; align-items: center;margin:5% 10% 5% 10%">
@@ -165,14 +194,14 @@
         <h2>Bước 1: Chọn ghế Và Điểm Đón,Trả</h2>
        <div class="dropdown-container">
     <label for="ddlDiemDon">🚏 Điểm đón:</label>
-    <asp:DropDownList ID="ddlDiemDon" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddlDonchang">
+    <asp:DropDownList ID="ddlDiemDon" runat="server" CssClass="custom-dropdown" >
       
     </asp:DropDownList>
 </div>
         
 <div class="dropdown-container">
     <label for="ddlDiemTra">🎯 Điểm trả:</label>
-    <asp:DropDownList ID="ddlDiemTra" runat="server" CssClass="custom-dropdown" AutoPostBack="true" OnSelectedIndexChanged="ddltrachang">
+    <asp:DropDownList ID="ddlDiemTra" runat="server" CssClass="custom-dropdown" >
      
     </asp:DropDownList>
 </div>
@@ -182,7 +211,7 @@
     <div class="aaa">
         <div class="container">
         <div class="seat-grid" id="seatGrid"></div>
-        <p>Ghế đã chọn: <span id="selectedSeats">Không có</span></p>
+        <p>Ghế đã chọn: <span id="selectedSeats"></span></p>
         </div>
      <div style="position: absolute;">
     
@@ -218,6 +247,7 @@
     <div class="form-container">
         <!-- Họ tên -->
         <div class="form-group">
+            <asp:Label ID="lbID" runat="server"></asp:Label>
             <label for="txtHoTen">Họ và Tên:</label>
             <asp:TextBox ID="txtHoTen" runat="server" CssClass="form-control" placeholder="Nhập họ và tên" />
         </div>
@@ -232,17 +262,31 @@
 
     <div id="StepContent3" class="container" style="display: none;">
         <h2>Bước 3: Xác nhận đặt vé</h2>
-        <p>Xác nhận thông tin đặt vé và hoàn tất quá trình.</p>
+       
+        <asp:Panel ID="pnlBookingConfirmation" runat="server" CssClass="booking-confirmation">
+    <h2>Xác nhận đặt vé</h2>
+     <p><strong>MaXe:</strong> <asp:Label ID="lblmaxe" runat="server" Text="10/03/2025 08:00 AM"></asp:Label></p>
+    <p><strong>Số ghế:</strong><asp:Label ID="SoGheDaChon" runat="server"></asp:Label></p>
+    <p><strong>Số tiền/vé:</strong> <asp:Label ID="lblTotalPrice" runat="server" Text="0"></asp:Label></p>
+    <p><strong>Chuyến xe:</strong> <asp:Label ID="lblTripName" runat="server" Text="Hà Nội - Sài Gòn"></asp:Label></p>
+    <p><strong>Thời gian:</strong> <asp:Label ID="lblDepartureTime" runat="server" Text="10/03/2025 08:00 AM"></asp:Label></p>
+
+            
+
+   
+</asp:Panel>
+
     </div>
 
     <!-- Nút điều hướng -->
     <div style="text-align: center; margin-top: 20px;">
         <asp:Button ID="btnNext" runat="server" Text="Tiếp theo" CssClass="btnNext" />
     </div>
-
+    <asp:Button  runat="server" OnClick="datve"/>
     <asp:HiddenField ID="hdnSelectedSeats" runat="server" />
    
     <script>
+        
         document.addEventListener('DOMContentLoaded', () => {
             const totalSteps = 3; // Tổng số bước
             let currentStep = 1; // Bắt đầu ở bước 1
@@ -284,8 +328,14 @@
             // Cập nhật danh sách ghế đã chọn
             function updateSelectedSeats() {
                 selectedSeatsDisplay.textContent = selectedSeats.length
-                    ? selectedSeats.join(', ')
-                    : 'Không có';
+                    ? selectedSeats.join(',')
+                    : '';
+                document.getElementById('<%= SoGheDaChon.ClientID %>').innerText = selectedSeatsDisplay.textContent;
+                
+               
+
+               
+                
             }
 
             // Chuyển bước
@@ -312,21 +362,32 @@
             // Gắn sự kiện click cho nút "Tiếp theo"
             nextButton.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                if (currentStep ===3) {
-                    // Gửi danh sách ghế đã chọn trước khi chuyển bước
-                    hiddenField.value = JSON.stringify(selectedSeats);
-                    console.log("HiddenField Value:", hiddenField.value);
+                if (currentStep === 1 && document.getElementById('<%= SoGheDaChon.ClientID %>').innerText == "" ) {
+                    if (confirm("Vui lòng chọn ít nhất 1 ghế?")) {
+                        
+                    }
+                    return;
+                }
+                else if (currentStep === 3) {
+                    var MachuyenXe = document.getElementById('<%= lblmaxe.ClientID %>').innerText;
+                    var SoGhe = document.getElementById('<%= SoGheDaChon.ClientID %>').innerText;
+                    var txtHoVaTen = document.getElementById('<%= txtHoTen.ClientID %>').value;
+                    var txtSDT = document.getElementById('<%= txtSoDienThoai.ClientID %>').value;
+                    var don = document.getElementById('<%= ddlDiemDon.ClientID %>');
+                    var MaDiemDon = don.value;
+                    var tra = document.getElementById('<%= ddlDiemTra.ClientID %>');
+                    var MaDiemTra = tra.value;
                     
-                    PageMethods.SaveSelectedSeats(hiddenField.value, (response) => {
-                        alert(response);
-                        window.location.reload();
-
-                        moveToNextStep();
-                    }, (error) => {
-                        console.error('Error:', error);
+                    PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, function (response) {
+                        alert("Server response: " + response);
+                        window.location.href = "TrangChu.aspx";
+                    }, function (error) {
+                        console.error(error);
                     });
-                } else {
+                    
+                }
+             
+                else {
                     moveToNextStep();
                 }
             });
@@ -334,7 +395,9 @@
         function toggleDanhGia() {
             var container = document.getElementById('danhGiaContainer');
             container.style.display = (container.style.display === 'none' || container.style.display === '') ? 'block' : 'none';
+           
         }
+
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </asp:Content>

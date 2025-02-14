@@ -51,6 +51,15 @@ namespace DAL
             return list;
 
         }
+        public ChuyenXe getGiaXeByMaXe(string id)
+        {
+            int i = int.Parse(id);
+            string query = string.Format("select * from ChuyenXe where MaChuyenXe={0}", i);
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+            DataRow dr = dt.Rows[0];
+            ChuyenXe cx=new ChuyenXe(dr);
+            return cx;
+        }
 
         public bool InsertCoffee(string name, int id, decimal price)
         {

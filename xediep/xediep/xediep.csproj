@@ -173,6 +173,7 @@
     <Compile Include="BLL\DanhGiaBLL.cs" />
     <Compile Include="BLL\DatVeBLL.cs" />
     <Compile Include="BLL\DiemDonTraKhachBLL.cs" />
+    <Compile Include="BLL\GheNgoiBLL.cs" />
     <Compile Include="BLL\NguoiDungBLL.cs" />
     <Compile Include="ChiTietDatVe.aspx.cs">
       <DependentUpon>ChiTietDatVe.aspx</DependentUpon>

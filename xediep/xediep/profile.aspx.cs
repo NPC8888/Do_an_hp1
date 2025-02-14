@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using xediep.BLL;
 
 namespace xediep
 {
@@ -27,7 +28,7 @@ namespace xediep
                 LoadTicketHistory();
                 idNguoiDung = Request.QueryString["id"];
 
-                
+
             }
         }
 
@@ -59,12 +60,8 @@ namespace xediep
         private void LoadTicketHistory()
         {
             // Dữ liệu giả lập - thay bằng database
-            var tickets = new List<object>
-            {
-                new { MaVe = "VX001", DDi = "Hà Nội", DDen = "Hải Phòng", NgayDi = DateTime.Now, Gia = 150000 },
-                new { MaVe = "VX002", DDi = "TP.HCM", DDen = "Nha Trang", NgayDi = DateTime.Now.AddDays(1), Gia = 250000 },
-                new { MaVe = "VX003", DDi = "Đà Nẵng", DDen = "Huế", NgayDi = DateTime.Now.AddDays(2), Gia = 180000 }
-            };
+            var tickets = DatVeBLL.Instance.GetDTVebyIdNguoiDung(Request.QueryString["id"].ToString());
+
 
             gvTickets.DataSource = tickets;
             gvTickets.DataBind();
@@ -104,6 +101,9 @@ namespace xediep
             Response.Redirect("TrangChu.aspx");
         }
 
-    }
 
+
+
+
+    }
 }

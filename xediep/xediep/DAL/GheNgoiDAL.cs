@@ -38,6 +38,20 @@ namespace DAL
 
 
         }
+        public List<GheNgoi> GetListGheNgoibyIdNguoiDung(string id)
+        {
+            List<GheNgoi> list = new List<GheNgoi>();
+            string query = "SELECT * FROM GheNgoi WHERE MaNguoiDung = @MaNguoiDung";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
+
+            foreach (DataRow item in data.Rows)
+            {
+                GheNgoi ghe = new GheNgoi(item);
+                list.Add(ghe);
+            }
+
+            return list;
+        }
 
         public List<GheNgoi> GetListGheNgoibyId(string id)
         {

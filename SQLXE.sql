@@ -132,11 +132,11 @@ VALUES
 (N'Hà Nội', N'Hải Phòng','2025-2-12 09:00:00', '2025-2-12 11:00:00', 4, 2, N'ConVe',100000);
 INSERT INTO DiemDonTraKhach (MaChuyenXe, TenDiem, DiaChi, LoaiDiem, ThoiGian)
 VALUES
-(1, N'Cần Thơ', N'Số 1 đường Lý Tự Trọng, TP Cần Thơ', N'Don', '2025-02-15 08:00:00'),
-(1, N'Vĩnh Long', N'Số 5 đường Nguyễn Huệ, TP Vĩnh Long', N'Don', '2025-02-15 08:30:00'),
-(1, N'Trà Vinh', N'Số 10 đường Trần Hưng Đạo, TP Trà Vinh', N'Don', '2025-02-15 09:00:00'),
-(1, N'Sóc Trăng', N'Số 15 đường Phạm Ngọc Thạch, TP Sóc Trăng', N'Don', '2025-02-15 09:30:00'),
-(1, N'Hà Nội', N'Số 12 đường Nguyễn Thái Học, Quận Ba Đình, Hà Nội', N'Tra', '2025-02-15 19:30:00');
+(8, N'Cần Thơ', N'Số 1 đường Lý Tự Trọng, TP Cần Thơ', N'Don', '2025-02-15 08:00:00'),
+(8, N'Vĩnh Long', N'Số 5 đường Nguyễn Huệ, TP Vĩnh Long', N'Don', '2025-02-15 08:30:00'),
+(8, N'Trà Vinh', N'Số 10 đường Trần Hưng Đạo, TP Trà Vinh', N'Don', '2025-02-15 09:00:00'),
+(8, N'Sóc Trăng', N'Số 15 đường Phạm Ngọc Thạch, TP Sóc Trăng', N'Don', '2025-02-15 09:30:00'),
+(8, N'Hà Nội', N'Số 12 đường Nguyễn Thái Học, Quận Ba Đình, Hà Nội', N'Tra', '2025-02-15 19:30:00');
 INSERT INTO DiemDonTraKhach (MaChuyenXe, TenDiem, DiaChi, LoaiDiem, ThoiGian)
 VALUES
 (2, N'Đà Nẵng', N'Số 30 đường Lê Duẩn, TP Đà Nẵng', N'Don', '2025-02-16 08:00:00'),
@@ -211,8 +211,21 @@ SELECT * FROM GheNgoi ORDER BY MaChuyenXe, SoGhe;
 
 
 -- Xem dữ liệu đã chèn
-SELECT * FROM ChuyenXe;
-
-
+SELECT * FROM DatVe;
+SELECT * FROM GheNgoi;
+;
+select Price from ChuyenXe where MaChuyenXe=8;
 -- Xem dữ liệu đã chèn
 	
+	SELECT 
+	dv.MaDatVe,
+	dv.MaChuyenXe,
+    dv.HoTen, 
+    dv.SoDT, 
+    ddon.TenDiem AS DD, 
+    dtra.TenDiem AS DT, 
+    dv.NgayDatVe
+FROM DatVe dv
+JOIN DiemDonTraKhach ddon ON dv.DiemDon = ddon.IDDiem
+JOIN DiemDonTraKhach dtra ON dv.DiemTra = dtra.IDDiem
+WHERE dv.MaKhachHang = 1;

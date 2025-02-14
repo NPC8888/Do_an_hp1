@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListChuyenXe.ascx.cs" Inherits="xediep.webControl.ListChuyenXe" %>
-<asp:ListView ID="ListView1" runat="server" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
+<asp:ListView ID="ListView1" runat="server">
     <LayoutTemplate>
         <div class="bus-ticket-container">
             <div id="itemPlaceholder" runat="server"></div>
