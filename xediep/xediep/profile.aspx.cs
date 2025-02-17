@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using xediep.BLL;
@@ -37,7 +38,7 @@ namespace xediep
 
             DataRow uses = NguoiDungBLL.Instance.AuthenticateByToken(Request.Cookies["AuthToken"].Value);
             use = new NguoiDung(uses);
-            Response.Write(use.MaNguoiDung);
+           
             lblFullName.Text = use.HoTen;
             lblEmail.Text = use.EMai;
             lblPhone.Text = use.SDT;
@@ -63,8 +64,8 @@ namespace xediep
             var tickets = DatVeBLL.Instance.GetDTVebyIdNguoiDung(Request.QueryString["id"].ToString());
 
 
-            gvTickets.DataSource = tickets;
-            gvTickets.DataBind();
+            rptTickets.DataSource = tickets;
+            rptTickets.DataBind();
         }
 
 
@@ -102,8 +103,56 @@ namespace xediep
         }
 
 
+        //danhgia
 
+        [WebMethod]
+        public static string DanhGiaCX(string MaChuyenXe, string SoSao, string NoiDung, string MaDatVe)
+        {
+            
+            try { 
+            HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
+            if (authCookie != null)
+            {
+                string token = authCookie.Value;
+                NguoiDungBLL userBLL = new NguoiDungBLL();
+                DataRow user = userBLL.AuthenticateByToken(token);
+                NguoiDung nguoi = new NguoiDung(user);
+                DanhGia dg = new DanhGia(100, int.Parse(MaChuyenXe),nguoi.MaNguoiDung, int.Parse(SoSao), NoiDung);
+                if (DanhGiaBLL.Instance.AddDanhGia(dg)&&DatVeBLL.Instance.FixTrangThaiKhiDanhGia(MaDatVe))
+                {
 
+                    return "Danh giá thành công!" ;
+                }
+                return "that bai";
+            }
+            
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
+            return "khong co nguoi dung";
+            
+
+        }
+        [WebMethod]
+        public static string HuyVeById(string id)
+        {
+            try
+            {
+                if (DatVeBLL.Instance.FixTrangThaiKhiHuy(id.ToString()))
+                {
+                    return "Hủy Thành Công";
+
+                }
+                return "Thất Bại";
+            }
+            catch(Exception ex)
+            {
+                return ex.ToString() ;
+            }
+        }
 
     }
 }

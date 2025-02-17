@@ -8,7 +8,7 @@ namespace Models
         public DanhGia(DataRow row)
         {
             this.MaDanhGia = row["MaDanhGia"] != DBNull.Value ? Convert.ToInt32(row["MaDanhGia"]) : 0;
-            this.MaCX = row["MaCX"] != DBNull.Value ? Convert.ToInt32(row["MaCX"]) : 0;
+            this.MaXe = row["MaXe"] != DBNull.Value ? Convert.ToInt32(row["MaXe"]) : 0;
             this.MaNguoiDung = row["MaNguoiDung"] != DBNull.Value ? Convert.ToInt32(row["MaNguoiDung"]) : 0;
             this.DiemDanhGia = row["DiemDanhGia"] != DBNull.Value ? Convert.ToInt32(row["DiemDanhGia"]) : 0;
             this.BinhLuan = row["BinhLuan"] != DBNull.Value ? row["BinhLuan"].ToString() : "";
@@ -18,7 +18,7 @@ namespace Models
         public DanhGia(int maDanhGia, int maCX, int maNguoiDung, int diemDanhGia, string binhLuan)
         {
             this.MaDanhGia = maDanhGia;
-            this.MaCX = maCX;
+            this.MaXe = maXe;
             this.MaNguoiDung = maNguoiDung;
             this.DiemDanhGia = diemDanhGia;
             this.BinhLuan = binhLuan;
@@ -27,7 +27,7 @@ namespace Models
         public DanhGia(DanhGia danhGia)
         {
             this.MaDanhGia = danhGia.MaDanhGia;
-            this.MaCX = danhGia.MaCX;
+            this.maXe = danhGia.maXe;
             this.MaNguoiDung = danhGia.MaNguoiDung;
             this.DiemDanhGia = danhGia.DiemDanhGia;
             this.BinhLuan = danhGia.BinhLuan;
@@ -53,8 +53,8 @@ namespace Models
         private int maDanhGia;
         public int MaDanhGia { get => maDanhGia; set => maDanhGia = value; }
 
-        private int maCX;
-        public int MaCX { get => maCX; set => maCX = value; }
+        private int maXe;
+        public int MaXe { get => maXe; set => maXe = value; }
 
         private int maNguoiDung;
         public int MaNguoiDung { get => maNguoiDung; set => maNguoiDung = value; }

@@ -21,7 +21,7 @@ namespace BLL
         public int idma;
         public bool InsertDatVe(int maGhe, int maChuyenXe, int maKH, string trangThai, DateTime ngayDat, string hoten, string sodt, int soghe, int madiemdon, int madiemtra)
         {
-            GheNgoi ghe = new GheNgoi(maGhe, maChuyenXe, maKH, soghe, 1, ngayDat);
+            GheNgoi ghe = new GheNgoi(maGhe, maChuyenXe, soghe, 1, ngayDat);
             int i = GheNgoiDAL.Instance.insertGheNgoi(ghe);
             idma = i;
 
@@ -29,6 +29,16 @@ namespace BLL
             i = DatVeDAL.Instance.DatVe(dat);
 
 
+            return i > 0;
+        }
+        public bool FixTrangThaiKhiDanhGia(string Idve)
+        {
+            int i =DatVeDAL.Instance.fixTrangThai(Idve);
+            return i > 0;
+        }
+        public bool FixTrangThaiKhiHuy(string Idve)
+        {
+            int i = DatVeDAL.Instance.fixTrangThaiHuy(Idve);
             return i > 0;
         }
         public List<DatVe> GetListDatVebyIdNguoiDung(string id)

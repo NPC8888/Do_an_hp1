@@ -17,11 +17,15 @@ namespace xediep
         {
           if (!IsPostBack)
             {
-                ListChuyenXe.lchuyenxe=ChuyenXeDAL.Instance.GetListChuyenXe();
-                ListChuyenXe.DataBind();
-               
+                ListChuyenXe.lchuyenxe = ChuyenXeDAL.Instance.GetListChuyenXe();
+                
+              
+                
             }
+
         }
+
         
     }
+
 }

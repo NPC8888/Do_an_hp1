@@ -14,20 +14,20 @@ namespace DAL
 
         public static GheNgoiDAL Instance
         {
-            get { if (instance == null) instance = new  GheNgoiDAL(); return GheNgoiDAL.instance; }
+            get { if (instance == null) instance = new GheNgoiDAL(); return GheNgoiDAL.instance; }
             private set => instance = value;
         }
-        public static List<GheNgoi> listChoNgoiDaDat=new List<GheNgoi>();
+        public static List<GheNgoi> listChoNgoiDaDat = new List<GheNgoi>();
         private GheNgoiDAL() { }
         public int insertGheNgoi(GheNgoi ghe)
         {
             string query = string.Format(
-    "INSERT INTO GheNgoi (MaChuyenXe, SoGhe, DaDat, MaKhachHang, ThoiGianDat) " +
-    "VALUES ({0}, {1}, {2}, {3}, '{4}'); SELECT SCOPE_IDENTITY();",
+    "INSERT INTO GheNgoi (MaChuyenXe, SoGhe, DaDat, ThoiGianDat) " +
+    "VALUES ({0}, {1}, {2}, '{3}'); SELECT SCOPE_IDENTITY();",
     ghe.MaChuyenXe,
     ghe.SoGhe,
     ghe.DaDat,
-    ghe.MaKH,
+
     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
 );
 
@@ -38,6 +38,15 @@ namespace DAL
 
 
         }
+        public int DeleteGheNgoiById(string Id)
+        {
+            
+            string query = "Delete from GheNgoi where MaGhe= "+Id;
+            int i=DataProvider.Instance.ExecuteNonQuery(query);
+            return i;
+        }
+
+
         public List<GheNgoi> GetListGheNgoibyIdNguoiDung(string id)
         {
             List<GheNgoi> list = new List<GheNgoi>();

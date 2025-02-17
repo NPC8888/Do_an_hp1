@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Backgroud.Master" AutoEventWireup="true" CodeBehind="ListChuyenXe.aspx.cs" Inherits="xediep.WebForm1" EnableEventValidation="false" %>
 
 <%@ Register Src="~/webControl/ListChuyenXe.ascx" TagPrefix="uc1" TagName="ListChuyenXe" %>
+<%@ Register Src="~/webControl/ThanhTimKiem.ascx" TagPrefix="uc1" TagName="ThanhTimKiem" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-   
+    <uc1:ThanhTimKiem runat="server" ID="ThanhTimKiem" />
    
     <link rel="stylesheet" href="css/styleListCX.css">
 
@@ -15,7 +17,7 @@
         <ItemTemplate>
             <div class="trip">
                 <div class="trip-info">
-                    <div class="route"><%# Eval("DDi") %> - <%# Eval("DDen") %></div>
+                    <div class="route"><%# Eval("DiemDi") %> - <%# Eval("DDen") %></div>
                     <div class="details">Giờ Đi-Giờ Đến: <%# Eval("TgKhoiHanh") %> - <%# Eval("TgDen") %></div>
                 </div>
                 <div class="trip-price"><%# string.Format("{0:N0} VND", Eval("Price")) %></div>

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using xediep.DAL;
+using xediep.Models;
 
 namespace DAL
 {
@@ -27,7 +29,7 @@ namespace DAL
         public List<ChuyenXe> GetListChuyenXe()
         {
             List<ChuyenXe> list = new List<ChuyenXe>();
-            string query = "select * from ChuyenXe";
+            string query = string.Format("select * from ChuyenXe where ThoiGianKhoiHanh > '{0}'",DateTime.Now);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
@@ -38,55 +40,32 @@ namespace DAL
 
         }
 
-        public List<ChuyenXe> SearchChuyenXeByName(string DiemDi ,string DiemDen,string date)
+        public List<ChuyenXe> SearchChuyenXeByMaTuyenXe(int maTuyenXe, string ngayKhoiHanh)
         {
             List<ChuyenXe> list = new List<ChuyenXe>();
-            string query = string.Format("SELECT * FROM ChuyenXe WHERE DiemDi LIKE N'%' + N'{0}' + '%' and DiemDen LIKE N'%' + N'{1}' + '%' and CAST(ThoiGianKhoiHanh AS DATE) = '{2}'", DiemDi,DiemDen,date);
+            string query = string.Format("SELECT * FROM ChuyenXe WHERE MaTuyenXe = {0} AND ThoiGianKhoiHanh >= '{1}'", maTuyenXe, ngayKhoiHanh);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
             foreach (DataRow item in data.Rows)
             {
-                ChuyenXe coffee = new ChuyenXe(item);
-                list.Add(coffee);
+                ChuyenXe chuyenXe = new ChuyenXe(item);
+                list.Add(chuyenXe);
             }
             return list;
-
         }
         public ChuyenXe getGiaXeByMaXe(string id)
         {
             int i = int.Parse(id);
             string query = string.Format("select * from ChuyenXe where MaChuyenXe={0}", i);
             DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
             DataRow dr = dt.Rows[0];
             ChuyenXe cx=new ChuyenXe(dr);
+            
             return cx;
         }
 
-        public bool InsertCoffee(string name, int id, decimal price)
-        {
-            string query = string.Format("INSERT dbo.Coffee(NameCoffee ,idCategory,Price )Values(N'{0}',{1},{2} )", name, id, price);
-
-            int ruset = DataProvider.Instance.ExecuteNonQuery(query);
-
-            return ruset > 0;
-
-        }
-        public bool UpdateCofee(int idcoffee, string name, int id, decimal price)
-        {
-            string query = string.Format("UPDATE dbo.Coffee SET NameCoffee=N'{0}',idCategory={1},Price={2} where idCoffee={3}", name, id, price, idcoffee);
-
-            int ruset = DataProvider.Instance.ExecuteNonQuery(query);
-
-            return ruset > 0;
-
-        }
-        public bool DeleteCofee(int idcoffee)
-        {
-            string query = string.Format("Delete dbo.Coffee where idCoffee={0}", idcoffee);
-            int ruset = DataProvider.Instance.ExecuteNonQuery(query);
-
-            return ruset > 0;
-
-        }
+        
 
     }
 }

@@ -17,6 +17,12 @@ namespace xediep.BLL
             get { if (instance == null) instance = new GheNgoiBLL(); return GheNgoiBLL.instance; }
             private set => instance = value;
         }
+        public bool DeleteGheNgoiById(string id)
+        {
+            int i =GheNgoiDAL.Instance.DeleteGheNgoiById(id);
+            return i > 0;
+
+        }
         public List<GheNgoi> GetListGheNgiByIdMaNguoiDung(int id)
         {
             return GheNgoiBLL.instance.GetListGheNgiByIdMaNguoiDung(id);

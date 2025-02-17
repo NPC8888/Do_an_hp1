@@ -11,34 +11,43 @@ namespace xediep
 {
 
 
-    public partial class WebForm1
+    public partial class DatVe
     {
 
         /// <summary>
-        /// ThanhTimKiem control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xediep.webControl.ThanhTimKiem ThanhTimKiem;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// rptChuyenXe control.
+        /// txtInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptChuyenXe;
+        protected global::System.Web.UI.WebControls.TextBox txtInput;
 
         /// <summary>
-        /// ListChuyenXe control.
+        /// btnSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xediep.webControl.ListChuyenXe ListChuyenXe;
+        protected global::System.Web.UI.WebControls.Button btnSend;
+
+        /// <summary>
+        /// lblResponse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResponse;
     }
 }

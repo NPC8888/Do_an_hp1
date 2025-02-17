@@ -17,10 +17,10 @@ namespace DAL
             private set => instance = value;
         }
         
-        public List<DiemDonTraKhach> GetlisDiemDonByIdChuyenXe(int id)
+        public List<DiemDonTraKhach> GetlisDiemDonByIdtuyenXe(int id)
         {
             List<DiemDonTraKhach> diem=new List<DiemDonTraKhach>();
-            string query = string.Format("Select *from DiemDonTraKhach where MaChuyenXe = {0} and LoaiDiem='Don'", id);
+            string query = string.Format("Select *from DiemDonTraKhach where MaTuyenXe = {0} and LoaiDiem='Don'", id);
             DataTable dataTable=DataProvider.Instance.ExecuteQuery(query, null);
             foreach(DataRow row in dataTable.Rows)  {
                 DiemDonTraKhach diemDonTraKhach = new DiemDonTraKhach(row);
@@ -31,10 +31,10 @@ namespace DAL
             return diem;
 
         }
-        public List<DiemDonTraKhach> GetlisDiemTraByIdChuyenXe(int id)
+        public List<DiemDonTraKhach> GetlisDiemTraByIdtuyenXe(int id)
         {
             List<DiemDonTraKhach> diem = new List<DiemDonTraKhach>();
-            string query = string.Format("Select *from DiemDonTraKhach where MaChuyenXe = {0} and LoaiDiem='Tra'", id);
+            string query = string.Format("Select *from DiemDonTraKhach where MaTuyenXe = {0} and LoaiDiem='Tra'", id);
             DataTable dataTable = DataProvider.Instance.ExecuteQuery(query, null);
             foreach (DataRow row in dataTable.Rows)
             {

@@ -16,8 +16,8 @@ namespace Models
         public ChuyenXe(DataRow row)
         {
             this.maCx = (int)row["MaChuyenXe"];
-            this.dDi = row["DiemDi"].ToString();
-            this.dDen = row["DiemDen"].ToString();
+            this.maTuyenXe = (int)row["MaTuyenXe"];
+
             if (row["price"] != DBNull.Value && decimal.TryParse(row["price"].ToString(), out decimal parsedPrice))
             {
                 this.price = parsedPrice;
@@ -33,6 +33,17 @@ namespace Models
             this.maXe = (int)row["MaXe"];
             this.trangThai = row["TrangThai"].ToString();
         }
+       public ChuyenXe(ChuyenXe cx)
+        {
+            this.MaCx = cx.MaCx;
+            this.MaTuyenXe=cx.MaTuyenXe;
+            this.maXe= cx.maXe;
+            this.maTaiXe=cx.maTaiXe;
+            this.TrangThai=cx.TrangThai;
+            this.TgKhoiHanh=cx.TgKhoiHanh;
+            this.tgDen=cx.tgDen;
+            this.price=cx.price;
+        }
 
 
 
@@ -40,10 +51,8 @@ namespace Models
         private int maCx;
         public int MaCx { get => maCx; set => maCx = value; }
 
-        private string dDi;
-        public string DDi { get => dDi; set => dDi = value; }
-        private string dDen;
-        public string DDen { get => dDen; set => dDen = value; }
+        private int maTuyenXe;
+        public int MaTuyenXe { get => maTuyenXe; set => maTuyenXe = value; }
         private DateTime tgKhoiHanh;
         public DateTime TgKhoiHanh { get => tgKhoiHanh; set => tgKhoiHanh = value; }
         private DateTime tgDen;
@@ -56,8 +65,6 @@ namespace Models
         public int MaXe { get => maXe; set => maXe = value; }
         private string trangThai;
         public string TrangThai { get => trangThai; set => trangThai = value; }
-
-
 
 
     }

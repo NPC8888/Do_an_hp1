@@ -41,6 +41,7 @@ namespace BLL
             return newDanhGiaId > 0;
         }
 
+
         // Tính điểm trung bình cho chuyến xe
         public double CalculateAverageRating(int maCX)
         {

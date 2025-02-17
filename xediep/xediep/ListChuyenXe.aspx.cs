@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using xediep.BLL;
 
 namespace xediep
 {
@@ -18,8 +19,10 @@ namespace xediep
             string diemden = Request.QueryString["diemDen"];
             if (Session["DateSh"] != null) {
                 string date = Session["DateSh"].ToString();
-                Response.Write(date);
-                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByName(diemdi, diemden, date);
+               
+                int matuyen=TuyenXeBLL.Instance.GetMaTuyenXeByDiemDiDiemDen(diemdi, diemden);
+                
+                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByMaTuyenXe(matuyen,date);
                 ListChuyenXe.lchuyenxe = lChuyenXe;
                 ListChuyenXe.DataBind();
             }

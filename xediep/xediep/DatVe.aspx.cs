@@ -12,6 +12,7 @@ using System.Web.Services;
 using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using xediep.BLL;
 
 namespace xediep
 {
@@ -20,30 +21,33 @@ namespace xediep
         private const int TotalSeats = 36; // Tổng số ghế
 
         private string idChuyenXe; // ID chuyến xe từ query string
+        private string idtuyenXe; // ID tuyến xe từ chyuyenxe
         private string[] trangThaiGhe; // Mảng trạng thái ghế
         private NguoiDung NguoiDungnow;
-       
+        ChuyenXe cx;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ViewState["DiemTra"] = "1";
+               
                 idChuyenXe = Request.QueryString["id"];
+
                 lblmaxe.Text = idChuyenXe.Trim();
-                ChuyenXe cx = ChuyenXeDAL.Instance.getGiaXeByMaXe(idChuyenXe);
+                cx = ChuyenXeDAL.Instance.getGiaXeByMaXe(idChuyenXe);
                 lblDepartureTime.Text = cx.TgKhoiHanh.ToString();
+                idtuyenXe = cx.MaTuyenXe.ToString();
                 lblTotalPrice.Text = cx.Price.ToString();
                 lblTotalPrice.Text += ":VND";
-                lblTripName.Text = cx.DDi + "-" + cx.DDen;
+                lblTripName.Text = "";
                 if (string.IsNullOrEmpty(idChuyenXe))
                 {
                     Response.Write("ID chuyến xe không hợp lệ.");
                     Response.End();
                 }
 
-                LvDanhGia.DataSource = DanhGiaBLL.Instance.GetDanhGiaByMaCX(int.Parse(idChuyenXe));
-                LvDanhGia.DataBind();
+                // LvDanhGia.DataSource = DanhGiaBLL.Instance.GetDanhGiaByMaCX(int.Parse(idChuyenXe));
+                //LvDanhGia.DataBind();
                 trangThaiGhe = new string[TotalSeats];
                 for (int i = 0; i < TotalSeats; i++)
                 {
@@ -80,13 +84,13 @@ namespace xediep
         }
         void loaddlDiemDiDiemDon()
         {
-            foreach (DiemDonTraKhach diem in DiemDonTraKhachBLL.Instance.GetListDiemDonByIDChuyenXe(int.Parse(idChuyenXe)))
+            foreach (DiemDonTraKhach diem in DiemDonTraKhachBLL.Instance.GetListDiemDonByIDtuyenXe(int.Parse(idtuyenXe)))
             {
                 ddlDiemDon.Items.Add(new ListItem(diem.TenDiem + "(" + diem.DiaChi + ")", diem.MaDiem.ToString()));
 
 
             }
-            foreach (DiemDonTraKhach diem in DiemDonTraKhachBLL.Instance.GetListDiemTraByIDChuyenXe(int.Parse(idChuyenXe)))
+            foreach (DiemDonTraKhach diem in DiemDonTraKhachBLL.Instance.GetListDiemDonByIDtuyenXe(int.Parse(idtuyenXe)))
             {
 
                 ddlDiemTra.Items.Add(new ListItem(diem.TenDiem + "(" + diem.DiaChi + ")", diem.MaDiem.ToString()));
@@ -112,7 +116,7 @@ namespace xediep
                     NguoiDungnow = new NguoiDung(user);
                     txtHoTen.Text = NguoiDungnow.HoTen;
                     txtSoDienThoai.Text = NguoiDungnow.SDT;
-                    Response.Write(NguoiDungnow.MaNguoiDung);
+                    
                     lbID.Text = NguoiDungnow.MaNguoiDung.ToString();
                 }
                 else
@@ -134,17 +138,7 @@ namespace xediep
                         .Select(int.Parse)  // Chuyển đổi từng phần tử thành số nguyên
                         .ToList();          // Chuyển thành danh sách
         }
-        protected void datve(object sender, EventArgs e)
-        {
-            Console.Write(SoGheDaChon.Text);
-            List<int> list = TachChuoiThanhList(SoGheDaChon.Text);
-            foreach (int item in list)
-            {
-                DatVeBLL.Instance.InsertDatVe(0, int.Parse(lblmaxe.Text), int.Parse(lbID.Text), "DD", DateTime.Now, txtHoTen.Text, txtSoDienThoai.Text, item, int.Parse(ddlDiemDon.SelectedValue), int.Parse(ddlDiemTra.SelectedValue));
-            }
-           
-           
-        }
+       
 
 
 

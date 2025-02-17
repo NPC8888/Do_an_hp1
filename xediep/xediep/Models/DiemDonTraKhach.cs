@@ -11,11 +11,11 @@ namespace Models
         public DiemDonTraKhach() { }
         public DiemDonTraKhach(int MaChuyenXe, string TenDiem,string Diachi,string LoaiDiem,DateTime TG) {
             
-            maChuyenXe = MaChuyenXe;
+            maTuyenXe = MaChuyenXe;
             tenDiem = TenDiem;
             diaChi = Diachi;
             loaiDiem = LoaiDiem;
-            thoiGian = TG;
+           
                 
         
         
@@ -24,10 +24,10 @@ namespace Models
         {
             this.tenDiem = a.tenDiem;
             this.maDiem = a.maDiem;
-            this.maChuyenXe = a.maChuyenXe;
+            this.maTuyenXe = a.maTuyenXe;
             this.diaChi = a.diaChi;
             this.loaiDiem = a.loaiDiem;
-            this.thoiGian=a.thoiGian;
+       
 
 
 
@@ -38,12 +38,10 @@ namespace Models
 
             this.tenDiem = row["TenDiem"] != DBNull.Value ? (row["TenDiem"]).ToString() : "";
             this.maDiem = row["IDDiem"] != DBNull.Value ? Convert.ToInt32(row["IDDiem"]) : 0;
-            this.maChuyenXe = row["MaChuyenXe"] != DBNull.Value ? Convert.ToInt32(row["MaChuyenXe"]) : 0;
+            this.maTuyenXe = row["MaTuyenXe"] != DBNull.Value ? Convert.ToInt32(row["MaTuyenXe"]) : 0;
             this.diaChi = row["DiaChi"] != DBNull.Value ? (row["DiaChi"]).ToString() : "";
             this.loaiDiem = row["LoaiDiem"] != DBNull.Value ? (row["LoaiDiem"]).ToString() : "";
-            this.thoiGian = row["ThoiGian"] != DBNull.Value
-                  ? DateTime.Parse(row["ThoiGian"].ToString())
-                  : DateTime.MinValue;
+           
         }
 
 
@@ -52,8 +50,8 @@ namespace Models
 
         private int maDiem;
         public int MaDiem { get => maDiem; set => maDiem = value; }
-        private int maChuyenXe;
-        public int MaChuyenXe { get => maChuyenXe; set => maChuyenXe = value; }
+        private int maTuyenXe;
+        public int MaTuyenXe { get => maTuyenXe; set => maTuyenXe = value; }
         private string tenDiem;
         public string TenDiem { get => tenDiem; set => tenDiem = value; }
         private string diaChi;
@@ -61,8 +59,7 @@ namespace Models
 
         private string loaiDiem;
         public string LoaiDiem { get => loaiDiem; set => loaiDiem = value; }
-        private DateTime thoiGian;
-        public DateTime ThoiGian { get => thoiGian; set => thoiGian = value; }
+     
         
         
         

@@ -17,14 +17,14 @@ namespace BLL
             private set => instance = value;
         }
 
-        public List<DiemDonTraKhach> GetListDiemDonByIDChuyenXe(int id)
+        public List<DiemDonTraKhach> GetListDiemDonByIDtuyenXe(int id)
         {
-            List<DiemDonTraKhach> diemDonKhaches=DiemDonTraKhachDAL.Instance.GetlisDiemDonByIdChuyenXe(id);
+            List<DiemDonTraKhach> diemDonKhaches=DiemDonTraKhachDAL.Instance.GetlisDiemDonByIdtuyenXe(id);
             return diemDonKhaches;
         }
-        public List<DiemDonTraKhach> GetListDiemTraByIDChuyenXe(int id)
+        public List<DiemDonTraKhach> GetListDiemTraByIDtuyenXe(int id)
         {
-            List<DiemDonTraKhach> diemTraKhaches = DiemDonTraKhachDAL.Instance.GetlisDiemTraByIdChuyenXe(id);
+            List<DiemDonTraKhach> diemTraKhaches = DiemDonTraKhachDAL.Instance.GetlisDiemTraByIdtuyenXe(id);
             return diemTraKhaches;
         }
     }

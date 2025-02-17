@@ -21,27 +21,21 @@ namespace DAL
         // Thêm một đánh giá
         public int InsertDanhGia(DanhGia danhGia)
         {
-            string query = "INSERT INTO DanhGia (MaCX, MaNguoiDung, DiemDanhGia, BinhLuan) " +
-                           "VALUES (@MaCX, @MaNguoiDung, @DiemDanhGia, @BinhLuan);";
+            string query = string.Format("INSERT INTO DanhGia (MaXe, MaNguoiDung, DiemDanhGia, BinhLuan) " +
+                           "VALUES ({0}, {1}, {2}, '{3}');",danhGia.MaXe,danhGia.MaNguoiDung,danhGia.DiemDanhGia,danhGia.BinhLuan);
 
-            var parameters = new object[]
-            {
-                new SqlParameter("@MaCX", danhGia.MaCX),
-                new SqlParameter("@MaNguoiDung", danhGia.MaNguoiDung),
-                new SqlParameter("@DiemDanhGia", danhGia.DiemDanhGia),
-                new SqlParameter("@BinhLuan", danhGia.BinhLuan)
-            };
+            
 
-            object result = DataProvider.Instance.ExecuteNonQuery(query, parameters);
-            int newDanhGiaId = Convert.ToInt32(result);
-            return newDanhGiaId;
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            
+            return result;
         }
 
         // Lấy danh sách đánh giá của chuyến xe
         public List<DanhGia> GetDanhGiaByMaCX(int maCX)
         {
             List<DanhGia> danhGias = new List<DanhGia>();
-            string query = string.Format("SELECT * FROM DanhGia WHERE MaCX = {0}",maCX);
+            string query = string.Format("SELECT * FROM DanhGia WHERE MaXe = {0}",maCX);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
 
             foreach (DataRow item in data.Rows)
