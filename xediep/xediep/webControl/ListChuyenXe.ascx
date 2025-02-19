@@ -12,7 +12,7 @@
                 <img src='/jpg/1.jpg' alt='<%# Eval("MaCx") %>' />
             </div>
             <div class="bus-info">
-                
+                 <div class="route"><%# LayDiemDiDiemDenByMaTuyenXe(Eval("MaTuyenXe").ToString()).DiemDon %>-<%# LayDiemDiDiemDenByMaTuyenXe(Eval("MaTuyenXe").ToString()).DiemDen %></div>
                 <p><strong>Giờ khởi hành:</strong> <%# Eval("TgKhoiHanh") %></p>
                 <p><strong>Giờ đến:</strong> <%# Eval("TgDen") %></p>
                 <p class="price">Giá vé: <%# Eval("Price", "{0:C}") %></p>

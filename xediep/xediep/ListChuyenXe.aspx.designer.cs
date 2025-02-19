@@ -24,15 +24,6 @@ namespace xediep
         protected global::xediep.webControl.ThanhTimKiem ThanhTimKiem;
 
         /// <summary>
-        /// rptChuyenXe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptChuyenXe;
-
-        /// <summary>
         /// ListChuyenXe control.
         /// </summary>
         /// <remarks>

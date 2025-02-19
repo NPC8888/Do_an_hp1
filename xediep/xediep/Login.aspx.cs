@@ -1,5 +1,6 @@
 ﻿using BLL;
 using System;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 
@@ -23,11 +24,16 @@ namespace xediep
             if (token != null)
             {
                 HttpCookie authCookie = new HttpCookie("AuthToken", token);
-                authCookie.Expires = DateTime.Now.AddHours(1);
+                authCookie.Expires = DateTime.Now.AddHours(12);
                 authCookie.HttpOnly = true;
                 Response.Cookies.Add(authCookie);
-
-                Response.Redirect("TrangChu.aspx");
+                DataRow dr= NguoiDungBLL.Instance.AuthenticateByToken(token);
+                if(dr != null && dr["VaiTro"].ToString()=="QuanTri")
+                {
+                Response.Redirect("TrangChuQuanTri.aspx");
+                }
+                else { Response.Redirect("TrangChu.aspx"); }
+               
             }
             else
             {

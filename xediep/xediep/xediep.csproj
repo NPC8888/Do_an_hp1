@@ -153,7 +153,9 @@
     <Content Include="jpg\1.jpg" />
     <Content Include="jpg\iconlg.png" />
     <Content Include="js\JsLogin.js" />
+    <Content Include="QuanLyXeKhach.aspx" />
     <Content Include="TrangChu.aspx" />
+    <Content Include="TrangChuQuanTri.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="webControl\BtnLogin.ascx" />
@@ -177,6 +179,7 @@
     <Compile Include="BLL\GheNgoiBLL.cs" />
     <Compile Include="BLL\NguoiDungBLL.cs" />
     <Compile Include="BLL\TuyenXeBLL.cs" />
+    <Compile Include="BLL\XeKhachBLL.cs" />
     <Compile Include="ChiTietDatVe.aspx.cs">
       <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +200,7 @@
     <Compile Include="DAL\GheNgoiDAL.cs" />
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\TuyenXeDAL.cs" />
+    <Compile Include="DAL\XeKhachDAL.cs" />
     <Compile Include="DatVe.aspx.cs">
       <DependentUpon>DatVe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +217,13 @@
     <Compile Include="Models\NguoiDung.cs" />
     <Compile Include="Models\TuyenXe.cs" />
     <Compile Include="Models\XeKhach.cs" />
+    <Compile Include="MQuanTri.Master.cs">
+      <DependentUpon>MQuanTri.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MQuanTri.Master.designer.cs">
+      <DependentUpon>MQuanTri.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -221,12 +232,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyXeKhach.aspx.cs">
+      <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyXeKhach.aspx.designer.cs">
+      <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TrangChu.aspx.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TrangChu.aspx.designer.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrangChuQuanTri.aspx.cs">
+      <DependentUpon>TrangChuQuanTri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrangChuQuanTri.aspx.designer.cs">
+      <DependentUpon>TrangChuQuanTri.aspx</DependentUpon>
     </Compile>
     <Compile Include="webControl\BtnLogin.ascx.cs">
       <DependentUpon>BtnLogin.ascx</DependentUpon>
@@ -280,6 +305,7 @@
     <Content Include="ThongTinWeb.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="MQuanTri.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

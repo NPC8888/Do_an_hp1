@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
+using xediep.BLL;
 
 namespace xediep.webControl
 {
@@ -25,13 +26,17 @@ namespace xediep.webControl
                 ListView1.DataBind();
             }
         }
-        
-        
+        public (string DiemDon, string DiemDen) LayDiemDiDiemDenByMaTuyenXe(string id)
+        {
+            return TuyenXeBLL.Instance.GetDiemDiDiemDenFromMaTuyenXe(int.Parse(id));
+        }
+
+
 
         // Lấy bình luận từ chuyến xe có mã MaCX
-      
 
-        
+
+
     }
    
     

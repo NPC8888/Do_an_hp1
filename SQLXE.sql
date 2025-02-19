@@ -140,7 +140,7 @@ VALUES
     (2, '2025-02-23 09:00', '2025-02-23 13:00', 650000, 3, 4, 'ConVe'),
     (2, '2025-02-24 11:00', '2025-02-24 15:00', 700000, 3, 5, 'ConVe');
 	SELECT DiemDi, DiemDen FROM TuyenXe WHERE MaTuyenXe = 3
-	select *from DiemDonTraKhach
+	select *from XeKhach	
 	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
 	delete from TuyenXe Where MaTuyenXe=1
 	

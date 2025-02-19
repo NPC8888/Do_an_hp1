@@ -59,33 +59,7 @@ namespace xediep.DAL
         }
     }
 
-    public class XeKhachDAL
-    {
-        private static XeKhachDAL instance;
 
-        public static XeKhachDAL Instance
-        {
-            get { if (instance == null) instance = new XeKhachDAL(); return instance; }
-            private set => instance = value;
-        }
-
-        private XeKhachDAL() { }
-
-        public List<XeKhach> GetAllXeKhach()
-        {
-            List<XeKhach> xeKhachs = new List<XeKhach>();
-            string query = "SELECT * FROM XeKhach";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                XeKhach xeKhach = new XeKhach(item);
-                xeKhachs.Add(xeKhach);
-            }
-
-            return xeKhachs;
-        }
-    }
 
     public class BaoCaoDAL
     {

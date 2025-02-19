@@ -13,21 +13,22 @@ namespace xediep
     public partial class WebForm1 : System.Web.UI.Page
     {
         protected List<ChuyenXe> lChuyenXe = new List<ChuyenXe>();
+
         protected void Page_Load(object sender, EventArgs e)
-        {   
+        {
             string diemdi = Request.QueryString["diemdi"];
             string diemden = Request.QueryString["diemDen"];
             if (Session["DateSh"] != null) {
                 string date = Session["DateSh"].ToString();
-               
-                int matuyen=TuyenXeBLL.Instance.GetMaTuyenXeByDiemDiDiemDen(diemdi, diemden);
-                
-                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByMaTuyenXe(matuyen,date);
+
+                int matuyen = TuyenXeBLL.Instance.GetMaTuyenXeByDiemDiDiemDen(diemdi, diemden);
+
+                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByMaTuyenXe(matuyen, date);
                 ListChuyenXe.lchuyenxe = lChuyenXe;
                 ListChuyenXe.DataBind();
             }
-            
-            
+
+
             // Hiển thị kết quả
 
         }
@@ -38,7 +39,7 @@ namespace xediep
             string id = btn.CommandArgument;  // Lấy id của chuyến xe từ CommandArgument
             DatVe(id);  // Gọi phương thức xử lý đặt vé
         }
-
+        
         public void DatVe(string id)
         {
             // Xử lý đặt vé với id của chuyến xe
