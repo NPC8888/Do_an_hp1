@@ -32,6 +32,27 @@ namespace xediep.BLL
            
             return l;
         }
+        public bool InsertChuyenXe(ChuyenXe cx)
+        {
+            if (cx.Price < 0) throw new Exception("Giá vé không thể âm!");
+            return ChuyenXeDAL.Instance.InsertChuyenXe(cx);
+        }
+
+        public bool UpdateChuyenXe(ChuyenXe cx)
+        {
+            if (cx.Price < 0) throw new Exception("Giá vé không thể âm!");
+            return ChuyenXeDAL.Instance.UpdateChuyenXe(cx);
+        }
+
+        public bool DeleteChuyenXe(int maCx)
+        {
+            return ChuyenXeDAL.Instance.DeleteChuyenXe(maCx);
+        }
+
+        public List<ChuyenXe> SearchChuyenXe(string maTuyenXe)
+        {
+            return ChuyenXeDAL.Instance.SearchChuyenXe(maTuyenXe);
+        }
 
     }
 }

@@ -24,12 +24,55 @@ namespace DAL
         public static int diemdi =23;
         public static int diemden = 26;
 
+        public bool InsertChuyenXe(ChuyenXe cx)
+        {
+            string query = string.Format(
+                "INSERT INTO ChuyenXe (MaTuyenXe, ThoiGianKhoiHanh, ThoiGianDen, Price, MaTaiXe, MaXe, TrangThai) " +
+                "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', N'{6}')",
+                cx.MaTuyenXe, cx.TgKhoiHanh.ToString("yyyy-MM-dd HH:mm:ss"), cx.TgDen.ToString("yyyy-MM-dd HH:mm:ss"),
+                cx.Price, cx.MaTaiXe, cx.MaXe, cx.TrangThai
+            );
+
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+
+        public bool UpdateChuyenXe(ChuyenXe cx)
+        {
+            string query = string.Format(
+                "UPDATE ChuyenXe SET MaTuyenXe='{0}', ThoiGianKhoiHanh='{1}', ThoiGianDen='{2}', Price='{3}', MaTaiXe='{4}', MaXe='{5}', TrangThai=N'{6}' " +
+                "WHERE MaCx='{7}'",
+                cx.MaTuyenXe, cx.TgKhoiHanh.ToString("yyyy-MM-dd HH:mm:ss"), cx.TgDen.ToString("yyyy-MM-dd HH:mm:ss"),
+                cx.Price, cx.MaTaiXe, cx.MaXe, cx.TrangThai, cx.MaCx
+            );
+
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+
+        public bool DeleteChuyenXe(int maCx)
+        {
+            string query = string.Format("DELETE FROM ChuyenXe WHERE MaCx='{0}'", maCx);
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+
+        public List<ChuyenXe> SearchChuyenXe(string maTuyenXe)
+        {
+            string query = string.Format("SELECT * FROM ChuyenXe WHERE MaTuyenXe LIKE '%{0}%'", maTuyenXe);
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            List<ChuyenXe> list = new List<ChuyenXe>();
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new ChuyenXe(row));
+            }
+
+            return list;
+        }
 
 
         public List<ChuyenXe> GetListChuyenXe()
         {
             List<ChuyenXe> list = new List<ChuyenXe>();
-            string query = string.Format("select * from ChuyenXe where ThoiGianKhoiHanh > '{0}'",DateTime.Now);
+            string query = string.Format("select * from ChuyenXe where ThoiGianKhoiHanh = '{0}'",DateTime.Now);
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {

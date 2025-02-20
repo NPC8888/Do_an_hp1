@@ -61,7 +61,7 @@ namespace xediep
         private void LoadTicketHistory()
         {
             // Dữ liệu giả lập - thay bằng database
-            var tickets = DatVeBLL.Instance.GetDTVebyIdNguoiDung(Request.QueryString["id"].ToString());
+            var tickets = VeXeBLL.Instance.GetDTVebyIdNguoiDung(Request.QueryString["id"].ToString());
 
 
             rptTickets.DataSource = tickets;
@@ -106,7 +106,8 @@ namespace xediep
         //danhgia
 
         [WebMethod]
-        public static string DanhGiaCX(string MaChuyenXe, string SoSao, string NoiDung, string MaDatVe)
+        public static string DanhGiaCX(string MaChuyenXe, string SoSao, string NoiDung, string MaDatVe
+            )
         {
             
             try { 
@@ -118,7 +119,7 @@ namespace xediep
                 DataRow user = userBLL.AuthenticateByToken(token);
                 NguoiDung nguoi = new NguoiDung(user);
                 DanhGia dg = new DanhGia(100, int.Parse(MaChuyenXe),nguoi.MaNguoiDung, int.Parse(SoSao), NoiDung);
-                if (DanhGiaBLL.Instance.AddDanhGia(dg)&&DatVeBLL.Instance.FixTrangThaiKhiDanhGia(MaDatVe))
+                if (DanhGiaBLL.Instance.AddDanhGia(dg)&&VeXeBLL.Instance.FixTrangThaiKhiDanhGia(MaDatVe))
                 {
 
                     return "Danh giá thành công!" ;
@@ -141,7 +142,7 @@ namespace xediep
         {
             try
             {
-                if (DatVeBLL.Instance.FixTrangThaiKhiHuy(id.ToString()))
+                if (VeXeBLL.Instance.FixTrangThaiKhiHuy(id.ToString()))
                 {
                     return "Hủy Thành Công";
 

@@ -17,10 +17,10 @@ namespace DAL
             private set => instance = value;
         }
 
-        private DataProvider() { }
+        public DataProvider() { }
 
 
-        private string connectionSTR = @"Data Source=LAPTOP-3B68DA7A\SQLEXPRESS;Initial Catalog=QLChuyenXe2;Integrated Security=True";
+        private string connectionSTR = @"Data Source=LAPTOP-3B68DA7A\SQLEXPRESS;Initial Catalog=QLChuyenXe;Integrated Security=True";
 
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)

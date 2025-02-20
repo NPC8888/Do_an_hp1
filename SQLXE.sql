@@ -1,11 +1,11 @@
 ﻿/*USE master;
-ALTER DATABASE QLChuyenXe2 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-DROP DATABASE QLChuyenXe2;
+ALTER DATABASE QLChuyenXe SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE QLChuyenXe;
 
 */
-Create Database QLChuyenXe2;
+Create Database QLChuyenXe;
 go
-use QLChuyenXe2;
+use QLChuyenXe;
 GO
 
 -- Bảng NguoiDung: Quản lý thông tin người dùng
@@ -72,23 +72,71 @@ CREATE TABLE GheNgoi (
     FOREIGN KEY (MaChuyenXe) REFERENCES ChuyenXe(MaChuyenXe)
 );
 
+
 -- Bảng DatVe: Quản lý thông tin đặt vé của khách hàng
-CREATE TABLE DatVe (
-    MaDatVe INT PRIMARY KEY IDENTITY,
-    MaKhachHang INT, -- Liên kết với bảng NgườiDung
-    MaChuyenXe INT, -- Liên kết với bảng ChuyenXe
-    MaGhe INT NULL, -- Liên kết với bảng GheNgoi
-    NgayDatVe DATETIME,
-    TrangThai NVARCHAR(20), -- "DaDat", "HuyBo", v.v
-    HoTen NVARCHAR(100),
-    SoDT NVARCHAR(100),
-    DiemDon INT,
-    DiemTra INT,
-    FOREIGN KEY (DiemDon) REFERENCES DiemDonTraKhach(IDDiem),
-    FOREIGN KEY (DiemTra) REFERENCES DiemDonTraKhach(IDDiem),
+-- Bảng VeXe: Quản lý vé xe
+CREATE TABLE VeXe (
+    MaVeXe INT PRIMARY KEY IDENTITY,
+    MaKhachHang INT NULL,  -- Liên kết với khách hàng nếu có tài khoản
+    HoTen NVARCHAR(100) NOT NULL,  -- Họ tên hành khách
+    SoDT NVARCHAR(15) NOT NULL,  -- Số điện thoại hành khách
+    MaChuyenXe INT NOT NULL,  -- Chuyến xe đã đặt
+    MaGhe INT NULL,  -- Ghế ngồi (nếu có)
+    DiemDon INT NOT NULL,  -- Điểm đón
+    DiemTra INT NOT NULL,  -- Điểm trả
+    GiaVe DECIMAL(10,2) NOT NULL,  -- Giá vé tại thời điểm đặt
+    NgayDatVe DATETIME DEFAULT GETDATE(),  -- Ngày đặt vé
+    TrangThai NVARCHAR(20) NOT NULL,  -- "DaDat", "HuyBo", "DaSuDung"
+    SoTienKhiDatVe DECIMAL(18,2) NOT NULL,  -- 
     FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung),
     FOREIGN KEY (MaChuyenXe) REFERENCES ChuyenXe(MaChuyenXe),
-    FOREIGN KEY (MaGhe) REFERENCES GheNgoi(MaGhe)
+    FOREIGN KEY (MaGhe) REFERENCES GheNgoi(MaGhe),
+    FOREIGN KEY (DiemDon) REFERENCES DiemDonTraKhach(IDDiem),
+    FOREIGN KEY (DiemTra) REFERENCES DiemDonTraKhach(IDDiem)
+);
+
+-- Bảng HoaDon: Quản lý hóa đơn thanh toán
+CREATE TABLE HoaDon (
+    MaHoaDon INT PRIMARY KEY IDENTITY,
+    MaKhachHang INT NULL,  -- Liên kết khách hàng nếu có tài khoản
+    NgayThanhToan DATETIME DEFAULT GETDATE(),  -- Thời gian thanh toán
+    TongTien DECIMAL(18,2) NOT NULL,  -- Tổng tiền thanh toán
+    MaPhuongThuc INT NOT NULL,  -- Phương thức thanh toán
+    TrangThai NVARCHAR(20) NOT NULL CHECK (TrangThai IN ('DaThanhToan', 'ChuaThanhToan', 'Huy')),  -- Trạng thái hóa đơn
+    FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung)
+);
+
+-- Bảng ChiTietHoaDon: Liên kết nhiều vé với một hóa đơn
+CREATE TABLE ChiTietHoaDon (
+    MaChiTiet INT PRIMARY KEY IDENTITY,
+    MaHoaDon INT NOT NULL,  -- Mã hóa đơn
+    MaVeXe INT NOT NULL,  -- Mã vé xe
+    GiaVe DECIMAL(10,2) NOT NULL,  -- Giá vé thực tế khi thanh toán
+    FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon),
+    FOREIGN KEY (MaVeXe) REFERENCES VeXe(MaVeXe)
+);
+CREATE TABLE KhuyenMai (
+    MaKhuyenMai INT PRIMARY KEY IDENTITY,
+    Code NVARCHAR(50) UNIQUE NOT NULL,  -- Mã giảm giá
+    LoaiKhuyenMai NVARCHAR(20) NOT NULL CHECK (LoaiKhuyenMai IN ('PhanTram', 'TienMat')), 
+    MucGiamGia DECIMAL(10,2) NOT NULL,  -- Mức giảm giá (nếu là % thì tính trên tổng hóa đơn)
+    SoLuong INT NOT NULL,  -- Tổng số lần sử dụng có thể
+    SoLuongDaDung INT DEFAULT 0,  -- Số lần đã sử dụng
+    NgayBatDau DATETIME NOT NULL, 
+    NgayKetThuc DATETIME NOT NULL
+);
+
+
+-- Bảng ThanhToan: Quản lý giao dịch thanh toán ngân hàng
+CREATE TABLE ThanhToan (
+    MaThanhToan INT PRIMARY KEY IDENTITY,
+    MaHoaDon INT,
+    PhuongThucThanhToan NVARCHAR(50),
+    TaiKhoanNguoiDung NVARCHAR(100),
+    TrangThai NVARCHAR(20), -- "ThanhCong", "ThatBai"
+    ThoiGianThanhToan DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon),
+    
 );
 
 -- Bảng DanhGia: Đánh giá chuyến xe và tuyến xe

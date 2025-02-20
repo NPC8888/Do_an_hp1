@@ -118,6 +118,7 @@ namespace xediep
         protected void gvXeKhach_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridViewRow row = gvXeKhach.SelectedRow;
+            row.CssClass = "selected-row";
             txtBienSoXe.Text = row.Cells[1].Text;
             txtLoaiXe.Text = row.Cells[2].Text;
             txtSoChoNgoi.Text = row.Cells[3].Text;

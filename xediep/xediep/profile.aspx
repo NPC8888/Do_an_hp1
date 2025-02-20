@@ -52,7 +52,7 @@
                             <td>
                                 <!-- Nút Hủy vé: Cho phép nếu ngày đi chưa qua và trang thái khác hủy -->
                                 <button type="button"
-                                    onclick='<%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) >= DateTime.Now ? "cancelTicket(\"" + HttpUtility.JavaScriptStringEncode(Eval("MaDatVe").ToString()) + "\")" : "" %>'
+                                    onclick='<%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) >= DateTime.Now ? "cancelTicket(\"" + HttpUtility.JavaScriptStringEncode(Eval("MaVeXe").ToString()) + "\")" : "" %>'
                                     <%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) >= DateTime.Now &&  Eval("TrangThai").ToString()!="Huy" ? "" : "disabled='disabled'" %>>
                                     Hủy vé
                                 </button>
@@ -62,7 +62,7 @@
                                 <button type="button"
                                     onclick='<%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) < DateTime.Now  
                                               ? "evaluateTicket(\"" + HttpUtility.JavaScriptStringEncode(Eval("MaChuyenXe").ToString()) + "\", \"" 
-                                              + HttpUtility.JavaScriptStringEncode(Eval("MaDatVe").ToString()) + "\")"  
+                                              + HttpUtility.JavaScriptStringEncode(Eval("MaVeXe").ToString()) + "\")"  
                                               : "" %>'
                                     <%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) < DateTime.Now && Eval("TrangThai").ToString()!="DDG" ? "" : "disabled='disabled'" %>>
                                     Đánh giá

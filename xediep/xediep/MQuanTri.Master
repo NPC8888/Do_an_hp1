@@ -23,7 +23,7 @@
                     <li><a href="#"><i class="fas fa-home"></i>Quản lý chung</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i>Duyệt yêu Cầu Thanh Toán</a></li>
                     <li><a href="#"><i class="fas fa-list"></i>Quản lý Vé Xe</a></li>
-                    <li><a href="#"><i class="fas fa-image"></i>Quản lý Chuyến Xe</a></li>
+                    <li><a href="QuanLyChuyenXe.aspx"><i class="fas fa-image"></i>Quản lý Chuyến Xe</a></li>
                     <li><a href="#"><i class="fas fa-shopping-cart"></i>Quản lý Hóa Đơn</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Quản lý tài khoản</a></li>
                     <li><a href="QuanLyXeKhach.aspx"><i class="fas fa-user"></i>Quản lý Xe Khách</a></li>

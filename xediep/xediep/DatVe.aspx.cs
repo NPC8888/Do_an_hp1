@@ -157,7 +157,7 @@ namespace xediep
                     NguoiDung nguoi = new NguoiDung(user);
                     foreach (int soGhe in TachChuoiThanhList(soghe))
                     {
-                        if (DatVeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra)))
+                        if (VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra)))
                         {
 
                         }
