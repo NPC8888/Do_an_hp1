@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xediep", "xediep\xediep.csproj", "{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLChuyenXeVaDatVe", "QLChuyenXeVaDatVe\xediep.csproj", "{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
