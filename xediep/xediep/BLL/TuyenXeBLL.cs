@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using xediep.DAL;
+using xediep.Models;
 
 namespace xediep.BLL
 {
@@ -24,6 +25,11 @@ namespace xediep.BLL
         public (string DiemDi, string DiemDen) GetDiemDiDiemDenFromMaTuyenXe(int maTuyenXe)
         {
             return TuyenXeDAL.Instance.GetDiemDiDiemDenFromMaTuyenXe(maTuyenXe);
+        }
+
+        public List<TuyenXe> GetALLTuyenXe()
+        {
+            return TuyenXeDAL.Instance.GetAllTuyenXe();
         }
     }
 }

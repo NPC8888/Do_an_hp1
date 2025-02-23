@@ -36,14 +36,14 @@ public class XeKhachDAL
 
     public bool InsertXeKhach(XeKhach xe)
     {
-        string query = string.Format("INSERT INTO XeKhach (BienSoXe, LoaiXe, SoChoNgoi) VALUES ('{0}', '{1}', {2})",xe.BienSoXe,xe.LoaiXe,xe.SoChoNgoi);
+        string query = string.Format("INSERT INTO XeKhach (BienSoXe, LoaiXe, SoChoNgoi) VALUES ('{0}', N'{1}', {2})",xe.BienSoXe,xe.LoaiXe,xe.SoChoNgoi);
         int result = DataProvider.Instance.ExecuteNonQuery(query);
         return result > 0; 
     }
 
     public bool UpdateXeKhach(XeKhach xe)
     {
-        string query = string.Format("UPDATE XeKhach SET BienSoXe = '{0}', LoaiXe = '{1}', SoChoNgoi = {2} WHERE MaXe = 3",xe.BienSoXe,xe.LoaiXe,xe.SoChoNgoi,xe.MaXe);
+        string query = string.Format("UPDATE XeKhach SET BienSoXe = '{0}', LoaiXe = N'{1}', SoChoNgoi = {2} WHERE MaXe = {3}",xe.BienSoXe,xe.LoaiXe,xe.SoChoNgoi,xe.MaXe);
         int result = DataProvider.Instance.ExecuteNonQuery(query);
         return result > 0;
     }

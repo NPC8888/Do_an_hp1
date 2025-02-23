@@ -56,11 +56,12 @@ namespace xediep
             if (gvXeKhach.SelectedRow != null) // Kiểm tra xem có dòng nào được chọn không
             {
                 int maXe;
-
+                maXe=int.Parse(gvXeKhach.SelectedRow.Cells[0].Text);
                 // Giải mã HTML & kiểm tra giá trị có thể chuyển đổi sang số không
-                if (int.TryParse(HttpUtility.HtmlDecode(gvXeKhach.SelectedRow.Cells[0].Text), out maXe))
-                   
+                if (maXe !=0)   
                 {
+                    string a = string.Format("< script > alert('{0}');</ script > ",maXe);
+                    Response.Write(a);
                     XeKhach updatedXe = new XeKhach
                     {
                         MaXe = maXe,
@@ -71,9 +72,10 @@ namespace xediep
                     bool result = XeKhachBLL.Instance.EditXeKhach(updatedXe);
                     if (result)
                     {
-                        LoadXeKhachData();
+                       
                         ClearForm();
                         Response.Write("<script>alert('Cập nhật xe thành công!');</script>");
+                        LoadXeKhachData();
                     }
                     else
                     {
@@ -117,6 +119,11 @@ namespace xediep
         // Handle selecting an item from GridView (to edit)
         protected void gvXeKhach_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //xóa màu row đã chọn trước đó
+            foreach(GridViewRow r in gvXeKhach.Rows)
+            {
+                r.CssClass = "";
+            }
             GridViewRow row = gvXeKhach.SelectedRow;
             row.CssClass = "selected-row";
             txtBienSoXe.Text = row.Cells[1].Text;

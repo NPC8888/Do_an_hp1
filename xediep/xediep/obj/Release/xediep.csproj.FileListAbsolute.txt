@@ -54,7 +54,6 @@ C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Microsoft.CodeDom.Providers.Do
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.csproj.AssemblyReference.cache
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.csproj.CoreCompileInputs.cache
-C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.csproj.CopyComplete
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.dll
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.pdb
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Newtonsoft.Json.dll
@@ -94,3 +93,4 @@ C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Google.Apis.Core.xml
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Google.Apis.Gmail.v1.pdb
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\Google.Apis.Gmail.v1.xml
 C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\bin\System.CodeDom.xml
+C:\Users\ASUS\Desktop\Do_an_hp1\xediep\xediep\obj\Release\xediep.csproj.Up2Date

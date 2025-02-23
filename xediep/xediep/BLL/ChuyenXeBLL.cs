@@ -18,11 +18,18 @@ namespace xediep.BLL
             get { if (instance == null) instance = new ChuyenXeBLL(); return instance; }
             private set => instance = value;
         }
-       public List<ChuyenXe> GetALLChuyenXe()
+       public List<ChuyenXe> GetALLChuyenXeByDatatimeMoreThanNow()
         {
             List<ChuyenXe> l= new List<ChuyenXe>();
             l = ChuyenXeDAL.Instance.GetListChuyenXe();
            
+            return l;
+        }
+        public List<ChuyenXe> GetALLChuyenXe()
+        {
+            List<ChuyenXe> l = new List<ChuyenXe>();
+            l = ChuyenXeDAL.Instance.GetALLCX();
+
             return l;
         }
         public List<ChuyenXe> GetALLChuyenXeByTuyenXeAndDate(int MaTuyen ,string date)

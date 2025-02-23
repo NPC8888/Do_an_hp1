@@ -87,7 +87,6 @@ CREATE TABLE VeXe (
     GiaVe DECIMAL(10,2) NOT NULL,  -- Giá vé tại thời điểm đặt
     NgayDatVe DATETIME DEFAULT GETDATE(),  -- Ngày đặt vé
     TrangThai NVARCHAR(20) NOT NULL,  -- "DaDat", "HuyBo", "DaSuDung"
-    SoTienKhiDatVe DECIMAL(18,2) NOT NULL,  -- 
     FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung),
     FOREIGN KEY (MaChuyenXe) REFERENCES ChuyenXe(MaChuyenXe),
     FOREIGN KEY (MaGhe) REFERENCES GheNgoi(MaGhe),
@@ -169,26 +168,28 @@ VALUES
 
 INSERT INTO XeKhach (BienSoXe, LoaiXe, SoChoNgoi)
 VALUES 
-    ('29B-12345', 'Xe khách giường nằm', 40),
-    ('30A-67890', 'Xe khách ghế ngồi', 45),
-    ('29C-11223', 'Xe khách giường nằm', 50),
-    ('31D-44556', 'Xe khách ghế ngồi', 30),
-    ('32E-78901', 'Xe khách giường nằm', 42);
+    ('29B-12345', N'Xe khách giường nằm', 40),
+    ('30A-67890', N'Xe khách ghế ngồi', 45),
+    ('29C-11223', N'Xe khách giường nằm', 50),
+    ('31D-44556', N'Xe khách ghế ngồi', 30),
+    ('32E-78901', N'Xe khách giường nằm', 42);
 
 	INSERT INTO TuyenXe (DiemDi, DiemDen, TrangThai)
-VALUES (N'Hà Nội', N'Hải Phòng', N'Hoạt động');
+VALUES (N'Cà Mau', N'Hải Phòng', N'Hoạt động'),
+	 (N'An Giang', N'Cần Thơ', N'Hoạt động');
 INSERT INTO DiemDonTraKhach (MaTuyenXe, TenDiem, DiaChi, LoaiDiem)
 VALUES (2, N'Bến xe Mỹ Đình', N'Mỹ Đình, Hà Nội', 'Don'),
        (2, N'Bến xe lll', N'Gia Lâm, Hà Nội', 'Tra');
 INSERT INTO ChuyenXe (MaTuyenXe, ThoiGianKhoiHanh, ThoiGianDen, price, MaTaiXe, MaXe, TrangThai)
 VALUES
-    (2, '2025-02-20 08:00', '2025-02-20 12:00', 500000, 3, 1, 'ConVe'),
-    (2, '2025-02-21 10:00', '2025-02-21 14:00', 600000, 3, 2, 'ConVe'),
-    (2, '2025-02-22 07:30', '2025-02-22 11:30', 550000, 3, 3, 'ConVe'),
-    (2, '2025-02-23 09:00', '2025-02-23 13:00', 650000, 3, 4, 'ConVe'),
-    (2, '2025-02-24 11:00', '2025-02-24 15:00', 700000, 3, 5, 'ConVe');
+    (2, '2025-02-20 08:00', '2025-02-20 12:00', 500000, 3, 11, 'ConVe'),
+    (2, '2025-02-21 10:00', '2025-02-21 14:00', 600000, 3, 12, 'ConVe'),
+    (2, '2025-02-22 07:30', '2025-02-22 11:30', 550000, 3, 13, 'ConVe'),
+    (2, '2025-02-23 09:00', '2025-02-23 13:00', 650000, 3, 14, 'ConVe'),
+    (2, '2025-02-24 11:00', '2025-02-24 15:00', 700000, 3, 15, 'ConVe');
 	SELECT DiemDi, DiemDen FROM TuyenXe WHERE MaTuyenXe = 3
-	select *from XeKhach	
+	select *from NguoiDung
+	
 	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
-	delete from TuyenXe Where MaTuyenXe=1
+	delete from XeKhach
 	

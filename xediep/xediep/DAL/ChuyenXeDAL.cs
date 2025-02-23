@@ -82,6 +82,19 @@ namespace DAL
             return list;
 
         }
+        public List<ChuyenXe> GetALLCX()
+        {
+            List<ChuyenXe> list = new List<ChuyenXe>();
+            string query = string.Format("select * from ChuyenXe");
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ChuyenXe chuyenXe = new ChuyenXe(item);
+                list.Add(chuyenXe);
+            }
+            return list;
+
+        }
 
         public List<ChuyenXe> SearchChuyenXeByMaTuyenXe(int maTuyenXe, string ngayKhoiHanh)
         {

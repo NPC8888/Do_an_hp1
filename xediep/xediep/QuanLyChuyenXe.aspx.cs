@@ -1,10 +1,12 @@
 ﻿using DAL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using xediep.BLL;
 using xediep.BLL.BLL;
 using xediep.Models;
 
@@ -19,15 +21,27 @@ namespace xediep
             if (!IsPostBack)
             {
                 LoadXeKhachData();
+                LoadDDLTuyenXe();
             }
         }
 
         // Load XeKhach data into GridView
         private void LoadXeKhachData()
         {
-            List<XeKhach> xeKhachList = XeKhachBLL.Instance.GetAllXeKhach();
-            gvXeKhach.DataSource = xeKhachList;
+            List<ChuyenXe> ChuyenXe = ChuyenXeBLL.Instance.GetALLChuyenXe();
+            gvXeKhach.DataSource = ChuyenXe;
             gvXeKhach.DataBind();
+            
+
+        }
+        private void LoadDDLTuyenXe()
+        { 
+            List<TuyenXe> list = TuyenXeBLL.Instance.GetALLTuyenXe();
+            foreach (TuyenXe item in list)
+            {
+                ddlTuyenXe.Items.Add(new ListItem(item.DiemDi + " - " + item.DiemDen, item.MaTuyenXe.ToString()));
+            }   
+          
         }
 
         // Add XeKhach
@@ -42,7 +56,7 @@ namespace xediep
             if (result)
             {
                 LoadXeKhachData();
-                ClearForm();
+                
                 Response.Write("<script>alert('Thêm xe thành công!');</script>");
             }
             else
@@ -71,7 +85,7 @@ namespace xediep
                     if (result)
                     {
                         LoadXeKhachData();
-                        ClearForm();
+                        
                         Response.Write("<script>alert('Cập nhật xe thành công!');</script>");
                     }
                     else
@@ -104,7 +118,7 @@ namespace xediep
             if (result)
             {
                 LoadXeKhachData();
-                ClearForm();
+                
                 Response.Write("<script>alert('Xóa xe thành công!');</script>");
             }
             else
@@ -114,30 +128,57 @@ namespace xediep
         }
 
         // Handle selecting an item from GridView (to edit)
+       
         protected void gvXeKhach_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Lấy dữ liệu từ dòng được chọn
             GridViewRow row = gvXeKhach.SelectedRow;
+            foreach (GridViewRow r in gvXeKhach.Rows)
+            {
+                r.CssClass = "";
+            }
             row.CssClass = "selected-row";
-          //  txtBienSoXe.Text = row.Cells[1].Text;
-           // txtLoaiXe.Text = row.Cells[2].Text;
-           // txtSoChoNgoi.Text = row.Cells[3].Text;
+
+            int index = gvXeKhach.SelectedIndex;
+
+            // Lấy dữ liệu từ DataKeys (không bị mã hóa)
+            string maCX = gvXeKhach.DataKeys[index].Values["MaCX"].ToString();
+            string maTuyenXe = gvXeKhach.DataKeys[index].Values["MaTuyenXe"].ToString();
+            string tgKhoiHanh = gvXeKhach.DataKeys[index].Values["TgKhoiHanh"].ToString();
+            string tgDen = gvXeKhach.DataKeys[index].Values["TgDen"].ToString();
+            string price = gvXeKhach.DataKeys[index].Values["Price"].ToString();
+            string maTaiXe = gvXeKhach.DataKeys[index].Values["MaTaiXe"].ToString();
+            string maXe = gvXeKhach.DataKeys[index].Values["MaXe"].ToString();
+            string trangThai = gvXeKhach.DataKeys[index].Values["TrangThai"].ToString();
+            
+
+            // Đổ dữ liệu vào TextBox trong popup
+            txtMaCX.Text = maCX;
+            ddlTuyenXe.SelectedValue = maTuyenXe;
+            txtTgKhoiHanh.Text = DateTime.Parse(tgKhoiHanh).ToString("yyyy-MM-ddTHH:mm"); ;
+            txtTgDen.Text = DateTime.Parse(tgDen).ToString("yyyy-MM-ddTHH:mm");
+            txtPrice.Text = price;
+            txtMaTaiXe.Text = maTaiXe;
+            txtMaXe.Text = maXe;
+            txtTrangThai.Text = trangThai;
+
+
+            // Gọi hàm JavaScript để mở popup
+            ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
+
 
         // Clear form fields
-        private void ClearForm()
-        {
-            //txtBienSoXe.Text = "";
-         //   txtLoaiXe.Text = "";
-           // txtSoChoNgoi.Text = "";
-        }
+      
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string name = txtName.Text;
-            string email = txtEmail.Text;
+            string name="";
+            string email="";
 
             // Hiển thị thông tin nhập vào (hoặc lưu vào database)
-            Response.Write("<script>alert('Tên: " + name + "\\nEmail: " + email + "');</script>");
+            Response.Write("<script>alert('Tên: " + name + "nEmail: " + email + "');</script>");
         }
+
 
 
         
