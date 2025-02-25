@@ -1,40 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MQuanTri.Master" AutoEventWireup="true" CodeBehind="QuanLyChuyenXe.aspx.cs" Inherits="xediep.QuanLyChuyenXe" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MQuanTri.Master" AutoEventWireup="true" CodeBehind="QuanLyTuyenXe.aspx.cs" Inherits="QLChuyenXeVaDatVe.QuanLyTuyenXe" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
         <h2>Quản Lý Chuyến Xe </h2>
 
-        <!-- Form to add or edit XeKhach -->
-
-
-
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" OnClick="ThemMoi" CssClass="btn-primary" />
 
-
-        <!-- GridView to display Xe Khach List -->
-        <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
-            DataKeyNames="MaCX,MaTuyenXe,TgKhoiHanh,TgDen,Price,MaTaiXe,MaXe,TrangThai"
+        <asp:GridView ID="gvTuyenXe" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
+            DataKeyNames="MaTuyenXe,DiemDi,DiemDen,TrangThai"
             OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
             <Columns>
-                <asp:BoundField DataField="MaCX" HeaderText="Mã Chuyến Xe" SortExpression="MaCX" />
                 <asp:BoundField DataField="MaTuyenXe" HeaderText="Mã Tuyến Xe" SortExpression="MaTuyenXe" />
-                <asp:BoundField DataField="TgKhoiHanh" HeaderText="Thời Gian Khởi Hành" SortExpression="TgKhoiHanh" />
-                <asp:BoundField DataField="TgDen" HeaderText="Thời Gian Đến" SortExpression="TgDen" />
-                <asp:BoundField DataField="Price" HeaderText="Giá Vé" SortExpression="Price" />
-                <asp:BoundField DataField="MaTaiXe" HeaderText="Mã Tài Xế" SortExpression="MaTaiXe" />
-                <asp:BoundField DataField="MaXe" HeaderText="Mã Xe" SortExpression="MaXe" />
-                <asp:BoundField DataField="TrangThai" HeaderText="Trạng Thái" SortExpression="TrangThai" />
+                <asp:BoundField DataField="DiemDi" HeaderText="Điểm đi" SortExpression="DiemDi" />
+                <asp:BoundField DataField="DiemDen" HeaderText="Điểm đến" SortExpression="DiemDen" />
+                <asp:BoundField DataField="TrangThai" HeaderText="Trạng thái" SortExpression="TrangThai" />
+
                 <asp:CommandField
                     ShowSelectButton="True"
                     SelectText="Fix"
                     ControlStyle-CssClass="btn-select" />
-
             </Columns>
         </asp:GridView>
-
-
-
     </div>
     <asp:ScriptManager runat="server" />
 
@@ -48,47 +34,49 @@
     <div id="popupDiv" class="popup">
         <div class="popup-content">
             <div>
-                <button type="button" onclick="hidePopup()" style="margin-left: 95%" class="btn-danger">X </button>
-                <h3>Thông Tin Chuyến Xe</h3>
+                <button type="button" onclick="hidePopup()" style="margin-left: 95%; cursor: pointer; background-color: red">X</button>
+                <h3>Thông Tin Tuyến Xe Xe</h3>
             </div>
 
-            <label for="txtMaCX">Mã Chuyến Xe:</label>
-            <asp:TextBox ID="txtMaCX" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
 
             <label for="txtMaTuyenXe">Mã Tuyến Xe:</label>
-            <asp:DropDownList ID="ddlTuyenXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
-
-
-            <label for="txtTgKhoiHanh">Thời Gian Khởi Hành:</label>
-            <asp:TextBox ID="txtTgKhoiHanh" runat="server" CssClass="popup-input"></asp:TextBox>
-
-
-            <label for="txtTgDen">Thời Gian Đến:</label>
-            <asp:TextBox ID="txtTgDen" runat="server" CssClass="popup-input"></asp:TextBox>
-
-
-            <label for="txtPrice">Giá Vé:</label>
-            <asp:TextBox ID="txtPrice" runat="server" CssClass="popup-input"></asp:TextBox>
-
-            <label for="txtMaTaiXe">Tài Xế:</label>
-            <asp:DropDownList ID="ddlTaiXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
-            <label for="txtMaTaiXe">Mã Xe:</label>
-            <asp:DropDownList ID="ddlXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
+            <asp:TextBox ID="txtMaTuyenXe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
+            <label for="txtDiemDi">Điểm đi:</label>
+            <asp:DropDownList ID="ddlDiemDi" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
+            <label for="txtMaTaiXe">Điểm đến:</label>
+            <asp:DropDownList ID="ddlDiemDen" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <label for="txtTrangThai">Trạng Thái:</label>
             <asp:TextBox ID="txtTrangThai" runat="server" CssClass="popup-input"></asp:TextBox>
             <asp:Button ID="btnAddd" runat="server" Text="Thêm Chuyến Xe" OnClick="btnAdd_Click" CssClass="btn-primary" />
             <asp:Button ID="btnFix" runat="server" Text="Lưu Thay Đổi" OnClick="btnEdit_Click" CssClass="btn-warning" />
             <asp:Button ID="btnDelete" runat="server" Text="Xóa Chuyến Xe" OnClick="btnDelete_Click" CssClass="btn-danger" />
-
-
-
         </div>
+    </div>
+    <div class="XacNhan" id="divxacnhan" runat="server">
+        !!!! Xác nhận xóa <br />niếu xóa toàn bộ các chuyến xe thuộc tuyến đường !!!!
+        <br />
+        <asp:Button ID="btnXacNhan" runat="server" Text="Xác nhận" OnClick="btnXacNhan_Click" CssClass="btn-primary" />
+        <asp:Button ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click" CssClass="btn-danger" />
     </div>
 
 
 
     <style>
         /* CSS to style the page */
+        .XacNhan {
+            display: none; /* Ẩn mặc định */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            z-index: 1000;
+            width: 30%;
+        }
+
         .popup {
             display: none; /* Ẩn mặc định */
             position: fixed;
@@ -125,7 +113,7 @@
 
         .btn-select {
             color: #28a745 !important;
-            background-color:khaki;
+            background-color: khaki;
             font-weight: bold;
             text-decoration: none;
             padding: 5px 10px;
@@ -135,7 +123,6 @@
 
             .btn-select:hover {
                 color: #218838 !important;
-                
             }
 
         .container {
@@ -249,9 +236,10 @@
         function hidePopup() {
             document.getElementById("popupDiv").style.display = "none";
         }
-        //cho phep gui khi co su thay doi
-        document.getElementById('<%= txtTgDen.ClientID %>').setAttribute("type", "datetime-local");
-        document.getElementById('<%= txtTgKhoiHanh.ClientID %>').setAttribute("type", "datetime-local");
+       
+
+        
+
 
     </script>
 </asp:Content>

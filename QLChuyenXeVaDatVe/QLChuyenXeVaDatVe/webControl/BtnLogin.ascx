@@ -9,7 +9,7 @@
         cursor: pointer;
         font-size: 6px;
         height: 50px;
-        border-radius: 30%;
+        border-radius: 1%;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
     }

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ListChuyenXe.ascx.cs" Inherits="xediep.webControl.ListChuyenXe" %>
+
 <asp:ListView ID="ListView1" runat="server">
     <LayoutTemplate>
         <div class="bus-ticket-container">
@@ -23,6 +24,10 @@
         </div>
     </ItemTemplate>
 </asp:ListView>
+
+ 
+
+
 
 <style>
     .bus-ticket-container {
@@ -92,7 +97,7 @@
         color: white;
         font-size: 16px;
         font-weight: bold;
-        border-radius: 8px;
+        border-radius: 1px;
         cursor: pointer;
         transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
         text-decoration: none;
@@ -112,4 +117,5 @@
         from { transform: translateY(20px); opacity: 0; }
         to { transform: translateY(0); opacity: 1; }
     }
+
 </style>

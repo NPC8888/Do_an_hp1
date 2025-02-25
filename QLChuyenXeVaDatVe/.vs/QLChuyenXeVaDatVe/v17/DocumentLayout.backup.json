@@ -3,6 +3,82 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\quanlytuyenxe.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\quanlytuyenxe.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\quanlytuyenxe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\quanlytuyenxe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\dal\\tuyenxedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\dal\\tuyenxedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\mquantri.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\mquantri.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\webcontrol\\thanhtimkiem.ascx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\webcontrol\\thanhtimkiem.ascx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\webcontrol\\thanhtimkiem.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\webcontrol\\thanhtimkiem.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\webcontrol\\listchuyenxe.ascx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\webcontrol\\listchuyenxe.ascx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\webcontrol\\listchuyenxe.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\webcontrol\\listchuyenxe.ascx||{F390D63C-F7D8-4E74-AA04-57C1ECF53D4D}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\bll\\tuyenxebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\bll\\tuyenxebll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\bll\\xekhachbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\bll\\xekhachbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\dal\\xekhachdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\dal\\xekhachdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\models\\tuyenxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\models\\tuyenxe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\quanlyxekhach.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\quanlyxekhach.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\quanlychuyenxe.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\quanlychuyenxe.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\quanlychuyenxe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\quanlychuyenxe.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\trangchu.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\trangchu.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\dal\\chuyenxedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\dal\\chuyenxedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\dal\\nguoidungdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\dal\\nguoidungdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\models\\nguoidung.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|c:\\users\\asus\\desktop\\do_an_hp1\\qlchuyenxevadatve\\qlchuyenxevadatve\\trangchuquantri.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{7F31C0CD-CCAC-4A90-BABC-2D1FC1CEFA43}|QLChuyenXeVaDatVe\\xediep.csproj|solutionrelative:qlchuyenxevadatve\\trangchuquantri.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
@@ -14,11 +90,258 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MQuanTri.Master",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\MQuanTri.Master",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\MQuanTri.Master",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\MQuanTri.Master",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\MQuanTri.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-25T05:33:27.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ThanhTimKiem.ascx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T07:53:19.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ThanhTimKiem.ascx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\webControl\\ThanhTimKiem.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-02-25T07:53:18.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TuyenXeBLL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\BLL\\TuyenXeBLL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\BLL\\TuyenXeBLL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\BLL\\TuyenXeBLL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\BLL\\TuyenXeBLL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T07:48:18.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "QuanLyTuyenXe.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx.cs",
+              "ViewState": "AgIAALYAAAAAAAAAAAAuwOAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T06:27:26.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuanLyTuyenXe.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx*",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\QuanLyTuyenXe.aspx*",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-25T05:32:18.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TuyenXeDAL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\TuyenXeDAL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\DAL\\TuyenXeDAL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\TuyenXeDAL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\DAL\\TuyenXeDAL.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAQwE4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:17:22.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "XeKhachBLL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\BLL\\XeKhachBLL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\BLL\\XeKhachBLL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\BLL\\XeKhachBLL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\BLL\\XeKhachBLL.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwCgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:22:06.268Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListChuyenXe.ascx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2025-02-25T05:48:06.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ListChuyenXe.ascx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\webControl\\ListChuyenXe.ascx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T03:30:50.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TuyenXe.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\Models\\TuyenXe.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\Models\\TuyenXe.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\Models\\TuyenXe.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\Models\\TuyenXe.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAC4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T06:24:30.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "QuanLyXeKhach.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyXeKhach.aspx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\QuanLyXeKhach.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyXeKhach.aspx",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\QuanLyXeKhach.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-25T06:34:09.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "XeKhachDAL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\XeKhachDAL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\DAL\\XeKhachDAL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\XeKhachDAL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\DAL\\XeKhachDAL.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwDcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:27:38.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TrangChu.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\TrangChu.aspx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\TrangChu.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\TrangChu.aspx",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\TrangChu.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-25T03:28:34.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "QuanLyChuyenXe.aspx",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-25T02:06:07.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "QuanLyChuyenXe.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\QuanLyChuyenXe.aspx.cs",
+              "ViewState": "AgIAANAAAAAAAAAAAAAAwNcAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:06:12.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "NguoiDung.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\Models\\NguoiDung.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\Models\\NguoiDung.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\Models\\NguoiDung.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\Models\\NguoiDung.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:19:49.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ChuyenXeDAL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\ChuyenXeDAL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\DAL\\ChuyenXeDAL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\ChuyenXeDAL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\DAL\\ChuyenXeDAL.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwB8AAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:43:32.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "NguoiDungDAL.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\NguoiDungDAL.cs",
+              "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\DAL\\NguoiDungDAL.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\DAL\\NguoiDungDAL.cs",
+              "RelativeToolTip": "QLChuyenXeVaDatVe\\DAL\\NguoiDungDAL.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAtwFAAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T02:27:57.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "TrangChuQuanTri.aspx",
               "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\Do_an_hp1\\QLChuyenXeVaDatVe\\QLChuyenXeVaDatVe\\TrangChuQuanTri.aspx",
               "RelativeDocumentMoniker": "QLChuyenXeVaDatVe\\TrangChuQuanTri.aspx",

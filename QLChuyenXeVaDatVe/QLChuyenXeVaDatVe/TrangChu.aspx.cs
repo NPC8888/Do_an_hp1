@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
+using xediep.BLL;
 
 namespace xediep
 {
@@ -17,10 +18,10 @@ namespace xediep
         {
           if (!IsPostBack)
             {
-                ListChuyenXe.lchuyenxe = ChuyenXeDAL.Instance.GetListChuyenXe();
-                
-              
-                
+                ListChuyenXe.lchuyenxe = ChuyenXeBLL.Instance.GetALLChuyenXe();
+
+
+
             }
 
         }

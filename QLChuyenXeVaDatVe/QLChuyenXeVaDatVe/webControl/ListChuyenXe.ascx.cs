@@ -23,7 +23,9 @@ namespace xediep.webControl
             if (!IsPostBack)
             {
                 ListView1.DataSource = lchuyenxe;
+               
                 ListView1.DataBind();
+               
             }
         }
         public (string DiemDon, string DiemDen) LayDiemDiDiemDenByMaTuyenXe(string id)

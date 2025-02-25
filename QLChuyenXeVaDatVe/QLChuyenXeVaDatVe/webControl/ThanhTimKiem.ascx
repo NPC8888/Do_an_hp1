@@ -81,7 +81,7 @@
         padding: 12px 20px;
         font-size: 16px;
         font-weight: bold;
-        border-radius: 25px;
+        border-radius: 3px;
         cursor: pointer;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;

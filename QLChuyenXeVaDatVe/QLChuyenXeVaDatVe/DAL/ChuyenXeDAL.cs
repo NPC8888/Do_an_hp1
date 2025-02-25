@@ -40,7 +40,7 @@ namespace DAL
         {
             string query = string.Format(
                 "UPDATE ChuyenXe SET MaTuyenXe='{0}', ThoiGianKhoiHanh='{1}', ThoiGianDen='{2}', Price='{3}', MaTaiXe='{4}', MaXe='{5}', TrangThai=N'{6}' " +
-                "WHERE MaCx='{7}'",
+                "WHERE MaChuyenXe='{7}'",
                 cx.MaTuyenXe, cx.TgKhoiHanh.ToString("yyyy-MM-dd HH:mm:ss"), cx.TgDen.ToString("yyyy-MM-dd HH:mm:ss"),
                 cx.Price, cx.MaTaiXe, cx.MaXe, cx.TrangThai, cx.MaCx
             );
@@ -50,7 +50,7 @@ namespace DAL
 
         public bool DeleteChuyenXe(int maCx)
         {
-            string query = string.Format("DELETE FROM ChuyenXe WHERE MaCx='{0}'", maCx);
+            string query = string.Format("DELETE FROM ChuyenXe WHERE MaChuyenXe='{0}'", maCx);
             return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
 

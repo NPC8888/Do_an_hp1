@@ -57,6 +57,26 @@ namespace xediep.DAL
             object result = DataProvider.Instance.ExecuteScalar(query);
             return result != null ? Convert.ToInt32(result) : -1;
         }
+        public bool InsertTuyenXe(TuyenXe Tuyen)
+        {
+            string query = string.Format("INSERT INTO TuyenXe (DiemDi, DiemDen, TrangThai) VALUES (N'{0}', N'{1}', N'{2}')",Tuyen.DiemDen,Tuyen.DiemDen,Tuyen.TrangThai);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateTuyenXe(TuyenXe Tuyen)
+        {
+            string query = string.Format("UPDATE TuyenXe SET DiemDi = N'{0}', DiemDen = N'{1}', TrangThai = '{2}' WHERE MaTuyenXe = {3}",Tuyen.DiemDen, Tuyen.DiemDen, Tuyen.TrangThai,Tuyen.MaTuyenXe);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteTuyenXe(int maXe)
+        {
+            string query = "DELETE FROM TuyenXe WHERE MaXe = " + maXe;
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { maXe });
+            return result > 0;
+        }
     }
 
 

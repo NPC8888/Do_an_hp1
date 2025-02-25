@@ -170,6 +170,7 @@
     <Content Include="jpg\iconlg.png" />
     <Content Include="js\JsLogin.js" />
     <Content Include="QuanLyChuyenXe.aspx" />
+    <Content Include="QuanLyTuyenXe.aspx" />
     <Content Include="QuanLyXeKhach.aspx" />
     <Content Include="TrangChu.aspx" />
     <Content Include="TrangChuQuanTri.aspx" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="QuanLyChuyenXe.aspx.designer.cs">
       <DependentUpon>QuanLyChuyenXe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyTuyenXe.aspx.cs">
+      <DependentUpon>QuanLyTuyenXe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyTuyenXe.aspx.designer.cs">
+      <DependentUpon>QuanLyTuyenXe.aspx</DependentUpon>
     </Compile>
     <Compile Include="QuanLyXeKhach.aspx.cs">
       <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>

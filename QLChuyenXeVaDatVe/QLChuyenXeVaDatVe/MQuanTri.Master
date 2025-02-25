@@ -27,7 +27,7 @@
                     <li><a href="#"><i class="fas fa-shopping-cart"></i>Quản lý Hóa Đơn</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Quản lý tài khoản</a></li>
                     <li><a href="QuanLyXeKhach.aspx"><i class="fas fa-user"></i>Quản lý Xe Khách</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>Quản lý Tuyến Đường</a></li>
+                    <li><a href="QuanLyTuyenXe.aspx"><i class="fas fa-user"></i>Quản lý Tuyến Đường</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Quản lý Điểm Đón Trả Khách</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Quản lý Phương Thức Thanh Toán</a></li>
                     <li><a href="#"><i class="fas fa-user"></i>Quản lý tài khoản</a></li>

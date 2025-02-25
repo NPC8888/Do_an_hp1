@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using xediep.BLL.BLL;
 using xediep.DAL;
 using xediep.Models;
 
@@ -30,6 +31,20 @@ namespace xediep.BLL
         public List<TuyenXe> GetALLTuyenXe()
         {
             return TuyenXeDAL.Instance.GetAllTuyenXe();
+        }
+        public bool AddTuyenXe(TuyenXe xe)
+        {
+            return TuyenXeDAL.Instance.InsertTuyenXe(xe);
+        }
+
+        public bool EditTuyenXe(TuyenXe xe)
+        {
+            return TuyenXeDAL.Instance.UpdateTuyenXe(xe);
+        }
+
+        public bool RemoveTuyenXe(int maXe)
+        {
+            return TuyenXeDAL.Instance.DeleteTuyenXe(maXe);
         }
     }
 }

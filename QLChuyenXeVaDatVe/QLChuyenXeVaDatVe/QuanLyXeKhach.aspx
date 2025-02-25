@@ -36,6 +36,8 @@
                 <asp:BoundField DataField="SoChoNgoi" HeaderText="Số Chỗ Ngồi" SortExpression="SoChoNgoi" />
                 <asp:CommandField ShowSelectButton="True" SelectText="Chọn" ControlStyle-ForeColor="Green" />
             </Columns>
+
+            <RowStyle BorderColor="#3399FF"></RowStyle>
         </asp:GridView>
     </div>
 

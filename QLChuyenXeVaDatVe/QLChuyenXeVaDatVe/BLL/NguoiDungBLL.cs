@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using DAL;
+using Models;
 
 namespace BLL
 {
@@ -54,6 +56,9 @@ namespace BLL
             userDal.FixProfile(id, ten, sdt, email);
         }
 
-      
+      public List<NguoiDung> GetAllTaiXe()
+        {
+            return NguoiDungDAL.Instance.GetAllTaiXe();
+        }
     }
 }

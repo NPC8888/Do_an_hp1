@@ -1,12 +1,22 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Models;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web;
+using xediep.Models;
 
 namespace DAL
 {
     public class NguoiDungDAL
     {
+        private static NguoiDungDAL instance;
+
+        public static NguoiDungDAL Instance
+        {
+            get { if (instance == null) instance = new NguoiDungDAL(); return NguoiDungDAL.instance; }
+            private set => instance = value;
+        }
         // Kiểm tra thông tin đăng nhập
         public int CheckLogin(string username, string passwordHash)
         {
@@ -46,7 +56,7 @@ namespace DAL
             return -1; // Token không hợp lệ hoặc hết hạn
         }
 
-      
+
         // Xóa token (khi đăng xuất)
         public void ClearToken(string token)
         {
@@ -55,14 +65,56 @@ namespace DAL
 
             DataProvider.Instance.ExecuteNonQuery(query, parameters);
         }
-        public void FixProfile(string id,string ten,string sdt,string email)
-        {   int Id=int.Parse(id);
-           string query=string.Format("UPDATE NguoiDung SET HoTen = N'{0}' , SoDienThoai = '{1}' , Email = '{2}' WHERE MaNguoiDung = {3}",ten,sdt,email,id);
-            
+        public void FixProfile(string id, string ten, string sdt, string email)
+        {
+            int Id = int.Parse(id);
+            string query = string.Format("UPDATE NguoiDung SET HoTen = N'{0}' , SoDienThoai = '{1}' , Email = '{2}' WHERE MaNguoiDung = {3}", ten, sdt, email, id);
 
-            int i=DataProvider.Instance.ExecuteNonQuery(query);
-        
-           
+
+            int i = DataProvider.Instance.ExecuteNonQuery(query);
+
+
+        }
+        public List<NguoiDung> GetAllTaiXe()
+        {
+            List<NguoiDung> nd = new List<NguoiDung>();
+            string query = "SELECT * FROM NguoiDung where VaiTro='TaiXe'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                NguoiDung nguoidung = new NguoiDung(item);
+                nd.Add(nguoidung);
+            }
+
+            return nd;
+        }
+
+
+        //them sua xoa
+        public bool InsertNguoiDung(NguoiDung nguoiDung )
+        {
+            string query = string.Format("INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, SoDienThoai, Email, VaiTro) VALUES (N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}')", nguoiDung.TenDangNhap, nguoiDung.MatKhau, nguoiDung.HoTen, nguoiDung.SDT, nguoiDung.EMai, nguoiDung.VaiTro);
+            
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool UpdateNguoiDung(NguoiDung nd)
+        {
+            string query = string.Format("UPDATE NguoiDung SET TenDangNhap = '{0}', MatKhau = N'{1}', HoTen = {2},SoDienThoai={3}, Email='{4}' WHERE MaNguoiDung = {5}, VaiTro='{6}'", nd.TenDangNhap,nd.MatKhau,nd.HoTen,nd.SDT,nd.EMai);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
+
+        public bool DeleteNguoiDung(int nd)
+        {
+            string query = "DELETE FROM NguoiDung WHERE MaNguoiDung = " + nd;
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { nd });
+            return result > 0;
         }
     }
 }
+    
+
+    
