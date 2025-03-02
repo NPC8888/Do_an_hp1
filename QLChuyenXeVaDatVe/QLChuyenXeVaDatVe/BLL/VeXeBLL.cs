@@ -25,7 +25,7 @@ namespace BLL
             int i = GheNgoiDAL.Instance.insertGheNgoi(ghe);
             idma = i;
 
-            VeXe dat = new VeXe(0, idma, maChuyenXe, maKH, trangThai, ngayDat, hoten, sodt, madiemdon, madiemtra);
+            VeXe dat = new VeXe { MaChuyenXe = maChuyenXe, MaGhe=idma, MaKH = maKH, TrangThai = trangThai, NgayDat = ngayDat, HoTen = hoten, SoDT = sodt, MaDiemDon = madiemdon, MaDiemTra = madiemtra };
             i = DatVeDAL.Instance.DatVe(dat);
 
 

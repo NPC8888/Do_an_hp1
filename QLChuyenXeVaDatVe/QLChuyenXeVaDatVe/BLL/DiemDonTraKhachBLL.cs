@@ -27,5 +27,28 @@ namespace BLL
             List<DiemDonTraKhach> diemTraKhaches = DiemDonTraKhachDAL.Instance.GetlisDiemTraByIdtuyenXe(id);
             return diemTraKhaches;
         }
+        public List<DiemDonTraKhach> GetALL()
+        {
+            List<DiemDonTraKhach> diemTraKhaches = DiemDonTraKhachDAL.Instance.GetALLDiemDonTra();
+            return diemTraKhaches;
+        }
+        public bool InsertDiemDonTraKhach(DiemDonTraKhach cx)
+        {
+           
+            return DiemDonTraKhachDAL.Instance.InsertDiemDonTraKhach(cx);
+        }
+
+        public bool UpdateDiemDonTraKhach(DiemDonTraKhach cx)
+        {
+            
+            return DiemDonTraKhachDAL.Instance.UpdateDiemDonTraKhach(cx);
+        }
+
+        public bool DeleteDiemDonTraKhach(int maCx)
+        {
+            return DiemDonTraKhachDAL.Instance.DeleteDiemDonTraKhach(maCx);
+        }
+
+       
     }
 }

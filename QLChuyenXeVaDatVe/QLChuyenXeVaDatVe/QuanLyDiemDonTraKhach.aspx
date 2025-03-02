@@ -1,50 +1,51 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MQuanTri.Master" AutoEventWireup="true" CodeBehind="QuanLyXeKhach.aspx.cs" Inherits="xediep.QuanLyXeKhach" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MQuanTri.Master" AutoEventWireup="true" CodeBehind="QuanLyDiemDonTraKhach.aspx.cs" Inherits="QLChuyenXeVaDatVe.QuanLyDiemDonTraKhach" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container">
-        <h2>Quản Lý Xe Khách</h2>
+        <h2>Quản Lý Chuyến Xe </h2>
+
         <button class="btn-primary" type="button" onclick="showPopup()">Thêm Mới</button>
-        <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
-            DataKeyNames="MaXe,BienSoXe,LoaiXe,SoChoNgoi,SoTang,SoDay,SoGheMoiDay" OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
+
+        <asp:GridView ID="gvDiemDonTraKhach" runat="server" AutoGenerateColumns="False" DataKeyNames="MaDiem,TenDiem,MaTuyenXe,DiaChi,LoaiDiem"
+            OnSelectedIndexChanged="gvDiemDon_SelectedIndexChanged">
             <Columns>
-                <asp:BoundField DataField="MaXe" HeaderText="Mã Xe" SortExpression="MaXe" />
-                <asp:BoundField DataField="BienSoXe" HeaderText="Biển Số Xe" SortExpression="BienSoXe" />
-                <asp:BoundField DataField="LoaiXe" HeaderText="Loại Xe" SortExpression="LoaiXe" />
-                <asp:BoundField DataField="SoChoNgoi" HeaderText="Số Chỗ Ngồi" SortExpression="SoChoNgoi" />
-                <asp:BoundField DataField="SoTang" HeaderText="Số Tầng" SortExpression="SoTang" />
-                <asp:BoundField DataField="SoDay" HeaderText="Số Dãy" SortExpression="SoDay" />
-                <asp:BoundField DataField="SoGheMoiDay" HeaderText="Số Ghế Mỗi Dãy" SortExpression="SoGheMoiDay" />
-                <asp:CommandField ShowSelectButton="True" SelectText="Chỉnh Sửa" ControlStyle-CssClass="btn-select" />
+                <asp:BoundField DataField="MaDiem" HeaderText="Mã Điểm" ReadOnly="True" SortExpression="MaDiem"/>
+                <asp:BoundField DataField="TenDiem" HeaderText="Tên Điểm" SortExpression="TenDiem"/>
+                <asp:BoundField DataField="MaTuyenXe" HeaderText="Tuyến Xe" SortExpression="MaTuyenXe" />
+                <asp:BoundField DataField="DiaChi" HeaderText="Địa Chỉ" SortExpression="DiaChi" />
+                <asp:BoundField DataField="LoaiDiem" HeaderText="Loại Điểm" SortExpression="LoaiDiem" />
+                <asp:CommandField ShowSelectButton="True" SelectText="Chọn" />
             </Columns>
         </asp:GridView>
-    </div>
-    <asp:ScriptManager runat="server" />
-
-    <div id="popupDiv" class="popup" style="display: none;">
-        <div class="popup-content">
-            <button type="button" onclick="hidePopup()" style="margin-left: 95%; cursor: pointer; background-color: red">X</button>
-            <h3>Thông Tin Xe Khách</h3>
-            <label>Mã Xe:</label>
-            <asp:TextBox ID="txtMaXe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
-            <label>Biển Số Xe:</label>
-            <asp:TextBox ID="txtBienSoXe" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Loại Xe:</label>
-            <asp:TextBox ID="txtLoaiXe" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Chỗ Ngồi:</label>
-            <asp:TextBox ID="txtSoChoNgoi" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Tầng:</label>
-            <asp:TextBox ID="txtSoTang" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Dãy:</label>
-            <asp:TextBox ID="txtSoDay" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Ghế Mỗi Dãy:</label>
-            <asp:TextBox ID="txtSoGheMoiDay" runat="server" CssClass="popup-input"></asp:TextBox>
-            <asp:Button ID="btnAdd" runat="server" Text="Thêm Xe Khách" OnClick="btnAdd_Click" CssClass="btn-primary" />
-            <asp:Button ID="btnSave" runat="server" Text="Lưu" OnClick="btnSave_Click" CssClass="btn-warning" />
-            <asp:Button ID="btnDelete" runat="server" Text="Xóa" OnClick="btnDelete_Click" CssClass="btn-danger" />
+        <br />
+        <div id="popupDiv" class="popup" style="display: none;">
+            <div class="popup-content">
+                <button type="button" onclick="hidePopup()" style="margin-left: 95%; cursor: pointer; background-color: red">X</button>
+                <h3>Thông Tin Điểm Đón/Trả</h3>
+                <label>Mã Điểm:</label>
+                <asp:TextBox ID="txtMaDiem" runat="server" ReadOnly="True" CssClass="popup-input"></asp:TextBox>
+                <br />
+                <label>Tên Điểm:</label>
+                <asp:TextBox ID="txtTenDiem" runat="server" CssClass="popup-input"></asp:TextBox>
+                <br />
+                <label>Tuyến Đường:</label>
+                <asp:DropDownList ID="ddlTuyenXe" CssClass="date-picker popup-input" runat="server">
+                </asp:DropDownList>
+                <label>Địa Chỉ:</label>
+                <asp:TextBox ID="txtDiaChi" runat="server" CssClass="popup-input"></asp:TextBox>
+                <br />
+                <label>Loại Điểm:</label>
+                <asp:DropDownList ID="ddlLoaiDiem" CssClass="date-picker popup-input" runat="server">
+                   
+                </asp:DropDownList>
+                <br />
+                <asp:Button ID="btnFix" runat="server" Text="Cập Nhật" OnClick="btnEdit_Click" Visible="False" />
+                <asp:Button ID="btnDelete" runat="server" Text="Xóa" OnClick="btnDelete_Click" Visible="False" />
+                <asp:Button ID="Button1" runat="server" Text="Thêm" OnClick="btnAdd_Click" />
+            </div>
         </div>
     </div>
-
 
 
     <style>
@@ -151,6 +152,11 @@
         }
 
         /* Thay đổi từ 'button' thành 'input' */
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
         input.btn-primary {
             background-color: #007bff;
             color: white;
@@ -168,10 +174,6 @@
 
         .btn-danger {
             background-color: #dc3545;
-            color: white;
-        }
-        .btn-primary {
-            background-color: #007bff;
             color: white;
         }
 
@@ -216,6 +218,8 @@
             animation: blink 1s infinite alternate; /* Nhấp nháy */
         }
     </style>
+
+
     <script>
         function showPopup() {
             document.getElementById("popupDiv").style.display = "block";
@@ -224,6 +228,10 @@
         function hidePopup() {
             document.getElementById("popupDiv").style.display = "none";
         }
+
+
+
+
 
     </script>
 

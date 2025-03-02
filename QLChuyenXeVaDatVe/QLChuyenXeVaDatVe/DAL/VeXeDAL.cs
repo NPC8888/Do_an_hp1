@@ -20,7 +20,17 @@ namespace DAL
         }
         public int DatVe(VeXe dat)
         {
-            string query = string.Format("INSERT INTO VeXe (MaKhachHang, MaChuyenXe, MaGhe, NgayDatVe, TrangThai, HoTen, SoDT, DiemDon, DiemTra) VALUES ( {0} , {1} , {2} , '{3}', N'DD', N'{4}', '{5}', {6} , {7})", dat.MaKH, dat.MaChuyenXe, dat.MaGhe, DateTime.Now, dat.HoTen, dat.SoDT, dat.MaDiemDon, dat.MaDiemTra);
+            string query = string.Format("INSERT INTO VeXe (MaKhachHang, MaChuyenXe, MaGhe, NgayDatVe, TrangThai, HoTen, SoDT, DiemDon, DiemTra) " +
+                             "VALUES ( {0} , {1} , ISNULL({2}, NULL) , '{3}', N'DD', N'{4}', '{5}', {6} , {7} )",
+                             dat.MaKH == 0 ? "NULL" : dat.MaKH.ToString(),
+                             dat.MaChuyenXe,
+                             dat.MaGhe == 0 ? "NULL" : dat.MaGhe.ToString(),
+                             DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                             dat.HoTen.Replace("'", "''"),  // Tránh lỗi SQL Injection
+                             dat.SoDT,
+                             dat.MaDiemDon,
+                             dat.MaDiemTra);
+
             return DataProvider.Instance.ExecuteNonQuery(query);
         }
         public int fixTrangThai(string Id)
@@ -34,7 +44,7 @@ namespace DAL
             DataTable dt = DataProvider.Instance.ExecuteQuery(q);
             DataRow dr = dt.Rows[0];
             string MaGhe = dr["MaGhe"].ToString();
-            string query = string.Format("UPDATE VeXe SET TrangThai = 'Huy' , MaGhe=NULL WHERE MaVeXe = {0}; Delete from GheNgoi where MaGhe= {1};", Id,MaGhe);
+            string query = string.Format("UPDATE VeXe SET TrangThai = 'Huy' , MaGhe=NULL WHERE MaVeXe = {0}; Delete from GheNgoi where MaGhe= {1};", Id, MaGhe);
             return DataProvider.Instance.ExecuteNonQuery(query);
         }
 
@@ -60,7 +70,7 @@ namespace DAL
 
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
 
-           
+
 
             return data;
         }

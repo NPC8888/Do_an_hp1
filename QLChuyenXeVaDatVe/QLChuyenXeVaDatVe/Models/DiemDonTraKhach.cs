@@ -9,9 +9,9 @@ namespace Models
     public class DiemDonTraKhach
     {
         public DiemDonTraKhach() { }
-        public DiemDonTraKhach(int MaChuyenXe, string TenDiem,string Diachi,string LoaiDiem,DateTime TG) {
+        public DiemDonTraKhach(int MaTuyenXe, string TenDiem,string Diachi,string LoaiDiem) {
             
-            maTuyenXe = MaChuyenXe;
+            maTuyenXe = MaTuyenXe;
             tenDiem = TenDiem;
             diaChi = Diachi;
             loaiDiem = LoaiDiem;

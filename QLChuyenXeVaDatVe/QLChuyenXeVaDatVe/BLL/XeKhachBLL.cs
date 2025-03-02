@@ -19,7 +19,10 @@ namespace xediep.BLL
                 private set => instance = value;
             }
             private XeKhachDAL xeKhachDAL = new XeKhachDAL();
-            
+            public XeKhach GetXeKhachByMaXe(int id) {
+                return xeKhachDAL.XeKhachByMaXe(id);
+
+            }
             public List<XeKhach> GetAllXeKhach()
             {
                 return xeKhachDAL.GetAllXeKhach();

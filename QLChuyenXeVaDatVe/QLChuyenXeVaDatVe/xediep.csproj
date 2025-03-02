@@ -170,8 +170,10 @@
     <Content Include="jpg\iconlg.png" />
     <Content Include="js\JsLogin.js" />
     <Content Include="QuanLyChuyenXe.aspx" />
+    <Content Include="QuanLyDiemDonTraKhach.aspx" />
     <Content Include="QuanLyTuyenXe.aspx" />
     <Content Include="QuanLyXeKhach.aspx" />
+    <Content Include="testapi.aspx" />
     <Content Include="TrangChu.aspx" />
     <Content Include="TrangChuQuanTri.aspx" />
     <Content Include="Web.config" />
@@ -257,6 +259,13 @@
     <Compile Include="QuanLyChuyenXe.aspx.designer.cs">
       <DependentUpon>QuanLyChuyenXe.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyDiemDonTraKhach.aspx.cs">
+      <DependentUpon>QuanLyDiemDonTraKhach.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyDiemDonTraKhach.aspx.designer.cs">
+      <DependentUpon>QuanLyDiemDonTraKhach.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyTuyenXe.aspx.cs">
       <DependentUpon>QuanLyTuyenXe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -270,6 +279,13 @@
     </Compile>
     <Compile Include="QuanLyXeKhach.aspx.designer.cs">
       <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testapi.aspx.cs">
+      <DependentUpon>testapi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testapi.aspx.designer.cs">
+      <DependentUpon>testapi.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrangChu.aspx.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>

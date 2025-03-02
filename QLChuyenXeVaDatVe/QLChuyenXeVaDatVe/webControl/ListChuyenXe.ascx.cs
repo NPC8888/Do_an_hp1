@@ -22,9 +22,7 @@ namespace xediep.webControl
         {
             if (!IsPostBack)
             {
-                ListView1.DataSource = lchuyenxe;
-               
-                ListView1.DataBind();
+                
                
             }
         }
@@ -33,7 +31,17 @@ namespace xediep.webControl
             return TuyenXeBLL.Instance.GetDiemDiDiemDenFromMaTuyenXe(int.Parse(id));
         }
 
+        public void loadanhgia()
+        {
+            // Lấy bình luận từ chuyến xe có mã MaCX
+            foreach (ChuyenXe cx in lchuyenxe)
+            {
+                var danhGias = DanhGiaBLL.Instance.GetDanhGiaByMaCX(cx.MaXe);
+                
+            }
 
+           
+        }
 
         // Lấy bình luận từ chuyến xe có mã MaCX
 

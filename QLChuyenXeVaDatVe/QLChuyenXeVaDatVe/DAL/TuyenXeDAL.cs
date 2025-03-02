@@ -59,14 +59,14 @@ namespace xediep.DAL
         }
         public bool InsertTuyenXe(TuyenXe Tuyen)
         {
-            string query = string.Format("INSERT INTO TuyenXe (DiemDi, DiemDen, TrangThai) VALUES (N'{0}', N'{1}', N'{2}')",Tuyen.DiemDen,Tuyen.DiemDen,Tuyen.TrangThai);
+            string query = string.Format("INSERT INTO TuyenXe (DiemDi, DiemDen, TrangThai) VALUES (N'{0}', N'{1}', N'{2}')",Tuyen.DiemDi,Tuyen.DiemDen,Tuyen.TrangThai);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
 
         public bool UpdateTuyenXe(TuyenXe Tuyen)
         {
-            string query = string.Format("UPDATE TuyenXe SET DiemDi = N'{0}', DiemDen = N'{1}', TrangThai = '{2}' WHERE MaTuyenXe = {3}",Tuyen.DiemDen, Tuyen.DiemDen, Tuyen.TrangThai,Tuyen.MaTuyenXe);
+            string query = string.Format("UPDATE TuyenXe SET DiemDi = N'{0}', DiemDen = N'{1}', TrangThai = '{2}' WHERE MaTuyenXe = {3}",Tuyen.DiemDi, Tuyen.DiemDen, Tuyen.TrangThai,Tuyen.MaTuyenXe);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }

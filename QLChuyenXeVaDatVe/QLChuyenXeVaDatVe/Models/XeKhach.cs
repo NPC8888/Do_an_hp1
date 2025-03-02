@@ -12,6 +12,16 @@ namespace xediep.Models
         private int maXe;
      
         public int MaXe { get => maXe; set => maXe = value; }
+        private int soTang;
+
+        public int SoTang { get => soTang; set => soTang = value; }
+        private int soDay;
+
+        public int SoDay { get => soDay; set => soDay = value; }
+        private int soGheMoiDay;
+
+        public int SoGheMoiDay { get => soGheMoiDay; set => soGheMoiDay = value; }
+
 
         private string bienSoXe;
         public string BienSoXe { get => bienSoXe; set => bienSoXe = value; }
@@ -31,15 +41,12 @@ namespace xediep.Models
             this.BienSoXe = row["BienSoXe"] != DBNull.Value ? row["BienSoXe"].ToString() : "";
             this.LoaiXe = row["LoaiXe"] != DBNull.Value ? row["LoaiXe"].ToString() : "";
             this.SoChoNgoi = row["SoChoNgoi"] != DBNull.Value ? Convert.ToInt32(row["SoChoNgoi"]) : 0;
+            this.soTang = row["SoTang"] != DBNull.Value ? Convert.ToInt32(row["SoTang"]) : 0;
+            this.soDay = row["SoDay"] != DBNull.Value ? Convert.ToInt32(row["SoDay"]) : 0;
+            this.soGheMoiDay = row["SoGheMoiDay"] != DBNull.Value ? Convert.ToInt32(row["SoGheMoiDay"]) : 0;
         }
 
-        public XeKhach(int maXe, string bienSoXe, string loaiXe, int soChoNgoi)
-        {
-            this.MaXe = maXe;
-            this.BienSoXe = bienSoXe;
-            this.LoaiXe = loaiXe;
-            this.SoChoNgoi = soChoNgoi;
-        }
+       
 
         public XeKhach(XeKhach xeKhach)
         {
@@ -47,6 +54,9 @@ namespace xediep.Models
             this.BienSoXe = xeKhach.BienSoXe;
             this.LoaiXe = xeKhach.LoaiXe;
             this.SoChoNgoi = xeKhach.SoChoNgoi;
+            this.SoTang = xeKhach.SoChoNgoi;
+            this.SoDay = xeKhach.SoChoNgoi;
+            this.SoGheMoiDay = xeKhach.SoChoNgoi;
         }
     }
 }

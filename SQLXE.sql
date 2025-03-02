@@ -26,7 +26,10 @@ CREATE TABLE XeKhach (
     MaXe INT PRIMARY KEY IDENTITY,
     BienSoXe NVARCHAR(20),
     LoaiXe NVARCHAR(50),
-    SoChoNgoi INT
+    SoChoNgoi INT,
+	 SoTang INT,
+	  SoDay INT,
+	   SoGheMoiDay INT
 );
 
 -- Bảng TuyenXe: Quản lý tuyến xe cố định
@@ -84,7 +87,7 @@ CREATE TABLE VeXe (
     MaGhe INT NULL,  -- Ghế ngồi (nếu có)
     DiemDon INT NOT NULL,  -- Điểm đón
     DiemTra INT NOT NULL,  -- Điểm trả
-    GiaVe DECIMAL(10,2) NOT NULL,  -- Giá vé tại thời điểm đặt
+    -- Giá vé tại thời điểm đặt
     NgayDatVe DATETIME DEFAULT GETDATE(),  -- Ngày đặt vé
     TrangThai NVARCHAR(20) NOT NULL,  -- "DaDat", "HuyBo", "DaSuDung"
     FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung),
@@ -160,36 +163,24 @@ CREATE TABLE BaoCao (
     TongDoanhThu DECIMAL(18, 2)
 );
 go
-INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, SoDienThoai, Email, VaiTro, Token, TokenExpiry)
+INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, SoDienThoai, Email, VaiTro )
 VALUES 
-    ('nguyenan', 'hashed_password_1', 'Nguyen An', '0912345678', 'nguyenan@email.com', 'KhachHang', 'token_1', '2025-02-20 12:00'),
-    ('admin01', 'hashed_password_2', 'Admin Quản Trị', '0909876543', 'admin01@email.com', 'QuanTri', 'token_2', '2025-02-20 12:00'),
-    ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe', 'token_3', '2025-02-20 12:00');
+    ('nguyenan', 'hashed_password_1', 'Nguyen An', '0912345678', 'nguyenan@email.com', 'KhachHang'),
+    ('admin01', 'hashed_password_2', 'Admin Quản Trị', '0909876543', 'admin01@email.com', 'QuanTri'),
+    ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
 
-INSERT INTO XeKhach (BienSoXe, LoaiXe, SoChoNgoi)
-VALUES 
-    ('29B-12345', N'Xe khách giường nằm', 40),
-    ('30A-67890', N'Xe khách ghế ngồi', 45),
-    ('29C-11223', N'Xe khách giường nằm', 50),
-    ('31D-44556', N'Xe khách ghế ngồi', 30),
-    ('32E-78901', N'Xe khách giường nằm', 42);
-
-	INSERT INTO TuyenXe (DiemDi, DiemDen, TrangThai)
-VALUES (N'Cà Mau', N'Hải Phòng', N'Hoạt động'),
-	 (N'An Giang', N'Cần Thơ', N'Hoạt động');
-INSERT INTO DiemDonTraKhach (MaTuyenXe, TenDiem, DiaChi, LoaiDiem)
-VALUES (2, N'Bến xe Mỹ Đình', N'Mỹ Đình, Hà Nội', 'Don'),
-       (2, N'Bến xe lll', N'Gia Lâm, Hà Nội', 'Tra');
-INSERT INTO ChuyenXe (MaTuyenXe, ThoiGianKhoiHanh, ThoiGianDen, price, MaTaiXe, MaXe, TrangThai)
-VALUES
-    (2, '2025-02-20 08:00', '2025-02-20 12:00', 500000, 3, 11, 'ConVe'),
-    (2, '2025-02-21 10:00', '2025-02-21 14:00', 600000, 3, 12, 'ConVe'),
-    (2, '2025-02-22 07:30', '2025-02-22 11:30', 550000, 3, 13, 'ConVe'),
-    (2, '2025-02-23 09:00', '2025-02-23 13:00', 650000, 3, 14, 'ConVe'),
-    (2, '2025-02-24 11:00', '2025-02-24 15:00', 700000, 3, 15, 'ConVe');
-	SELECT DiemDi, DiemDen FROM TuyenXe WHERE MaTuyenXe = 3
-	select *from NguoiDung
-	
+	use QLChuyenXe
+	select *from GheNgoi
+	select *from VeXe
 	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
-	delete from XeKhach
-	
+	delete from NguoiDung
+	INSERT INTO DanhGia (MaNguoiDung, MaXe, DiemDanhGia, BinhLuan )
+VALUES 
+    (1, 2, 3, 'XeDep');
+
+
+	INSERT INTO GheNgoi(MaChuyenXe,SoGhe , DaDat)
+VALUES 
+    (1,10,1)
+    SELECT GETDATE();
+	ALTER TABLE VeXe DROP COLUMN GiaVe;

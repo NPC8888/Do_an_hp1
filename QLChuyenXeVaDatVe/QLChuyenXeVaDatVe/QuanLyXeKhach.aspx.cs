@@ -13,130 +13,113 @@ namespace xediep
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                LoadXeKhachData();
-            }
+            LoadXeKhach();
         }
 
-        // Load XeKhach data into GridView
-        private void LoadXeKhachData()
+        private void LoadXeKhach()
         {
-            List<XeKhach> xeKhachList = XeKhachBLL.Instance.GetAllXeKhach();
-            gvXeKhach.DataSource = xeKhachList;
+            gvXeKhach.DataSource = XeKhachBLL.Instance.GetAllXeKhach();
             gvXeKhach.DataBind();
         }
 
-        // Add XeKhach
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             XeKhach newXe = new XeKhach
             {
                 BienSoXe = txtBienSoXe.Text,
                 LoaiXe = txtLoaiXe.Text,
-                SoChoNgoi = int.Parse(txtSoChoNgoi.Text)
+                SoChoNgoi = int.Parse(txtSoChoNgoi.Text),
+                SoTang = int.Parse(txtSoTang.Text),
+                SoDay = int.Parse(txtSoDay.Text),
+                SoGheMoiDay = int.Parse(txtSoGheMoiDay.Text)
             };
-
             bool result = XeKhachBLL.Instance.AddXeKhach(newXe);
             if (result)
             {
-                LoadXeKhachData();
-                ClearForm();
-                Response.Write("<script>alert('Thêm xe thành công!');</script>");
+                LoadXeKhach();
+                Response.Write("<script>alert('Thêm thành công!');</script>");
             }
             else
             {
-                Response.Write("<script>alert('Lỗi khi thêm xe!');</script>");
+                Response.Write("<script>alert('Lỗi khi thêm!');</script>");
             }
         }
 
-        // Edit XeKhach
-        protected void btnEdit_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
-            if (gvXeKhach.SelectedRow != null) // Kiểm tra xem có dòng nào được chọn không
+            if (gvXeKhach.SelectedRow != null)
             {
-                int maXe;
-                maXe=int.Parse(gvXeKhach.SelectedRow.Cells[0].Text);
-                // Giải mã HTML & kiểm tra giá trị có thể chuyển đổi sang số không
-                if (maXe !=0)   
+                XeKhach updatedXe = new XeKhach
                 {
-                    string a = string.Format("< script > alert('{0}');</ script > ",maXe);
-                    Response.Write(a);
-                    XeKhach updatedXe = new XeKhach
-                    {
-                        MaXe = maXe,
-                        BienSoXe = txtBienSoXe.Text.Trim(),
-                        LoaiXe = txtLoaiXe.Text.Trim(),
-                        SoChoNgoi = int.Parse(txtSoChoNgoi.Text)
-                    };
-                    bool result = XeKhachBLL.Instance.EditXeKhach(updatedXe);
-                    if (result)
-                    {
-                       
-                        ClearForm();
-                        Response.Write("<script>alert('Cập nhật xe thành công!');</script>");
-                        LoadXeKhachData();
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Lỗi khi cập nhật xe!');</script>");
-                    }
-                    // Gửi đối tượng updatedXe đến tầng xử lý dữ liệu (BLL/DAL) để cập nhật
+                    MaXe = int.Parse(txtMaXe.Text),
+                    BienSoXe = txtBienSoXe.Text,
+                    LoaiXe = txtLoaiXe.Text,
+                    SoChoNgoi = int.Parse(txtSoChoNgoi.Text),
+                    SoTang = int.Parse(txtSoTang.Text),
+                    SoDay = int.Parse(txtSoDay.Text),
+                    SoGheMoiDay = int.Parse(txtSoGheMoiDay.Text)
+                };
+                bool result = XeKhachBLL.Instance.EditXeKhach(updatedXe);
+                if (result)
+                {
+                    LoadXeKhach();
+                    Response.Write("<script>alert('Cập nhật thành công!');</script>");
                 }
                 else
                 {
-                    
+                    Response.Write("<script>alert('Lỗi khi cập nhật!');</script>");
                 }
-                
             }
             else
             {
-                Response.Write("kh");
+                Response.Write("<script>alert('Vui lòng chọn một xe để chỉnh sửa!');</script>");
             }
-           
-
-
-           
         }
 
-        // Delete XeKhach
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            int maXe = int.Parse(gvXeKhach.SelectedRow.Cells[0].Text);
+            int maXe = int.Parse(txtMaXe.Text);
             bool result = XeKhachBLL.Instance.RemoveXeKhach(maXe);
             if (result)
             {
-                LoadXeKhachData();
-                ClearForm();
-                Response.Write("<script>alert('Xóa xe thành công!');</script>");
+                LoadXeKhach();
+                Response.Write("<script>alert('Xóa thành công!');</script>");
             }
             else
             {
-                Response.Write("<script>alert('Lỗi khi xóa xe!');</script>");
+                Response.Write("<script>alert('Lỗi khi xóa!');</script>");
             }
         }
 
-        // Handle selecting an item from GridView (to edit)
         protected void gvXeKhach_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //xóa màu row đã chọn trước đó
-            foreach(GridViewRow r in gvXeKhach.Rows)
+            GridViewRow row = gvXeKhach.SelectedRow;
+            foreach (GridViewRow r in gvXeKhach.Rows)
             {
                 r.CssClass = "";
             }
-            GridViewRow row = gvXeKhach.SelectedRow;
             row.CssClass = "selected-row";
-            txtBienSoXe.Text = row.Cells[1].Text;
-            txtLoaiXe.Text = row.Cells[2].Text;
-            txtSoChoNgoi.Text = row.Cells[3].Text;
-        }
 
-        // Clear form fields
-        private void ClearForm()
-        {
-            txtBienSoXe.Text = "";
-            txtLoaiXe.Text = "";
-            txtSoChoNgoi.Text = "";
+            int index = gvXeKhach.SelectedIndex;
+            string maXe = gvXeKhach.DataKeys[index].Values["MaXe"].ToString();
+            string bienSoXe = gvXeKhach.DataKeys[index].Values["BienSoXe"].ToString();
+            string loaiXe = gvXeKhach.DataKeys[index].Values["LoaiXe"].ToString();
+            string soChoNgoi = gvXeKhach.DataKeys[index].Values["SoChoNgoi"].ToString();
+            string soTang = gvXeKhach.DataKeys[index].Values["SoTang"].ToString();
+            string soDay = gvXeKhach.DataKeys[index].Values["SoDay"].ToString();
+            string soGheMoiDay = gvXeKhach.DataKeys[index].Values["SoGheMoiDay"].ToString();
+
+            txtMaXe.Text = maXe;
+            txtBienSoXe.Text = bienSoXe;
+            txtLoaiXe.Text = loaiXe;
+            txtSoChoNgoi.Text = soChoNgoi;
+            txtSoTang.Text = soTang;
+            txtSoDay.Text = soDay;
+            txtSoGheMoiDay.Text = soGheMoiDay;
+
+            btnSave.Visible = true;
+            btnDelete.Visible = true;
+            ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
     }
 }

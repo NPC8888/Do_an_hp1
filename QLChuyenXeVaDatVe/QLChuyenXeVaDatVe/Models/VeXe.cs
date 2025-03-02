@@ -8,6 +8,9 @@ namespace Models
 {
     public class VeXe
     {
+        public VeXe()
+        {
+        }
         public VeXe(DataRow row)
         {
             this.maDatVe = row["MaVeXe"] != DBNull.Value ? Convert.ToInt32(row["MaVeXe"]) : 0;

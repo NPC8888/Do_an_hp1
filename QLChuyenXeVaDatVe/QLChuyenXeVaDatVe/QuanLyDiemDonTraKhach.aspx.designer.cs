@@ -7,102 +7,75 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace xediep
+namespace QLChuyenXeVaDatVe
 {
 
 
-    public partial class QuanLyXeKhach
+    public partial class QuanLyDiemDonTraKhach
     {
 
         /// <summary>
-        /// gvXeKhach control.
+        /// gvDiemDonTraKhach control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvXeKhach;
+        protected global::System.Web.UI.WebControls.GridView gvDiemDonTraKhach;
 
         /// <summary>
-        /// txtMaXe control.
+        /// txtMaDiem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaXe;
+        protected global::System.Web.UI.WebControls.TextBox txtMaDiem;
 
         /// <summary>
-        /// txtBienSoXe control.
+        /// txtTenDiem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBienSoXe;
+        protected global::System.Web.UI.WebControls.TextBox txtTenDiem;
 
         /// <summary>
-        /// txtLoaiXe control.
+        /// ddlTuyenXe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoaiXe;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTuyenXe;
 
         /// <summary>
-        /// txtSoChoNgoi control.
+        /// txtDiaChi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoChoNgoi;
+        protected global::System.Web.UI.WebControls.TextBox txtDiaChi;
 
         /// <summary>
-        /// txtSoTang control.
+        /// ddlLoaiDiem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoTang;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLoaiDiem;
 
         /// <summary>
-        /// txtSoDay control.
+        /// btnFix control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoDay;
-
-        /// <summary>
-        /// txtSoGheMoiDay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoGheMoiDay;
-
-        /// <summary>
-        /// btnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-
-        /// <summary>
-        /// btnSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button btnFix;
 
         /// <summary>
         /// btnDelete control.
@@ -112,5 +85,14 @@ namespace xediep
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }
