@@ -39,6 +39,21 @@ namespace xediep.BLL
            
             return l;
         }
+        public ChuyenXe GetChuyenXeByMaCX(int MaCX)
+        {
+            List<ChuyenXe> l = ChuyenXeDAL.Instance.GetALLCX();
+            foreach (ChuyenXe item in l)
+            {
+                if (item.MaCx == MaCX)
+                {
+
+                    return item;
+                }
+            }
+
+
+            return null;
+        }
         public bool InsertChuyenXe(ChuyenXe cx)
         {
             if (cx.Price < 0) throw new Exception("Giá vé không thể âm!");

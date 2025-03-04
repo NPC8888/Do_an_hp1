@@ -2,12 +2,16 @@
 using DAL;
 using Models;
 using Newtonsoft.Json;
+using QLChuyenXeVaDatVe.BLL;
+using QLChuyenXeVaDatVe.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.EnterpriseServices.Internal;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Services;
@@ -21,46 +25,56 @@ namespace xediep
 {
     public partial class DatVe : Page
     {
-       
+
 
         private string idChuyenXe; // ID chuyến xe từ query string
         private string idtuyenXe; // ID tuyến xe từ chyuyenxe
         public string[] trangThaiGhe; // Mảng trạng thái ghế
         private NguoiDung NguoiDungnow;
-        public ChuyenXe cx=new ChuyenXe();
-        public XeKhach xe=new XeKhach();
+        public ChuyenXe cx = new ChuyenXe();
+        public XeKhach xe = new XeKhach();
         public int tang;
         public int day;
         public int ghe;
+        public XacThucThanhToanBLL xacThucThanhToanBLL = new XacThucThanhToanBLL();
 
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
-                idChuyenXe = Request.QueryString["id"];
+                Response.Write("Debug: " + Request.Url.ToString()); // Kiểm tra URL đầy đủ
+                if (Request.QueryString["id"] == null)
+                {
+                    Response.Write("Lỗi: Không có ID chuyến xe.");
+                }
+                else
+                {
+                    idChuyenXe = Request.QueryString["id"].ToString();
+                }
 
-                
-                cx = ChuyenXeDAL.Instance.getGiaXeByMaXe(idChuyenXe);
-                
+
+                cx = ChuyenXeBLL.Instance.GetChuyenXeByMaCX(int.Parse(idChuyenXe));
+
                 xe = XeKhachDAL.Instance.XeKhachByMaXe(cx.MaXe);
                 lblmaxe.Text = xe.LoaiXe;
                 lblTripName.Text = cx.MaCx.ToString();
                 lblDepartureTime.Text = cx.TgKhoiHanh.ToString();
                 idtuyenXe = cx.MaTuyenXe.ToString();
                 lblTotalPrice.Text = cx.Price.ToString();
-                lblTotalPrice.Text += ":VND";
-               
-              
+
+
+
+
                 if (string.IsNullOrEmpty(idChuyenXe))
                 {
                     Response.Write("ID chuyến xe không hợp lệ.");
                     Response.End();
                 }
 
-               
+
                 trangThaiGhe = new string[100];
                 for (int i = 0; i < 100; i++)
                 {
@@ -75,7 +89,7 @@ namespace xediep
                 ViewState["SeatStatus"] = trangThaiGhe;
                 loaddlDiemDiDiemDon();
                 Checkcoki();
-             
+
 
 
 
@@ -84,9 +98,9 @@ namespace xediep
 
 
 
-  
 
-        
+
+
         private void CapNhatTrangThaiGhe(List<GheNgoi> danhSachGhe, string[] trangThaiGhe)
         {
             tang = xe.SoTang;
@@ -117,7 +131,7 @@ namespace xediep
 
         }
 
-       
+
 
 
         void Checkcoki()
@@ -135,7 +149,7 @@ namespace xediep
                     NguoiDungnow = new NguoiDung(user);
                     txtHoTen.Text = NguoiDungnow.HoTen;
                     txtSoDienThoai.Text = NguoiDungnow.SDT;
-                    
+                    //   txtGmail.Text = NguoiDungnow.EMai;
                     lbID.Text = NguoiDungnow.MaNguoiDung.ToString();
                 }
                 else
@@ -157,48 +171,108 @@ namespace xediep
                         .Select(int.Parse)  // Chuyển đổi từng phần tử thành số nguyên
                         .ToList();          // Chuyển thành danh sách
         }
-       
+
+      /*  public async Task<string> KiemTraThanhToan(string tongtieng, string magiaodich)
+        {
+            Debug.WriteLine("Bắt đầu kiểm tra thanh toán..."); // ✅ Thêm log để debug
+
+            XacThucThanhToanBLL thanhToanBLL = new XacThucThanhToanBLL();
+
+            string ketQua = await thanhToanBLL.XacThucThanhToan(Convert.ToDouble(tongtieng), magiaodich);
+
+            Debug.WriteLine($"Kết quả nhận được: {ketQua}");
+
+            if (ketQua == "thanhcong")
+            {
+                return "thanhcong";
+            }
 
 
 
 
+            return "khongthanhcong"+ketQua;
+        }
+
+        */
 
 
-            [WebMethod]
-            public static string SaveBooking(string MaChuyenXe, string Hoten, string SoDT, string soghe, string MaDiemDon, string MaDiemTra)
-            { 
-                HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
-                if (authCookie != null)
+
+        [WebMethod]
+        public static async Task<string> SaveBooking(string MaChuyenXe, string Hoten, string SoDT, string soghe, string MaDiemDon, string MaDiemTra, double tongtieng, string magiaodich)
+        {
+            HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
+            if (authCookie != null)
+            {
+                string token = authCookie.Value;
+                NguoiDungBLL userBLL = new NguoiDungBLL();
+                DataRow user = userBLL.AuthenticateByToken(token);
+                NguoiDung nguoi = new NguoiDung(user);
+                HoaDonBLL hoaDonBLL = new HoaDonBLL();
+                HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()), TrangThai = "DaThanhToan", MaKhachHang = nguoi.MaNguoiDung, NgayThanhToan = DateTime.Now, MaPhuongThuc = 1 };
+                int mahoadon = hoaDonBLL.InsertHoaDonCallbackmahoadon(a);
+                if (mahoadon == 0)
                 {
-                    string token = authCookie.Value;
-                    NguoiDungBLL userBLL = new NguoiDungBLL();
-                    DataRow user = userBLL.AuthenticateByToken(token);
-                    NguoiDung nguoi = new NguoiDung(user);
-                
+                    return "Lỗi: Không thể tạo hóa đơn.";
+                }
+                XacThucThanhToanBLL xacThucThanhToanBLL = new XacThucThanhToanBLL();
+
+
+                // ✅ Chờ kiểm tra thanh toán trước khi tiếp tục
+                await XacThucThanhToanBLL.LapKiemTraThanhToan(2000, "5D1C75A3DC", 2);
+
+
+
+
                 foreach (int soGhe in TachChuoiThanhList(soghe))
-                 //   { return MaChuyenXe+nguoi.MaNguoiDung+ Hoten + SoDT + soGhe + MaDiemDon + MaDiemTra;
-                    if (VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra)))
-                        {
-                        
-
-                        }
-                        else
-                        {
-                            return "loi them ve";
-
-                        }
-                       
+                {
+                    if (!VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra)))
+                    {
+                        return "Lỗi thêm vé.";
                     }
-                return "Đã đặt vé thành công số ghê:"+soghe;
-            }
-               
-
-                // Response.Redirect("TrangChu.aspx");
-
-
+                }
 
             }
-            
-   
+            return "Đã đặt vé thành công số ghế: " + soghe;
+        }
+        [WebMethod]
+        public static string KiemTraThanhToan(string tongtieng, string magiaodich)
+        {
+            return Task.Run(() => KiemTraThanhToanAsync(tongtieng, magiaodich)).Result;
+        }
+
+        public static async Task<string> KiemTraThanhToanAsync(string tongtieng, string magiaodich)
+        {
+            Debug.WriteLine("Bắt đầu kiểm tra thanh toán...");
+
+            XacThucThanhToanBLL thanhToanBLL = new XacThucThanhToanBLL();
+            int tongSoLanLap = (5 * 60) / 2;
+
+            for (int i = 0; i < tongSoLanLap; i++)
+            {
+                Debug.WriteLine($"Lần kiểm tra thứ {i + 1}...");
+                string ketQua = await thanhToanBLL.XacThucThanhToan(Convert.ToDouble(tongtieng), magiaodich);
+
+                if (ketQua == "thanhcong") return "thanhcong";
+                await Task.Delay(3000);
+            }
+
+            return "khongthanhcong";
+        }
+
+
+
+
+
+
+
+
+
+        // Response.Redirect("TrangChu.aspx");
+
+
+
+    }
+
+
 }
-    
+

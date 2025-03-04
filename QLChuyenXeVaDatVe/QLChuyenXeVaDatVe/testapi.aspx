@@ -11,6 +11,7 @@
     <form id="form1" runat="server">
         <div> giao dich
             <asp:Label ID="lbl1" runat="server" />
+            
         </div>
     </form>
 </body>

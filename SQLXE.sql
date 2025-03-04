@@ -170,7 +170,7 @@ VALUES
     ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
 
 	use QLChuyenXe
-	select *from GheNgoi
+	select *from HoaDon
 	select *from VeXe
 	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
 	delete from NguoiDung

@@ -68,13 +68,7 @@
         }
 
         /* Các tầng ghế có thể có khoảng cách riêng */
-        .floor-1 {
-            margin-top: 20px;
-        }
-
-        .floor-2 {
-            margin-top: 20px;
-        }
+       
 
         .circle {
             width: 40px;
@@ -203,6 +197,63 @@
             .booking-confirmation strong {
                 color: #333;
             }
+
+
+        .popup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+            width: 300px;
+        }
+
+        #imgQR {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .info {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .countdown {
+            font-size: 18px;
+            color: red;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+            .close-btn:hover {
+                background: darkred;
+            }
     </style>
 
     <asp:ScriptManager runat="server" EnablePageMethods="true" />
@@ -296,13 +347,27 @@
                 <label for="txtSoDienThoai">Số điện thoại:</label>
                 <asp:TextBox ID="txtSoDienThoai" runat="server" CssClass="form-control" placeholder="Nhập số điện thoại" />
             </div>
+            <div class="form-group">
+                <label for="txtSoDienThoai">Gamil nhận hóa đơn và vé điện tử:</label>
+                <asp:TextBox ID="txtGmail" runat="server" CssClass="form-control" placeholder="Nhập gmail" />
+            </div>
+
+
         </div>
+
     </div>
 
     <div id="StepContent3" class="container" style="display: none;">
         <h2>Bước 3: Xác nhận đặt vé</h2>
+
         <asp:Panel ID="pnlBookingConfirmation" runat="server" CssClass="booking-confirmation">
-            <h2>Xác nhận đặt vé</h2>
+            <label for="paymentMethod">Chọn phương thức thanh toán:</label>
+            <select id="paymentMethod">
+                <option value="online">Thanh toán online</option>
+                <option value="onboard">Thanh toán khi lên xe</option>
+            </select>
+            <h2>Nội dung</h2>
+            <p>
             <p>
                 <strong>Xe khách:</strong>
                 <asp:Label ID="lblmaxe" runat="server"></asp:Label>
@@ -330,36 +395,50 @@
     <div style="text-align: center; margin-top: 20px;">
         <asp:Button ID="btnNext" runat="server" Text="Tiếp theo" CssClass="btnNext" />
     </div>
+    <!--popup thanh toán-->
+    <div id="popupDiv" class="popup" style="visibility:hidden">
+        <div class="popup-content">
 
+            <img src="" id="imgQR" alt="QR Code" />
+            <div class="info">Số tiền: <span id="amount">100,000</span> VNĐ</div>
+            <div class="info">Thời gian còn lại: <span id="countdown" class="countdown">02:00</span></div>
+            <button type="button" class="close-btn" onclick="closePopup()">Hủy</button>
+        </div>
+    </div>
     <asp:HiddenField ID="hdnSelectedSeats" runat="server" />
 
     <script defer>
-
+        let price = Number(document.getElementById('<%= lblTotalPrice.ClientID %>').innerText);
+        
         const totalSteps = 3; // Tổng số bước
         let currentStep = 1; // Bắt đầu ở bước 1
         const nextButton = document.getElementById('<%= btnNext.ClientID %>');
         const hiddenField = document.getElementById('<%= hdnSelectedSeats.ClientID %>');
         let selectedSeats = [];
+        var imgQR = document.getElementById('imgQR');
+        let tongtieng = 0;
 
 
 
+        let timeLeft = 120; // 2 phút
+        const countdownEl = document.getElementById("countdown");
 
-
-        // Render ghế cho từng tầng
-
-
-
-
-
-
-
-        // Hàm chọn/bỏ chọn ghế
-        function so(alt) {
-
-            alert(alt);
+        function updateCountdown() {
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            countdownEl.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                closePopup();
+            }
         }
 
-
+        function closePopup() {
+            document.getElementById("popupDiv").style.visibility='hidden';
+        }
+        //updateCountdown();
 
         // Cập nhật danh sách ghế đã chọn
         function updateSelectedSeats() {
@@ -380,19 +459,30 @@
                 document.getElementById(`StepContent${currentStep}`).style.display = 'block';
                 document.getElementById(`Step${currentStep}`).classList.add('active');
                 if (currentStep > 1) {
-                    document.getElementById(`Line${currentStep - 1}`).classList.add('active');
+
+                    document.getElementById(`Line${currentStep - 1}`).classList.add('active'); tent = "Thanh toán";
                 }
+
             }
         }
 
         // Gắn sự kiện cho nút "Tiếp theo"
         nextButton.addEventListener('click', (e) => {
             e.preventDefault();
-            if (currentStep === 1 && document.getElementById('<%= SoGheDaChon.ClientID %>').innerText == "") {
+            if (currentStep === 1 && document.getElementById('<%=SoGheDaChon.ClientID%>').innerText == "") {
                 if (confirm("Vui lòng chọn ít nhất 1 ghế?")) { }
                 return;
-            } else if (currentStep === 3) {
-               // var MachuyenXe = document.getElementById('<%= lblmaxe.ClientID %>').innerText;
+
+
+
+            }
+            else if (currentStep === 2) {
+
+                nextButton.value = "Thanh toán";
+                moveToNextStep();
+            }
+            else if (currentStep === 3) {
+
                 var MachuyenXe =<%=cx.MaCx %>;
                 var SoGhe = document.getElementById('<%= SoGheDaChon.ClientID %>').innerText;
                 var txtHoVaTen = document.getElementById('<%= txtHoTen.ClientID %>').value;
@@ -401,33 +491,76 @@
                 var MaDiemDon = don.value;
                 var tra = document.getElementById('<%= ddlDiemTra.ClientID %>');
                 var MaDiemTra = tra.value;
+                var magiaodich ='<%=QLChuyenXeVaDatVe.BLL.ThanhToanBLL.Magiaodichtamthoi() %>';
+                imgQR.src = "https://img.vietqr.io/image/970422-0888501238888-compact.png?amount=" + tongtieng + "&addInfo="+magiaodich;
+                document.getElementById("popupDiv").style.visibility = 'visible';
+                document.getElementById('amount').innerText = tongtieng;
+                updateCountdown();
+                kiemTraThanhToan(tongtieng,magiaodich)
+                
+                
 
-                PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, function (response) {
-                    alert("Server response: " + response);
+               
 
-                }, function (error) {
-                    console.error(error);
-                });
+                //PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng,magiaodich, function (response) {
+
+                //    alert("Server response: " + response);
+                    
+                //}, function (error) {
+                //    console.error(error);
+                //});
             } else {
                 moveToNextStep();
             }
         });
-
+ 
+        function kiemTraThanhToan(tien, magd) {
+            fetch("DatVe.aspx/KiemTraThanhToan", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ tongtieng: String(tien), magiaodich: String(magd) })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.d === "thanhcong") {  // Kiểm tra phản hồi từ server
+                        alert("Thanh toán thành công!");
+                    } else {
+                        setTimeout(() => kiemTraThanhToan(tien, magd), 3000); // 🔹 Truyền lại tham số
+                    }
+                })
+                .catch(error => console.error("Lỗi:", error));
+        }
         function toggleSeatSelection(seatId, seatNumber) {
 
             let seat = document.getElementById(seatId);
-            if (!seat) alert("a" + seatId); // Kiểm tra nếu phần tử không tồn tại
+
 
             if (seat.classList.contains('selected')) {
                 seat.classList.remove('selected');
                 selectedSeats = selectedSeats.filter(s => s !== seatNumber);
+                tongtieng = tongtieng - price;
+                document.getElementById('<%= lblTotalPrice.ClientID %>').innerText = tongtieng;
+
             } else {
                 seat.classList.add('selected');
                 selectedSeats.push(seatNumber);
+                tongtieng = tongtieng + price;
+                document.getElementById('<%= lblTotalPrice.ClientID %>').innerText = tongtieng;
             }
 
             updateSelectedSeats();
-        }
+
+        };
+        const seletPhuongThuc = document.getElementById("paymentMethod").addEventListener("change", function () {
+            let selectedValue = this.value;
+            if (selectedValue == "online") {
+                nextButton.value = "Thanh toán";
+            }
+            else {
+                nextButton.value = "Đặt vé"
+            }
+        });
+
 
     </script>
 

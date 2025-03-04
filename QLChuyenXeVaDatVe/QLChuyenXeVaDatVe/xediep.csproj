@@ -192,13 +192,17 @@
     <Compile Include="Backgroud.Master.designer.cs">
       <DependentUpon>Backgroud.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\ChiTietHoaDonBLL.cs" />
     <Compile Include="BLL\ChuyenXeBLL.cs" />
     <Compile Include="BLL\DanhGiaBLL.cs" />
+    <Compile Include="BLL\HoaDonBLL.cs" />
+    <Compile Include="BLL\ThanhToanBLL.cs" />
     <Compile Include="BLL\VeXeBLL.cs" />
     <Compile Include="BLL\DiemDonTraKhachBLL.cs" />
     <Compile Include="BLL\GheNgoiBLL.cs" />
     <Compile Include="BLL\NguoiDungBLL.cs" />
     <Compile Include="BLL\TuyenXeBLL.cs" />
+    <Compile Include="BLL\XacThucThanhToanBLL.cs" />
     <Compile Include="BLL\XeKhachBLL.cs" />
     <Compile Include="ChiTietDatVe.aspx.cs">
       <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
@@ -207,6 +211,8 @@
     <Compile Include="ChiTietDatVe.aspx.designer.cs">
       <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\BaoCaoDAL.cs" />
+    <Compile Include="DAL\ChiTietHoaDonDAL.cs" />
     <Compile Include="DAL\ChuyenXeDAL.cs" />
     <Compile Include="DAL\DanhGiaDAL.cs" />
     <Compile Include="DAL\DataProvider.cs" />
@@ -215,6 +221,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DAL\HoaDonDAL.cs" />
+    <Compile Include="DAL\ThanhToanDAL.cs" />
     <Compile Include="DAL\VeXeDAL.cs" />
     <Compile Include="DAL\DiemDonTraKhachDAL.cs" />
     <Compile Include="DAL\GheNgoiDAL.cs" />
@@ -229,8 +237,11 @@
       <DependentUpon>DatVe.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\BaoCao.cs" />
+    <Compile Include="Models\ChiTietHoaDon.cs" />
     <Compile Include="Models\ChuyenXe.cs" />
     <Compile Include="Models\DanhGia.cs" />
+    <Compile Include="Models\HoaDon.cs" />
+    <Compile Include="Models\ThanhToan.cs" />
     <Compile Include="Models\VeXe.cs" />
     <Compile Include="Models\DiemDonTraKhach.cs" />
     <Compile Include="Models\GheNgoi.cs" />
