@@ -15,26 +15,7 @@ namespace BLL
         private static readonly string apiUrl = "https://my.sepay.vn/userapi/transactions/list";
         private static readonly string apiToken = "ZGCBSTFOZZ2YASMGIENPDKW7EQKRAFBCTXDYHW8EBCB9HMMRKOVHSDYV01N9M7P8"; // Thay bằng API Token thật
 
-        public static async Task<int> LapKiemTraThanhToan(double soTien, string noiDungChuyenKhoan, int soPhut)
-        {
-            XacThucThanhToanBLL thanhToanBLL = new XacThucThanhToanBLL();
-            int tongSoLanLap = (soPhut * 60) / 2; // Số lần kiểm tra trong 5 phút (mỗi 2 giây)
 
-            for (int i = 0; i < tongSoLanLap; i++)
-            {
-                string ketQua = await thanhToanBLL.XacThucThanhToan(soTien, noiDungChuyenKhoan);
-                Console.WriteLine($"[{DateTime.Now:HH:mm:ss}] Kiểm tra lần {i + 1}: {ketQua}");
-
-                if (ketQua == "thanhcong")
-                {
-                    Console.WriteLine("✅ Thanh toán thành công! Dừng kiểm tra.");
-                    return 1;
-                }
-
-                await Task.Delay(2000); // Chờ 2 giây trước lần kiểm tra tiếp theo
-            }
-            return 0;
-        }
         public async Task<string> XacThucThanhToan(double soTien, string noiDungChuyenKhoan)
         {
             try

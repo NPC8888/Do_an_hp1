@@ -60,5 +60,9 @@ namespace BLL
         {
             return NguoiDungDAL.Instance.GetAllTaiXe();
         }
+        public List<NguoiDung> GetAll()
+        {
+            return NguoiDungDAL.Instance.GetAll();
+        }
     }
 }

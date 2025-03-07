@@ -32,6 +32,7 @@ namespace Models
             this.sDT = row["SoDienThoai"] != DBNull.Value ? (row["SoDienThoai"]).ToString() : "";
             this.eMai = row["Email"] != DBNull.Value ? (row["Email"]).ToString() : "";
             this.vaiTro = row["VaiTro"] != DBNull.Value ? (row["VaiTro"]).ToString() : "";
+            this.token = row["Token"] != DBNull.Value ? (row["Token"]).ToString() : "";
         }
 
 
@@ -53,6 +54,8 @@ namespace Models
         public string EMai { get => eMai; set => eMai = value; }
         private string vaiTro;
         public string VaiTro { get => vaiTro; set => vaiTro = value; }
+        private string token;
+        public string Token { get => token; set => token = value; }
 
 
 

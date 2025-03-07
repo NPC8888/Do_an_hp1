@@ -19,17 +19,17 @@ namespace BLL
             private set => instance = value;
         }
         public int idma;
-        public bool InsertDatVe(int maGhe, int maChuyenXe, int maKH, string trangThai, DateTime ngayDat, string hoten, string sodt, int soghe, int madiemdon, int madiemtra)
+        public int InsertDatVe(int maGhe, int maChuyenXe, int maKH, string trangThai, DateTime ngayDat, string hoten, string sodt, int soghe, int madiemdon, int madiemtra)
         {
             GheNgoi ghe = new GheNgoi(maGhe, maChuyenXe, soghe, 1, ngayDat);
             int i = GheNgoiDAL.Instance.insertGheNgoi(ghe);
             idma = i;
 
             VeXe dat = new VeXe { MaChuyenXe = maChuyenXe, MaGhe=idma, MaKH = maKH, TrangThai = trangThai, NgayDat = ngayDat, HoTen = hoten, SoDT = sodt, MaDiemDon = madiemdon, MaDiemTra = madiemtra };
-            i = DatVeDAL.Instance.DatVe(dat);
+            int idve = DatVeDAL.Instance.DatVe(dat);
 
 
-            return i > 0;
+            return idve;
         }
         public bool FixTrangThaiKhiDanhGia(string Idve)
         {

@@ -162,6 +162,7 @@
   <ItemGroup>
     <Content Include="Asscet\Icon\LgWeb.png" />
     <Content Include="ChiTietDatVe.aspx" />
+    <Content Include="css\datve.css" />
     <Content Include="css\StyleListCX.css" />
     <Content Include="css\StyleLogin.css" />
     <Content Include="DatVe.aspx" />

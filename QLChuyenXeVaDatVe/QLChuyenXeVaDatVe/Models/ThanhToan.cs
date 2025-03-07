@@ -11,7 +11,7 @@ namespace QLChuyenXeVaDatVe.Models
         public int MaThanhToan { get; set; }
         public int MaHoaDon { get; set; }
         public string PhuongThucThanhToan { get; set; }
-        public string TaiKhoanNguoiDung { get; set; }
+        
         public string TrangThai { get; set; }
         public DateTime ThoiGianThanhToan { get; set; }
 
@@ -24,7 +24,7 @@ namespace QLChuyenXeVaDatVe.Models
             MaThanhToan = Convert.ToInt32(row["MaThanhToan"]);
             MaHoaDon = row["MaHoaDon"] != DBNull.Value ? Convert.ToInt32(row["MaHoaDon"]) : 0;
             PhuongThucThanhToan = row["PhuongThucThanhToan"].ToString();
-            TaiKhoanNguoiDung = row["TaiKhoanNguoiDung"].ToString();
+            
             TrangThai = row["TrangThai"].ToString();
             ThoiGianThanhToan = row["ThoiGianThanhToan"] != DBNull.Value ? Convert.ToDateTime(row["ThoiGianThanhToan"]) : DateTime.Now;
         }

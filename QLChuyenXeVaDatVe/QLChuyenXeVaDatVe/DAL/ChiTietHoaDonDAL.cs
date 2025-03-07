@@ -35,8 +35,8 @@ public class ChiTietHoaDonDAL
     // Thêm chi tiết hóa đơn mới
     public bool InsertChiTietHoaDon(ChiTietHoaDon chiTiet)
     {
-        string query = "INSERT INTO ChiTietHoaDon (MaHoaDon, MaVeXe, GiaVe) VALUES (@MaHoaDon, @MaVeXe, @GiaVe)";
-        int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { chiTiet.MaHoaDon, chiTiet.MaVeXe, chiTiet.GiaVe });
+        string query =string.Format( "INSERT INTO ChiTietHoaDon (MaHoaDon, MaVeXe, GiaVe) VALUES ({0}, {1}, {2})",chiTiet.MaHoaDon,chiTiet.MaVeXe,chiTiet.GiaVe);
+        int result = DataProvider.Instance.ExecuteNonQuery(query);
         return result > 0;
     }
 

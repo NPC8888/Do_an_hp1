@@ -35,8 +35,8 @@ public class ThanhToanDAL
     // Thêm thanh toán mới
     public bool InsertThanhToan(ThanhToan thanhToan)
     {
-        string query = "INSERT INTO ThanhToan (MaHoaDon, PhuongThucThanhToan, TaiKhoanNguoiDung, TrangThai) VALUES (@MaHoaDon, @PhuongThucThanhToan, @TaiKhoanNguoiDung, @TrangThai)";
-        int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { thanhToan.MaHoaDon, thanhToan.PhuongThucThanhToan, thanhToan.TaiKhoanNguoiDung, thanhToan.TrangThai });
+        string query = string.Format("INSERT INTO ThanhToan ( MaHoaDon, PhuongThucThanhToan, TrangThai) VALUES ({0},'{1}','{2}')",thanhToan.MaHoaDon,thanhToan.PhuongThucThanhToan,thanhToan.TrangThai);
+        int result = DataProvider.Instance.ExecuteNonQuery(query);
         return result > 0;
     }
 

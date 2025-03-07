@@ -11,7 +11,7 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
+            
             color: #333;
         }
         .search-section, .list-section {
@@ -23,7 +23,7 @@
         }
         .list-section h2 {
             text-align: center;
-            color: #007bff;
+            color:black;
         }
         .clock-container {
             text-align: center;
@@ -50,13 +50,13 @@
 
    
         <header class="header">
-            <h1>Chào mừng đến với Hệ Thống Bán Vé Xe</h1>
+            <h1>Xin chào quý khách</h1>
         </header>
         <div class="search-section">
             <uc1:ThanhTimKiem runat="server" ID="ThanhTimKiem" />
         </div>
         <div class="list-section">
-            <h2>Danh sách chuyến xe</h2>
+            <h2>Các chuyến xe phổ biến</h2>
             <uc1:ListChuyenXe runat="server" ID="ListChuyenXe" />
         </div>
     

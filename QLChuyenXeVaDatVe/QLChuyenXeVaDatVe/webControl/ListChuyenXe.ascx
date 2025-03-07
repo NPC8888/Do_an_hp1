@@ -3,27 +3,27 @@
 <div class="bus-ticket-container">
     <% if (lchuyenxe != null) { %>
         <% for (int i = 0; i < lchuyenxe.Count; i++) { %>
-            <div class="bus-ticket-card animate-fade-in">
-                <div class="bus-info">
-                    <div class="route">
-                        <%= LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDon %> - 
-                        <%= LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDen %>
-                    </div>
-                    <p><strong>Giờ khởi hành:</strong> <%= lchuyenxe[i].TgKhoiHanh %></p>
-                    <p><strong>Giờ đến:</strong> <%= lchuyenxe[i].TgDen %></p>
-                    <p class="price">Giá vé: <%= lchuyenxe[i].Price %> VND</p>
-                    <div class="button-container">
-                        <a class="btn-add-to-cart" onclick="showDanhGia('<%= lchuyenxe[i].MaXe %>')">Xem đánh giá</a>
-                        <a class="btn-add-to-cart" href="DatVe.aspx?id=<%= lchuyenxe[i].MaCx %>">Đặt vé ngay</a>
-                    </div>
+            <div class="bus-ticket-card">
+                <div class="bus-header">
+                    <p class="route">
+                        <strong><%= LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDon %></strong>
+                        <span class="arrow">→</span>
+                        <strong><%= LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDen %></strong>
+                    </p>
                 </div>
-                <div id="divDanhGia<%= lchuyenxe[i].MaXe %>" style="display: none;">
-                    <!-- Nội dung đánh giá sẽ được load ở đây -->
-                    <%for (int j = 0; j < BLL.DanhGiaBLL.Instance.GetDanhGiaByMaCX(lchuyenxe[i].MaXe).Count(); j++)
-                        { %>
-                    <p><%=BLL.DanhGiaBLL.Instance.GetDanhGiaByMaCX(lchuyenxe[i].MaXe)[j].BinhLuan %></p>  
-
-                    <%} %>
+                <div class="bus-info">
+                    <p><strong>🕒 Giờ khởi hành:</strong> <%= lchuyenxe[i].TgKhoiHanh %></p>
+                    <p><strong>🏁 Giờ đến:</strong> <%= lchuyenxe[i].TgDen %></p>
+                    <p class="price"><strong>💰 Giá vé:</strong> <%= lchuyenxe[i].Price %> VND</p>
+                </div>
+                <div class="button-container">
+                    <button class="btn-show-review" type="button" onclick="showDanhGia('<%= lchuyenxe[i].MaXe %>')">📢 Xem đánh giá</button>
+                    <a class="btn-book-now" href="DatVe.aspx?id=<%= lchuyenxe[i].MaCx %>">🛒 Đặt vé ngay</a>
+                </div>
+                <div id="divDanhGia<%= lchuyenxe[i].MaXe %>" class="review-container">
+                    <%for (int j = 0; j < BLL.DanhGiaBLL.Instance.GetDanhGiaByMaCX(lchuyenxe[i].MaXe).Count(); j++) { %>
+                        <p>⭐ <%=BLL.DanhGiaBLL.Instance.GetDanhGiaByMaCX(lchuyenxe[i].MaXe)[j].BinhLuan %></p>  
+                    <% } %>
                 </div>
             </div>
         <% } %>
@@ -32,135 +32,115 @@
     <% } %>
 </div>
 
-
-
-
-
-
 <style>
     .bus-ticket-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
         padding: 20px;
-        animation: fadeIn 1s ease-in-out;
     }
 
     .bus-ticket-card {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+        background: #fff;
         border-radius: 12px;
         overflow: hidden;
-        background: white;
-        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        opacity: 0;
-        animation: slideUp 0.6s ease-in-out forwards;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
     }
 
-        .bus-ticket-card:hover {
-            transform: scale(1.07);
-            box-shadow: 0px 14px 25px rgba(0, 0, 0, 0.25);
-        }
-
-    .bus-image img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-bottom: 3px solid #f1f1f1;
-        transition: transform 0.3s ease-in-out;
+    .bus-ticket-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
-    .bus-ticket-card:hover .bus-image img {
-        transform: scale(1.08);
+    .bus-header {
+        background:royalblue;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .route {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .arrow {
+        font-size: 22px;
     }
 
     .bus-info {
-        padding: 20px;
+        padding: 15px;
         text-align: center;
-        background: linear-gradient(to right, #ff7e5f, #feb47b);
-        color: white;
-        position: relative;
     }
 
-        .bus-info h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-        }
-
-        .bus-info p {
-            font-size: 15px;
-            margin: 5px 0;
-        }
+    .bus-info p {
+        margin: 5px 0;
+        font-size: 16px;
+    }
 
     .price {
         font-weight: bold;
+        color: #d9534f;
         font-size: 18px;
-        margin-bottom: 10px;
     }
 
     .button-container {
-        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        padding: 15px;
     }
 
-    .btn-add-to-cart {
-        padding: 12px;
-        width: 10%;
-        display: inline-block;
-        text-align: center;
+    .btn-show-review, .btn-book-now {
+        padding: 10px 15px;
         border: none;
-        background: #296dc2;
-        color: white;
+        border-radius: 6px;
         font-size: 16px;
-        font-weight: bold;
-        border-radius: 1px;
         cursor: pointer;
-        transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+        transition: 0.3s;
+        text-align: center;
         text-decoration: none;
+        display: inline-block;
     }
 
-        .btn-add-to-cart:hover {
-            background: #27ae60;
-            transform: translateY(-3px);
-        }
-
-        .btn-add-to-cart:active {
-            transform: scale(0.95);
-        }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+    .btn-show-review {
+        background: #ffc107;
+        color: #fff;
     }
 
-    @keyframes slideUp {
-        from {
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
+    .btn-show-review:hover {
+        background: #e0a800;
     }
+
+    .btn-book-now {
+        background: #28a745;
+        color: #fff;
+    }
+
+    .btn-book-now:hover {
+        background: #218838;
+    }
+
+    .review-container {
+        display: none;
+        padding: 15px;
+        background: #f8f9fa;
+        border-top: 1px solid #ddd;
+    }
+
 </style>
+
 <script>
     function showDanhGia(id) {
-        if (document.getElementById("divDanhGia" + id).style.display == "block") {
-            document.getElementById("divDanhGia" + id).style.display = "none";
+        let reviewDiv = document.getElementById("divDanhGia" + id);
+        if (reviewDiv.style.display === "block") {
+            reviewDiv.style.display = "none";
+        } else {
+            reviewDiv.style.display = "block";
         }
-        else {
-            document.getElementById("divDanhGia" + id).style.display = "block";
-        }
-
-        
     }
-
 </script>

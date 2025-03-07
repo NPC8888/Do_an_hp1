@@ -2,10 +2,10 @@
 
 <style>
     .btn {
-        background: linear-gradient(to right, #6a11cb, #2575fc);
+        background-color: mediumspringgreen;
         color: black;
         border: none;
-        width: 100px;
+        width: 60px;
         cursor: pointer;
         font-size: 6px;
         height: 50px;
@@ -15,7 +15,7 @@
     }
 
         .btn:hover {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+           
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }

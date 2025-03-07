@@ -68,7 +68,7 @@
         }
 
         /* Các tầng ghế có thể có khoảng cách riêng */
-       
+
 
         .circle {
             width: 40px;
@@ -396,20 +396,20 @@
         <asp:Button ID="btnNext" runat="server" Text="Tiếp theo" CssClass="btnNext" />
     </div>
     <!--popup thanh toán-->
-    <div id="popupDiv" class="popup" style="visibility:hidden">
+    <div id="popupDiv" class="popup" style="visibility: hidden">
         <div class="popup-content">
 
             <img src="" id="imgQR" alt="QR Code" />
-            <div class="info">Số tiền: <span id="amount">100,000</span> VNĐ</div>
-            <div class="info">Thời gian còn lại: <span id="countdown" class="countdown">02:00</span></div>
-            <button type="button" class="close-btn" onclick="closePopup()">Hủy</button>
+            <div class="info" id ="pr">Số tiền: <span id="amount">100,000</span> VNĐ</div>
+            <div class="info" id="t">Thời gian còn lại: <span id="countdown" class="countdown">02:00</span></div>
+            <button type="button" class="close-btn" onclick="(() => window.location.href = '/TrangChu.aspx')()">Về trang chủ</button>
         </div>
     </div>
     <asp:HiddenField ID="hdnSelectedSeats" runat="server" />
 
     <script defer>
         let price = Number(document.getElementById('<%= lblTotalPrice.ClientID %>').innerText);
-        
+
         const totalSteps = 3; // Tổng số bước
         let currentStep = 1; // Bắt đầu ở bước 1
         const nextButton = document.getElementById('<%= btnNext.ClientID %>');
@@ -436,7 +436,13 @@
         }
 
         function closePopup() {
-            document.getElementById("popupDiv").style.visibility='hidden';
+            // document.getElementById("popupDiv").style.visibility = 'hidden';
+            document.getElementById("t").style.display = "none";
+            document.getElementById("pr").style.display = "none";
+            
+            imgQR.src = 'https://media.giphy.com/media/111ebonMs90YLu/giphy.gif';
+           
+            
         }
         //updateCountdown();
 
@@ -492,44 +498,45 @@
                 var tra = document.getElementById('<%= ddlDiemTra.ClientID %>');
                 var MaDiemTra = tra.value;
                 var magiaodich ='<%=QLChuyenXeVaDatVe.BLL.ThanhToanBLL.Magiaodichtamthoi() %>';
-                imgQR.src = "https://img.vietqr.io/image/970422-0888501238888-compact.png?amount=" + tongtieng + "&addInfo="+magiaodich;
+                imgQR.src = "https://img.vietqr.io/image/970422-0888501238888-compact.png?amount=" + tongtieng + "&addInfo=" + magiaodich;
                 document.getElementById("popupDiv").style.visibility = 'visible';
                 document.getElementById('amount').innerText = tongtieng;
                 updateCountdown();
-                kiemTraThanhToan(tongtieng,magiaodich)
-                
-                
+                kiemTraThanhToan("6CA975D2A4",MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, 2000);
 
-               
 
-                //PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng,magiaodich, function (response) {
 
-                //    alert("Server response: " + response);
-                    
-                //}, function (error) {
-                //    console.error(error);
-                //});
-            } else {
+            }
+            else {
                 moveToNextStep();
             }
         });
- 
-        function kiemTraThanhToan(tien, magd) {
+
+        function kiemTraThanhToan(magd,MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng) {
             fetch("DatVe.aspx/KiemTraThanhToan", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ tongtieng: String(tien), magiaodich: String(magd) })
+                body: JSON.stringify({ tongtieng: String(tongtieng), magiaodich: String(magd) })
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.d === "thanhcong") {  // Kiểm tra phản hồi từ server
-                        alert("Thanh toán thành công!");
+                        PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng, function (response) {
+
+                            alert(response);
+
+                        }, function (error) {
+                            
+                        });
+                        
+                        closePopup();
                     } else {
                         setTimeout(() => kiemTraThanhToan(tien, magd), 3000); // 🔹 Truyền lại tham số
                     }
                 })
                 .catch(error => console.error("Lỗi:", error));
         }
+
         function toggleSeatSelection(seatId, seatNumber) {
 
             let seat = document.getElementById(seatId);

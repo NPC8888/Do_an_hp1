@@ -1,5 +1,3 @@
-C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.AssemblyReference.cache
-C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.CoreCompileInputs.cache
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\ThongTinWeb.json
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\QLChuyenXeVaDatVe.dll.config
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\QLChuyenXeVaDatVe.dll
@@ -91,6 +89,8 @@ C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\System.T
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\System.ValueTuple.xml
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.CoreCompileInputs.cache
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.Up2Date
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\QLChuyenXeVaDatVe.dll
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\QLChuyenXeVaDatVe.pdb

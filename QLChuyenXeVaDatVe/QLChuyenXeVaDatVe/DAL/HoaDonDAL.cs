@@ -44,15 +44,15 @@ namespace QLChuyenXeVaDatVe.DAL
         // Thêm hóa đơn mới
         public bool InsertHoaDon(HoaDon hoaDon)
         {
-            string query = "INSERT INTO HoaDon (MaKhachHang, TongTien, MaPhuongThuc, TrangThai) VALUES (@MaKhachHang, @TongTien, @MaPhuongThuc, @TrangThai)";
+            string query = "INSERT INTO HoaDon (MaKhachHang, TongTien, TrangThai) VALUES (@MaKhachHang, @TongTien, @TrangThai)";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { hoaDon.MaKhachHang, hoaDon.TongTien, hoaDon.MaPhuongThuc, hoaDon.TrangThai });
             return result > 0;
         }
         public int InsertHoaDonback(HoaDon hoaDon)
         {
-            string query = "INSERT INTO HoaDon (MaKhachHang, TongTien, MaPhuongThuc, TrangThai) VALUES (@MaKhachHang, @TongTien, @MaPhuongThuc, @TrangThai); SELECT SCOPE_IDENTITY(); ";
+            string query = string.Format("INSERT INTO HoaDon (MaKhachHang, TongTien, TrangThai) VALUES ({0}, {1}, '{2}'); SELECT SCOPE_IDENTITY()",hoaDon.MaKhachHang,hoaDon.TongTien,hoaDon.TrangThai); 
             
-            object result = DataProvider.Instance.ExecuteScalar(query, new object[] { hoaDon.MaKhachHang, hoaDon.TongTien, hoaDon.MaPhuongThuc, hoaDon.TrangThai });
+            object result = DataProvider.Instance.ExecuteScalar(query);
             int newGheId = Convert.ToInt32(result);
             return newGheId;
             

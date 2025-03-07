@@ -89,6 +89,20 @@ namespace DAL
 
             return nd;
         }
+        public List<NguoiDung> GetAll()
+        {
+            List<NguoiDung> nd = new List<NguoiDung>();
+            string query = "SELECT * FROM NguoiDung";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+
+            foreach (DataRow item in data.Rows)
+            {
+                NguoiDung nguoidung = new NguoiDung(item);
+                nd.Add(nguoidung);
+            }
+
+            return nd;
+        }
 
 
         //them sua xoa

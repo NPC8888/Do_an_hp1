@@ -21,7 +21,7 @@ namespace DAL
         public int DatVe(VeXe dat)
         {
             string query = string.Format("INSERT INTO VeXe (MaKhachHang, MaChuyenXe, MaGhe, NgayDatVe, TrangThai, HoTen, SoDT, DiemDon, DiemTra) " +
-                             "VALUES ( {0} , {1} , ISNULL({2}, NULL) , '{3}', N'DD', N'{4}', '{5}', {6} , {7} )",
+                             "VALUES ( {0} , {1} , ISNULL({2}, NULL) , '{3}', N'DD', N'{4}', '{5}', {6} , {7} );SELECT mave = SCOPE_IDENTITY();",
                              dat.MaKH == 0 ? "NULL" : dat.MaKH.ToString(),
                              dat.MaChuyenXe,
                              dat.MaGhe == 0 ? "NULL" : dat.MaGhe.ToString(),
@@ -30,8 +30,9 @@ namespace DAL
                              dat.SoDT,
                              dat.MaDiemDon,
                              dat.MaDiemTra);
-
-            return DataProvider.Instance.ExecuteNonQuery(query);
+            object result = DataProvider.Instance.ExecuteScalar(query);
+            int Id = Convert.ToInt32(result);
+            return Id;
         }
         public int fixTrangThai(string Id)
         {

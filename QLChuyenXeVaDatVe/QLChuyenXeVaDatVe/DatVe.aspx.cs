@@ -172,67 +172,69 @@ namespace xediep
                         .ToList();          // Chuyển thành danh sách
         }
 
-      /*  public async Task<string> KiemTraThanhToan(string tongtieng, string magiaodich)
-        {
-            Debug.WriteLine("Bắt đầu kiểm tra thanh toán..."); // ✅ Thêm log để debug
 
-            XacThucThanhToanBLL thanhToanBLL = new XacThucThanhToanBLL();
-
-            string ketQua = await thanhToanBLL.XacThucThanhToan(Convert.ToDouble(tongtieng), magiaodich);
-
-            Debug.WriteLine($"Kết quả nhận được: {ketQua}");
-
-            if (ketQua == "thanhcong")
-            {
-                return "thanhcong";
-            }
-
-
-
-
-            return "khongthanhcong"+ketQua;
-        }
-
-        */
 
 
 
         [WebMethod]
-        public static async Task<string> SaveBooking(string MaChuyenXe, string Hoten, string SoDT, string soghe, string MaDiemDon, string MaDiemTra, double tongtieng, string magiaodich)
+        public static string SaveBooking(string MaChuyenXe, string Hoten, string SoDT, string soghe, string MaDiemDon, string MaDiemTra, string tongtieng)
         {
-            HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
-            if (authCookie != null)
+            try
             {
-                string token = authCookie.Value;
-                NguoiDungBLL userBLL = new NguoiDungBLL();
-                DataRow user = userBLL.AuthenticateByToken(token);
-                NguoiDung nguoi = new NguoiDung(user);
-                HoaDonBLL hoaDonBLL = new HoaDonBLL();
-                HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()), TrangThai = "DaThanhToan", MaKhachHang = nguoi.MaNguoiDung, NgayThanhToan = DateTime.Now, MaPhuongThuc = 1 };
-                int mahoadon = hoaDonBLL.InsertHoaDonCallbackmahoadon(a);
-                if (mahoadon == 0)
+                HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
+                if (authCookie != null)
                 {
-                    return "Lỗi: Không thể tạo hóa đơn.";
-                }
-                XacThucThanhToanBLL xacThucThanhToanBLL = new XacThucThanhToanBLL();
-
-
-                // ✅ Chờ kiểm tra thanh toán trước khi tiếp tục
-                await XacThucThanhToanBLL.LapKiemTraThanhToan(2000, "5D1C75A3DC", 2);
-
-
-
-
-                foreach (int soGhe in TachChuoiThanhList(soghe))
-                {
-                    if (!VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra)))
+                    NguoiDung nguoi = new NguoiDung();
+                    string token = authCookie.Value;
+                    foreach (var ng in NguoiDungBLL.Instance.GetAll())
                     {
-                        return "Lỗi thêm vé.";
+                        if (ng.Token == token)
+                        {
+                            nguoi = ng;
+                        }
                     }
-                }
+                    if (nguoi.MaNguoiDung == 0 ||nguoi==null)
+                    {
+                        return "Lỗi: Không tìm thấy khách hàng.";
+                    }
 
+
+                    VeXeBLL veXeBLL = new VeXeBLL();
+                    HoaDonBLL hoaDonBLL = new HoaDonBLL();
+                    HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()),TrangThai= "DaThanhToan", MaKhachHang = nguoi.MaNguoiDung };
+                    
+                    int mahoadon = hoaDonBLL.InsertHoaDonCallbackmahoadon(a);
+                    ChiTietHoaDonBLL chiTietHoaDonBLL = new ChiTietHoaDonBLL();
+                    ChuyenXe chuyen = ChuyenXeBLL.Instance.GetChuyenXeByMaCX(int.Parse(MaChuyenXe));
+                    
+                    ThanhToanBLL thanhToanBLL = new ThanhToanBLL();
+                    if (mahoadon ==0)
+                    {
+                        return "Lỗi: Không thể tạo hóa đơn.";
+                    }
+                    ThanhToan thanhToan = new ThanhToan { MaHoaDon = mahoadon, PhuongThucThanhToan = "online", TrangThai = "thanhcong" };
+                    
+                    thanhToanBLL.InsertThanhToan(thanhToan);
+                    foreach (int soGhe in TachChuoiThanhList(soghe))
+                    {
+                        int idve = VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra));
+                        
+                        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon { MaHoaDon = mahoadon, MaVeXe = idve, GiaVe = chuyen.Price };
+                        bool chi=chiTietHoaDonBLL.InsertChiTietHoaDon(chiTietHoaDon);
+                        if (chi == false)
+                        {
+                            return "loi";
+
+                        }
+                    }
+
+                }
+                return "Đã đặt vé thành công số ghế: " + soghe;
             }
-            return "Đã đặt vé thành công số ghế: " + soghe;
+            catch (Exception ex)
+            {
+                return "Lỗi: " + ex.Message;
+            }
         }
         [WebMethod]
         public static string KiemTraThanhToan(string tongtieng, string magiaodich)

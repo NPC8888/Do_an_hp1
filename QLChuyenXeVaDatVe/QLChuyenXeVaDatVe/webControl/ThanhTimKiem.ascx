@@ -18,16 +18,16 @@
 </div>
 
 <style>
-    .containerr {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 20px;
-        background: #df7a23;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        text-align: center;
-        transition: transform 0.3s ease-in-out;
-    }
+   .containerr {
+    padding: 20px;
+    background: url(https://vexeonline.com/wp-content/uploads/2022/12/slider-2-1.png);
+    background-size: cover; /* Hình nền phủ đầy phần tử */
+    background-position: center; /* Canh giữa hình nền */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 
     .containerr:hover {
         transform: scale(1.02);
@@ -44,7 +44,7 @@
     }
 
     h1 {
-        color: #fff;
+        
         font-size: 24px;
         margin-bottom: 15px;
         font-family: 'Roboto', sans-serif;
@@ -75,7 +75,7 @@
     }
 
     .btn {
-        background: linear-gradient(to right, #6a11cb, #2575fc);
+        background-color: mediumspringgreen;
         color: white;
         border: none;
         padding: 12px 20px;

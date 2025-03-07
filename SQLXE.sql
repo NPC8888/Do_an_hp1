@@ -97,13 +97,15 @@ CREATE TABLE VeXe (
     FOREIGN KEY (DiemTra) REFERENCES DiemDonTraKhach(IDDiem)
 );
 
+
+
 -- Bảng HoaDon: Quản lý hóa đơn thanh toán
 CREATE TABLE HoaDon (
     MaHoaDon INT PRIMARY KEY IDENTITY,
     MaKhachHang INT NULL,  -- Liên kết khách hàng nếu có tài khoản
     NgayThanhToan DATETIME DEFAULT GETDATE(),  -- Thời gian thanh toán
     TongTien DECIMAL(18,2) NOT NULL,  -- Tổng tiền thanh toán
-    MaPhuongThuc INT NOT NULL,  -- Phương thức thanh toán
+  
     TrangThai NVARCHAR(20) NOT NULL CHECK (TrangThai IN ('DaThanhToan', 'ChuaThanhToan', 'Huy')),  -- Trạng thái hóa đơn
     FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung)
 );
@@ -134,7 +136,7 @@ CREATE TABLE ThanhToan (
     MaThanhToan INT PRIMARY KEY IDENTITY,
     MaHoaDon INT,
     PhuongThucThanhToan NVARCHAR(50),
-    TaiKhoanNguoiDung NVARCHAR(100),
+    
     TrangThai NVARCHAR(20), -- "ThanhCong", "ThatBai"
     ThoiGianThanhToan DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon),
@@ -145,13 +147,16 @@ CREATE TABLE ThanhToan (
 CREATE TABLE DanhGia (
     MaDanhGia INT PRIMARY KEY IDENTITY,
     MaNguoiDung INT,
-    MaXe INT NULL, -- Liên kết với bảng ChuyenXe (nếu đánh giá chuyến cụ thể)
+    MaXe INT NULL, 
     DiemDanhGia INT, -- Thang điểm 1 đến 5
     BinhLuan NVARCHAR(500),
     FOREIGN KEY (MaXe) REFERENCES XeKhach(MaXe),
    
     FOREIGN KEY (MaNguoiDung) REFERENCES NguoiDung(MaNguoiDung)
 );
+INSERT INTO DanhGia ( MaNguoiDung, MaXe, DiemDanhGia, BinhLuan)
+
+VALUES (4,1,5,N'xe chạy nhanh sạch sẽ')
 
 -- Bảng BaoCao: Quản lý thông tin thống kê và báo cáo
 CREATE TABLE BaoCao (
@@ -170,13 +175,12 @@ VALUES
     ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
 
 	use QLChuyenXe
-	select *from HoaDon
-	select *from VeXe
+
+	select *from ChuyenXe
 	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
-	delete from NguoiDung
-	INSERT INTO DanhGia (MaNguoiDung, MaXe, DiemDanhGia, BinhLuan )
-VALUES 
-    (1, 2, 3, 'XeDep');
+	select *from HoaDon
+		select *from ChiTietHoaDon
+	
 
 
 	INSERT INTO GheNgoi(MaChuyenXe,SoGhe , DaDat)
@@ -184,3 +188,8 @@ VALUES
     (1,10,1)
     SELECT GETDATE();
 	ALTER TABLE VeXe DROP COLUMN GiaVe;
+
+
+
+
+SELECT a = SCOPE_IDENTITY();

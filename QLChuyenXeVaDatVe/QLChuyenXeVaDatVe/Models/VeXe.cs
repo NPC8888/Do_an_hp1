@@ -77,6 +77,5 @@ namespace Models
         public string TrangThai { get => trangThai; set => trangThai = value; }
         private DateTime ngayDat;
         public DateTime NgayDat { get => ngayDat; set => ngayDat = value; }
-
     }
 }
