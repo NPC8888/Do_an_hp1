@@ -22,7 +22,7 @@ namespace DAL
         public int InsertDanhGia(DanhGia danhGia)
         {
             string query = string.Format("INSERT INTO DanhGia (MaXe, MaNguoiDung, DiemDanhGia, BinhLuan) " +
-                           "VALUES ({0}, {1}, {2}, '{3}');",danhGia.MaXe,danhGia.MaNguoiDung,danhGia.DiemDanhGia,danhGia.BinhLuan);
+                           "VALUES ({0}, {1}, {2}, N'{3}');",danhGia.MaXe,danhGia.MaNguoiDung,danhGia.DiemDanhGia,danhGia.BinhLuan);
 
             
 

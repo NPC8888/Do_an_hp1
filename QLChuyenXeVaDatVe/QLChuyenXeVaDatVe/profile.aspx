@@ -7,70 +7,66 @@
 
             <!-- Thông tin cá nhân -->
             <div class="profile-card">
-                <button id="editButton" style="margin-left: 90%">🖊️</button>
+                <div style="width: 100%; display: flex; justify-content: flex-end;">
+                    <button id="editButton"><i>Chỉnh Sửa</i></button>
+
+                </div>
                 <h2>Thông tin cá nhân</h2>
-                <p>
-                    <strong>Họ tên:</strong>
-                    <asp:Label ID="lblFullName" runat="server" />
-                </p>
-                <p>
-                    <strong>Email:</strong>
-                    <asp:Label ID="lblEmail" runat="server" />
-                </p>
-                <p>
-                    <strong>Số điện thoại:</strong>
-                    <asp:Label ID="lblPhone" runat="server" />
-                </p>
+                <div>
+                    <p>
+                        <strong>ID:</strong>
+                        <asp:Label ID="lblId" runat="server" />
+                    </p>
+                    <p>
+                        <strong>Họ tên:</strong>
+                        <asp:Label ID="lblFullName" runat="server" />
+                    </p>
+                    <p>
+                        <strong>Số điện thoại:</strong>
+                        <asp:Label ID="lblPhone" runat="server" />
+                    </p>
+                </div>
+                <div>
+                    <asp:Button ID="btnLogout" runat="server" Text="Đăng xuất" CssClass="logout-btn"
+                        OnClick="btnLogout_Click" />
+                    <asp:Button ID="Button1" runat="server" Text="Đổi mật khẩu" CssClass="logout-btn"
+                        OnClick="doimatkhau" />
+                </div>
             </div>
+
+
 
             <!-- Vé xe đã đặt -->
             <div class="ticket-history">
-                <h2>Vé xe đã đặt</h2>
+                <h2>Lịch sử giao dịch</h2>
                 <asp:Repeater ID="rptTickets" runat="server">
                     <HeaderTemplate>
-                        <table class="ticket-table" border="0" cellspacing="0" cellpadding="0">
+                        <table class="ticket-table">
                             <thead>
                                 <tr>
-                                    <th>Họ Tên</th>
-                                    <th>Số Điện Thoại</th>
-                                    <th>Điểm đi</th>
-                                    <th>Điểm đến</th>
-                                    <th>Ngày đi</th>
-                                    <th>Hành động</th>
-                                    <th>Trạng Thái</th>
+                                    <th>Hóa đơn số</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ngày lập</th>
+                                    <th>Chi tiết     </th>
                                 </tr>
                             </thead>
                             <tbody>
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <tr data-key='<%# Eval("MaChuyenXe") %>'>
-                            <td><%# Eval("HoTen") %></td>
-                            <td><%# Eval("soDT") %></td>
-                            <td><%# Eval("TenDiemDon") %></td>
-                            <td><%# Eval("TenDiemTra") %></td>
-                            <td><%# Eval("ThoiGianKhoiHanh", "{0:dd/MM/yyyy}") %></td>
+                        <tr data-key='<%# Eval("MaHoaDon") %>'>
+                            <td><%# Eval("MaHoaDon") %></td>
+                            <td><%# Eval("TongTien") %></td>
+                            <td><%# Eval("TrangThai") %></td>
+                            <td><%# Eval("ThoiGianThanhToan") %></td>
                             <td>
-                                <!-- Nút Hủy vé: Cho phép nếu ngày đi chưa qua và trang thái khác hủy -->
-                                <button type="button"
-                                    onclick='<%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) >= DateTime.Now ? "cancelTicket(\"" + HttpUtility.JavaScriptStringEncode(Eval("MaVeXe").ToString()) + "\")" : "" %>'
-                                    <%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) >= DateTime.Now &&  Eval("TrangThai").ToString()!="Huy" ? "" : "disabled='disabled'" %>>
-                                    Hủy vé
-                                </button>
-
-
-                                <!-- Nút Đánh giá: Cho phép nếu ngày đi đã qua -->
-                                <button type="button"
-                                    onclick='<%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) < DateTime.Now  
-                                              ? "evaluateTicket(\"" + HttpUtility.JavaScriptStringEncode(Eval("MaChuyenXe").ToString()) + "\", \"" 
-                                              + HttpUtility.JavaScriptStringEncode(Eval("MaVeXe").ToString()) + "\")"  
-                                              : "" %>'
-                                    <%# Convert.ToDateTime(Eval("ThoiGianKhoiHanh")) < DateTime.Now && Eval("TrangThai").ToString()!="DDG" ? "" : "disabled='disabled'" %>>
-                                    Đánh giá
+                                <button class="btn-view" type="button" onclick="Chitiet(<%# Eval("MaHoaDon")%>)">
+                                    Xem
                                 </button>
                             </td>
-                            <td><%# Eval("TrangThai").ToString()!="Huy" ? Eval("TrangThai").ToString()!= "DDG" ? "Đã Đặt" : "Đã Đánh Giá":"Đã Hủy" %></td>
                         </tr>
                     </ItemTemplate>
+
                     <FooterTemplate>
                         </tbody>
                     </table>
@@ -79,14 +75,15 @@
             </div>
 
             <!-- Nút Đăng xuất -->
-            <asp:Button ID="btnLogout" runat="server" Text="Đăng xuất" CssClass="logout-btn"
-                OnClick="btnLogout_Click" />
+
         </div>
 
         <div id="editModal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Chỉnh sửa thông tin cá nhân</h2>
+                
+                <button type="button" onclick="hidePopup()"
+                    style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 50px; height: 50px; border: none; cursor: pointer">
+                </button>
 
                 <div class="form-group">
                     <label for="editFullName">Họ và Tên:</label>
@@ -96,56 +93,65 @@
                     <label for="editPhone">Số Điện Thoại:</label>
                     <input type="tel" id="editPhone" name="editPhone" runat="server" required>
                 </div>
-                <div class="form-group">
-                    <label for="editEmail">Email:</label>
-                    <input type="email" id="editEmail" name="editEmail" runat="server" required>
-                </div>
 
                 <asp:Button ID="btnfix" CssClass="modern-button" runat="server" OnClick="btnFix" Text="Lưu thay đổi" />
+
 
             </div>
         </div>
         <!-- Modal đánh giá -->
-        <div id="reviewModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-            <div class="modal-content" style="background-color: #fff; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 400px; position: relative;">
-                <span class="close" style="position: absolute; top: 10px; right: 15px; font-size: 20px; cursor: pointer;">&times;</span>
-                <h2>Đánh giá chuyến xe</h2>
-                <div class="star-rating" style="font-size: 25px; margin-bottom: 10px;">
-                    <span class="star" data-value="1" style="cursor: pointer;">&#9733;</span>
-                    <span class="star" data-value="2" style="cursor: pointer;">&#9733;</span>
-                    <span class="star" data-value="3" style="cursor: pointer;">&#9733;</span>
-                    <span class="star" data-value="4" style="cursor: pointer;">&#9733;</span>
-                    <span class="star" data-value="5" style="cursor: pointer;">&#9733;</span>
-                </div>
-                <textarea id="reviewContent" rows="4" placeholder="Nhập nội dung đánh giá..." style="width: 100%;"></textarea>
-                <button type="button" id="btnSubmitReview" style="margin-top: 10px;">Gửi đánh giá</button>
-            </div>
-        </div>
+
 
         <style>
-            body {
-                font-family: Arial, sans-serif;
-                background: #f4f4f4;
-                text-align: center;
-                padding: 20px;
+            .btn-view {
+                background-color: white; /* Màu xanh */
+                color: black;
+                border: 2px solid;
+                padding: 8px 12px;
+                border-radius: 5px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: 0.3s;
+                display: flex;
+                margin: 0px 40% 0px;
+                gap: 5px;
             }
 
+                .btn-view:hover {
+                    background-color: gainsboro; /* Màu xanh đậm hơn khi hover */
+                }
+
             .container {
-                width: 65%;
-                margin: auto;
-                background: white;
-                padding: 20px;
-                border-radius: 12px;
+                display: block;
+                align-items: center;
+                background: #80b682;
                 box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
             }
 
             .profile-card {
-                padding: 20px;
-                background: #3498db;
-                color: white;
-                border-radius: 10px;
-                margin-bottom: 20px;
+                /* Hoặc kích thước phù hợp */
+                border-radius: 12px;
+                background-color: none;
+                padding-bottom: 20px;
+                display: flex;
+                flex-direction: column;
+                margin: 0 30% 0 30%;
+                align-items: center; /* Căn giữa các phần tử con */
             }
+
+                .profile-card p {
+                    align-self: flex-start; /* Chỉ áp dụng căn trái cho chữ */
+                }
+
+            button#editButton {
+                margin-top: 10px;
+                align-self: flex-end; /* Đưa nút về góc phải */
+                background: white;
+                border: 1px solid;
+                cursor: pointer;
+                font-size: 18px;
+            }
+
 
             .ticket-history {
                 background: white;
@@ -157,22 +163,23 @@
             .ticket-table {
                 width: 100%;
                 border-collapse: collapse;
+                text-align: center;
             }
 
                 .ticket-table th, .ticket-table td {
                     padding: 10px;
-                    border-bottom: 1px solid #ddd;
+                    border-bottom: 2px solid #ddd;
                 }
 
                 .ticket-table th {
-                    background: #2ecc71;
-                    color: white;
+                    background: #c4c1c1;
+                    color: black;
                 }
 
             .logout-btn {
-                background: #e74c3c;
-                color: white;
-                border: none;
+                background: white;
+                color: black;
+                border: 2px solid;
                 padding: 10px 20px;
                 border-radius: 5px;
                 cursor: pointer;
@@ -183,13 +190,13 @@
                 .logout-btn:hover {
                     background: #c0392b;
                 }
-            /* Reset CSS */
+
 
 
 
             /* Nút hiện đại */
             .modern-button {
-                background: linear-gradient(135deg, #6a11cb, #2575fc);
+                background-color: mediumspringgreen;
                 color: white;
                 border: none;
                 padding: 12px 24px;
@@ -197,39 +204,39 @@
                 font-size: 16px;
                 font-weight: 500;
                 cursor: pointer;
-                transition: transform 0.2s, box-shadow 0.2s;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
-
-                .modern-button:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-                }
 
             /* Modal */
 
             .modal {
-                display: none;
                 position: fixed;
-                z-index: 1000;
+                visibility: hidden;
                 left: 0;
                 top: 0;
                 width: 100%;
                 height: 100%;
                 background-color: rgba(0, 0, 0, 0.5);
                 backdrop-filter: blur(5px); /* Hiệu ứng mờ nền */
+                display: flex;
+                align-items: center; /* Căn giữa theo chiều dọc */
+                justify-content: center; /* Căn giữa theo chiều ngang */
             }
 
             .modal-content {
                 background: white;
-                margin: 10% auto;
-                padding: 25px;
-                border-radius: 15px;
-                width: 90%;
-                max-width: 400px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                animation: slideIn 0.3s ease-out;
+                padding-bottom: 10px;
+                width: 30%;
+                max-width: 30%;
+                display: flex;
+                gap: 50px;
+                flex-direction: column; /* Sắp xếp các phần tử theo cột */
+                align-items: center; /* Căn giữa theo chiều ngang */
+                justify-content: center; /* Căn giữa theo chiều dọc */
+                text-align: center; /* Canh giữa nội dung văn bản */
             }
+
+
+
 
             @keyframes slideIn {
                 from {
@@ -243,19 +250,6 @@
                 }
             }
 
-            /* Nút đóng modal */
-            .close {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                cursor: pointer;
-                transition: color 0.2s;
-            }
-
-                .close:hover {
-                    color: #333;
-                }
 
             /* Form */
             h2 {
@@ -294,110 +288,6 @@
                 }
         </style>
         <script>
-            var reviewModal = document.getElementById("reviewModal");
-            var closeBtn = reviewModal.querySelector(".close");
-            var btnSubmitReview = document.getElementById("btnSubmitReview");
-            var stars = reviewModal.querySelectorAll(".star");
-            var selectedRating = 0;
-            let currentTicketId = null;
-            let DanhGiaId = null;// lưu mã vé hiện tại được đánh giá
-            //Hàm Đánh giá
-            function evaluateTicket(ma, madg) { currentTicketId = ma; DanhGiaId = madg; }
-            // Hàm mở modal đánh giá
-            function evaluateTicket(ma,madg) {
-                currentTicketId = ma;; DanhGiaId = madg;
-                var reviewModal = document.getElementById("reviewModal");
-                if (!reviewModal) {
-                    alert("Không tìm thấy phần tử reviewModal!");
-                    return;
-                }
-
-                reviewModal.style.display = "block";
-
-            }
-
-
-            // Hàm đóng modal và reset form đánh giá
-            function closeReviewModal() {
-                reviewModal.style.display = "none";
-                resetReviewForm();
-            }
-
-            // Hàm reset form đánh giá
-            function resetReviewForm() {
-                selectedRating = 0;
-                stars.forEach(function (star) {
-                    star.classList.remove("selected");
-                    star.style.color = "#000"; // màu mặc định
-                });
-                document.getElementById("reviewContent").value = "";
-                currentTicketId = null;
-            }
-
-            // Gán sự kiện click cho các sao để chọn số sao
-            stars.forEach(function (star) {
-                star.addEventListener("click", function () {
-                    selectedRating = parseInt(this.getAttribute("data-value"));
-                    stars.forEach(function (s) {
-                        var starValue = parseInt(s.getAttribute("data-value"));
-                        if (starValue <= selectedRating) {
-                            s.classList.add("selected");
-                            s.style.color = "gold";
-                        } else {
-                            s.classList.remove("selected");
-                            s.style.color = "#000";
-                        }
-                    });
-                });
-            });
-
-            // Đóng modal khi click vào dấu "x"
-            closeBtn.addEventListener("click", closeReviewModal);
-
-            // Đóng modal khi click ra ngoài khung modal
-            window.addEventListener("click", function (event) {
-                if (event.target == reviewModal) {
-                    closeReviewModal();
-                }
-            });
-
-
-            // Xử lý nút Gửi đánh giá
-            btnSubmitReview.addEventListener("click", function () {
-                var reviewContent = document.getElementById("reviewContent").value;
-                if (selectedRating === 0) {
-                    alert("Vui lòng chọn số sao đánh giá!");
-                    return;
-                }
-                if (reviewContent.trim() === "") {
-                    alert("Vui lòng nhập nội dung đánh giá!");
-                    return;
-                }
-                // Xử lý gửi đánh giá (ví dụ: gọi AJAX để lưu đánh giá)
-                PageMethods.DanhGiaCX(currentTicketId, selectedRating, reviewContent,DanhGiaId, function (response) {
-                    alert(response);
-
-                }, function (error) {
-                    console.error(error);
-                });
-                location.reload(); // Reload lại trang hiện tại
-
-                // Sau khi gửi, đóng modal
-                closeReviewModal();
-            });
-
-
-
-            // Hàm được gọi khi click vào nút "Hủy vé"
-            function cancelTicket(MaVe) {
-
-                PageMethods.HuyVeById(MaVe, function (response) {
-                    alert(response);
-                }, function (error) {
-                    alert(error)
-                })
-                
-            }
 
             // Lấy các phần tử DOM
             const editButton = document.getElementById('editButton');
@@ -405,21 +295,26 @@
             const closeButton = document.querySelector('.close');
             const editForm = document.getElementById('editForm');
 
+            function Chitiet(id) {
+                window.location.href = `TrangChiTietHoaDon.aspx?id=${id}`;
+
+            }
             // Hiển thị modal khi nhấn nút chỉnh sửa
             editButton.addEventListener('click', (event) => {
                 event.preventDefault();
-                modal.style.display = 'block';
+                modal.style.visibility = 'visible';
+
             });
 
             // Ẩn modal khi nhấn nút đóng (x)
-            closeButton.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
+            function hidePopup(){
+                modal.style.visibility = 'hidden';
+            };
 
             // Ẩn modal khi nhấn bên ngoài modal
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
-                    modal.style.display = 'none';
+                    modal.style.visibility = 'hidden';
                 }
             });
 
@@ -428,7 +323,7 @@
             function iconlgclik() {
                 window.location.href = "TrangChu.aspx"
             }
-         
+
 
         </script>
 

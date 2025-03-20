@@ -39,6 +39,18 @@ namespace xediep.BLL
            
             return l;
         }
+        public List<ChuyenXe> GetALLChuyenXeByTuyenXe(int MaTuyen)
+        {
+            List<ChuyenXe> l = new List<ChuyenXe>();
+           foreach (ChuyenXe item in ChuyenXeDAL.Instance.GetALLCX())
+            {
+                if (item.MaTuyenXe == MaTuyen)
+                {
+                    l.Add(item);
+                }
+            }
+            return l;
+        }
         public ChuyenXe GetChuyenXeByMaCX(int MaCX)
         {
             List<ChuyenXe> l = ChuyenXeDAL.Instance.GetALLCX();

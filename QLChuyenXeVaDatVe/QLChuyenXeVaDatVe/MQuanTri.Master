@@ -1,193 +1,229 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MQuanTri.master.cs" Inherits="xediep.MQuanTri" %>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head runat="server">
-    <title>QuanTri</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+        }
 
+        .menu {
+            border-bottom: 2px solid black; /* Độ dày, kiểu và màu của viền */
+
+            background-color: white;
+            color: black;
+            padding: 0px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .menu img {
+                height: 80px;
+                width: auto;
+                cursor: pointer;
+            }
+
+            .menu div {
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .menu a {
+                color: white;
+                text-decoration: none;
+                padding: 8px 15px;
+                background-color: #e74c3c;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .menu a:hover {
+                    background-color: #c0392b;
+                }
+
+        .container {
+            background-color: #fff;
+            
+        }
+
+
+
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+                .menu img {
+                    margin-bottom: 10px;
+                }
+
+                .menu div {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+        }
+        /* Menu dọc */
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Menu dọc */
+        .sidebar {
+            width: 10%;
+            background-color: royalblue;
+            color: white;
+            padding: 20px;
+        }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .sidebar ul li {
+                    margin-bottom: 10px;
+                }
+
+                    .sidebar ul li a {
+                        color: white;
+                        text-decoration: none;
+                        display: block;
+                        padding: 10px;
+                        background: #4169E1;
+                        border-radius: 5px;
+                        transition: background 0.3s;
+                    }
+
+                        .sidebar ul li a:hover {
+                            background: #3558c6;
+                        }
+
+        /* Nội dung */
+        .content {
+            flex-grow: 1;
+            background: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                text-align: center;
+            }
+
+                .sidebar ul {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                }
+
+                    .sidebar ul li {
+                        margin: 0;
+                    }
+        }
+
+        .blinking-text {
+            animation: blink 1s infinite;
+            color: magenta;
+            margin-left: 2%;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <div class="menu">
+            <img onclick="iconlgclik()" src="jpg/output-onlinegiftools.gif" />
+            <h1 class="blinking-text">Quản trị hệ thống xe khách DNC</h1>
+            <div style="display: flex; gap: 20px; margin-left: 5%; cursor: pointer">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyHoaDon.aspx'">
+                    <img style="height: 30px" src="jpg/Mdoanhthu.gif" />
+                    <strong>Doanh thu</strong>
 
-        <div class="admin-container">
-            <!-- Sidebar -->
-            <aside class="sidebar">
-                <div class="sidebar-header">
-                    <h2>Admin</h2>
-
-                    <p>
-                        <asp:Label ID="lblNameAdmin" runat="server"></asp:Label></p>
                 </div>
-                <ul class="sidebar-menu">
-                    <li><a href="#"><i class="fas fa-home"></i>Quản lý chung</a></li>
-                    <li><a href="#"><i class="fas fa-cog"></i>Duyệt yêu Cầu Thanh Toán</a></li>
-                    <li><a href="#"><i class="fas fa-list"></i>Quản lý Vé Xe</a></li>
-                    <li><a href="QuanLyChuyenXe.aspx"><i class="fas fa-image"></i>Quản lý Chuyến Xe</a></li>
-                    <li><a href="#"><i class="fas fa-shopping-cart"></i>Quản lý Hóa Đơn</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>Quản lý tài khoản</a></li>
-                    <li><a href="QuanLyXeKhach.aspx"><i class="fas fa-user"></i>Quản lý Xe Khách</a></li>
-                    <li><a href="QuanLyTuyenXe.aspx"><i class="fas fa-user"></i>Quản lý Tuyến Đường</a></li>
-                    <li><a href="QuanLyDiemDonTraKhach.aspx"><i class="fas fa-user"></i>Quản lý Điểm Đón Trả Khách</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>Quản lý Phương Thức Thanh Toán</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i>Quản lý tài khoản</a></li>
-                </ul>
-            </aside>
 
-            <!-- Nội dung chính -->
-            <main class="main-content">
-                <header class="admin-header">
-                    <div class="header-left">
-                        <i class="fas fa-bars"></i>
-                        <h1><asp:Label ID="NameChucNang" runat="server"></asp:Label> Quản lý chung</h1>
-                    </div>
-                    <div class="header-right">
-                        <a href="#">Cài đặt</a>
-                        <span>Hotline: 0979 83 76 25</span>
-                        <a href="mailto:info@thietkewebnhanh.vn">info@thietkewebnhanh.vn</a>
-                        <asp:Button ID="btnLogout" runat="server" Text="Đăng Xuất" CssClass="btn-logout" OnClick="btnLogout_Click" />
-                    </div>
-                </header>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyDanhGia.aspx'">
+                    <img style="height: 30px" src="jpg/Mfeedback.gif" />
+                    <strong>Đánh giá</strong>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyNguoiDung.aspx'">
+                    <img style="height: 30px" src="jpg/documents.gif" />
+                    <strong>người dùng</strong>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyChuyenXe.aspx'">
+                    <img style="height: 30px" src="jpg/MChuyenXeicon.gif" />
+                    <strong>chuyến xe</strong>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyXeKhach.aspx'">
+                    <img style="height: 30px" src="jpg/Mphuongtien.gif" />
+                    <strong>Phương tiện</strong>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyTuyenXe.aspx'">
+                    <img style="height: 30px" src="jpg/Mtuyenduong.gif" />
+                    <strong>Tuyến đường</strong>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyDiemDonTraKhach.aspx'">
+                    <img style="height: 30px" src="jpg/locations.gif" />
+                    <strong>Địa điểm</strong>
+                </div>
 
-                <section class="dashboard">
-                    <div class="overview">
-                        <div class="box">
-                            <h3>56 / 100</h3>
-                            <p>Bài viết</p>
-                        </div>
-                        <div class="box">
-                            <h3>16 / 100</h3>
-                            <p>Vé Đã Bán Hôm nay</p>
-                        </div>
-                        <div class="box">
-                            <h3>Hóa Đơn</h3>
-                        </div>
-                        <div class="box">
-                            <h3>Các Chuyến Xe Hôm Nay</h3>
-                        </div>
-                        <div class="box">
-                            <h3>316 ngày sử dụng</h3>
-                        </div>
-                    </div>
-                    <div>
-
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            
-                        </asp:ContentPlaceHolder>
-                    </div>
-                </section>
-            </main>
+                <div id="btnlogout" style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="logout()">
+                    <img style="height: 30px" src="jpg/logout.gif" />
+                    <strong>Đăng xuất</strong>
+                </div>
+            </div>
         </div>
 
+        <div class="content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
 
+        <asp:Button ID="hiddenBtn" runat="server" OnClick="btnLogout_Click" Style="display: none;" />
     </form>
 
-    <style>
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+    <script>
+        function logout() {
+            document.getElementById('<%= hiddenBtn.ClientID %>').click();
         }
-
-        /* Tổng thể */
-        .admin-container {
-            display: flex;
-            height: 100vh;
+    </script>
+    <script>
+        function iconlgclik() {
+            window.location.href = "TrangQuanTri.aspx";
         }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
         }
-
-        .sidebar-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-        }
-
-            .sidebar-menu li {
-                margin: 10px 0;
-            }
-
-            .sidebar-menu a {
-                text-decoration: none;
-                color: white;
-                display: block;
-                padding: 10px;
-                border-radius: 5px;
-            }
-
-                .sidebar-menu a:hover {
-                    background-color: #34495e;
-                }
-
-        /* Nội dung chính */
-        .main-content {
-            flex-grow: 1;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
-        /* Header */
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            background: #2980b9;
-            padding: 15px;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .header-left h1 {
-            margin-left: 10px;
-        }
-
-        .header-right a, .header-right span {
-            color: white;
-            margin-left: 10px;
-            text-decoration: none;
-        }
-
-        .btn-logout {
-            background-color: #e74c3c;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* Dashboard */
-        .dashboard {
-            margin-top: 20px;
-        }
-
-        .overview {
-            display: flex;
-            gap: 15px;
-        }
-
-        .box {
-            background: white;
-            padding: 20px;
-            flex: 1;
-            text-align: center;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-    </style>
+    </script>
 </body>
 </html>
-
 
 
 

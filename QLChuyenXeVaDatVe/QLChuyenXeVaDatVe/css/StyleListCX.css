@@ -1,14 +1,4 @@
 ﻿
-
-.container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
 .trip {
     display: flex;
     justify-content: space-between;

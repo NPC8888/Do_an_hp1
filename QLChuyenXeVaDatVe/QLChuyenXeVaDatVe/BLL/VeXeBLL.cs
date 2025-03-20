@@ -25,7 +25,7 @@ namespace BLL
             int i = GheNgoiDAL.Instance.insertGheNgoi(ghe);
             idma = i;
 
-            VeXe dat = new VeXe { MaChuyenXe = maChuyenXe, MaGhe=idma, MaKH = maKH, TrangThai = trangThai, NgayDat = ngayDat, HoTen = hoten, SoDT = sodt, MaDiemDon = madiemdon, MaDiemTra = madiemtra };
+            VeXe dat = new VeXe { MaChuyenXe = maChuyenXe, MaGhe = idma, MaKH = maKH, TrangThai = trangThai, NgayDat = ngayDat, HoTen = hoten, SoDT = sodt, MaDiemDon = madiemdon, MaDiemTra = madiemtra };
             int idve = DatVeDAL.Instance.DatVe(dat);
 
 
@@ -33,7 +33,7 @@ namespace BLL
         }
         public bool FixTrangThaiKhiDanhGia(string Idve)
         {
-            int i =DatVeDAL.Instance.fixTrangThai(Idve);
+            int i = DatVeDAL.Instance.fixTrangThai(Idve);
             return i > 0;
         }
         public bool FixTrangThaiKhiHuy(string Idve)
@@ -44,6 +44,22 @@ namespace BLL
         public List<VeXe> GetListDatVebyIdNguoiDung(string id)
         {
             return DatVeDAL.Instance.GetListDatVebyIdNguoiDung(id);
+        }
+        public List<VeXe> GetALL()
+        {
+            return DatVeDAL.Instance.GetALL();
+        }
+        public VeXe GetByeMaVe( int idma )
+        {
+            foreach (VeXe item in GetALL())
+            {
+                if (item.MaDatVe == idma)
+                {
+                    
+                    return item;
+                }
+            }
+            return null;
         }
         public DataTable GetDTVebyIdNguoiDung(string id)
         {

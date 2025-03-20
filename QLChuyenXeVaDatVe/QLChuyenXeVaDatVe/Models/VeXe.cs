@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using xediep.BLL;
 
 namespace Models
 {
@@ -77,5 +78,10 @@ namespace Models
         public string TrangThai { get => trangThai; set => trangThai = value; }
         private DateTime ngayDat;
         public DateTime NgayDat { get => ngayDat; set => ngayDat = value; }
+
+        public int soghe
+        {
+            get => GheNgoiBLL.Instance.GetGheNgoiByMaGhe(maGhe).SoGhe;
+        }
     }
 }

@@ -16,16 +16,28 @@ namespace BLL
             private set => instance = value;
         }
         private NguoiDungDAL userDal = new NguoiDungDAL();
+        public bool InsertNguoiDung(NguoiDung nguoiDung)
+        {
+            return userDal.InsertNguoiDung(nguoiDung);
+        }
+        public bool UpdateNguoiDung(NguoiDung nguoiDung)
+        {
+            return userDal.UpdateNguoiDung(nguoiDung);
+        }
+        public bool DeleteNguoiDung(int nguoiDung)
+        {
+            return userDal.DeleteNguoiDung(nguoiDung);
+        }
 
         public string Login(string username, string password)
         {
-            
+
             int userId = userDal.CheckLogin(username, password);
 
             if (userId > 0)
             {
                 string token = Guid.NewGuid().ToString();
-                DateTime expiry = DateTime.Now.AddHours(1);
+                DateTime expiry = DateTime.Now.AddHours(12);
                 userDal.UpdateToken(userId, token, expiry);
                 return token;
             }
@@ -56,7 +68,7 @@ namespace BLL
             userDal.FixProfile(id, ten, sdt, email);
         }
 
-      public List<NguoiDung> GetAllTaiXe()
+        public List<NguoiDung> GetAllTaiXe()
         {
             return NguoiDungDAL.Instance.GetAllTaiXe();
         }
@@ -64,5 +76,19 @@ namespace BLL
         {
             return NguoiDungDAL.Instance.GetAll();
         }
+        public NguoiDung GetNguoiDungByMaND(int id)
+        {
+            foreach (NguoiDung i in NguoiDungDAL.Instance.GetAll())
+            {
+                if (i.MaNguoiDung == id)
+                {
+                    return i;
+                }
+
+            }
+            return null;
+
+        }
+
     }
 }

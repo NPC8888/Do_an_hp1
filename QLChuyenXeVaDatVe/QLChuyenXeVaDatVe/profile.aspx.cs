@@ -1,5 +1,7 @@
 ﻿using BLL;
 using Models;
+using QLChuyenXeVaDatVe.Models;
+using QLChuyenXeVaDatVe.BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,18 +34,19 @@ namespace xediep
 
             }
         }
-
+        protected void doimatkhau(object sender, EventArgs e)
+        {
+            Response.Redirect("DoiMatKhau.aspx");
+        }
         private void LoadUserInfo()
         {
 
             DataRow uses = NguoiDungBLL.Instance.AuthenticateByToken(Request.Cookies["AuthToken"].Value);
             use = new NguoiDung(uses);
-           
             lblFullName.Text = use.HoTen;
-            lblEmail.Text = use.EMai;
+            lblId.Text = use.MaNguoiDung.ToString();
             lblPhone.Text = use.SDT;
             editFullName.Value = use.HoTen;
-            editEmail.Value = use.EMai;
             editPhone.Value = use.SDT;
 
         }
@@ -53,18 +56,27 @@ namespace xediep
             DataRow uses = NguoiDungBLL.Instance.AuthenticateByToken(Request.Cookies["AuthToken"].Value);
             use = new NguoiDung(uses);
 
-            NguoiDungBLL.Instance.FixProfile(use.MaNguoiDung.ToString(), editFullName.Value, editPhone.Value, editEmail.Value);
+            NguoiDungBLL.Instance.FixProfile(use.MaNguoiDung.ToString(), editFullName.Value, editPhone.Value, use.EMai);
 
             LoadUserInfo();
         }
 
         private void LoadTicketHistory()
         {
+            HoaDonBLL hd = new HoaDonBLL();
             // Dữ liệu giả lập - thay bằng database
-            var tickets = VeXeBLL.Instance.GetDTVebyIdNguoiDung(Request.QueryString["id"].ToString());
+            List<HoaDon> lHD = new List<HoaDon>();
+            foreach (var item in hd.GetAllHoaDon())
+            {
+                if (item.MaKhachHang == use.MaNguoiDung)
+                {
+                    lHD.Add(item);
+                }
+            }
+            
 
 
-            rptTickets.DataSource = tickets;
+            rptTickets.DataSource = lHD;
             rptTickets.DataBind();
         }
 

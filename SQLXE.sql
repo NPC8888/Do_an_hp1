@@ -105,7 +105,6 @@ CREATE TABLE HoaDon (
     MaKhachHang INT NULL,  -- Liên kết khách hàng nếu có tài khoản
     NgayThanhToan DATETIME DEFAULT GETDATE(),  -- Thời gian thanh toán
     TongTien DECIMAL(18,2) NOT NULL,  -- Tổng tiền thanh toán
-  
     TrangThai NVARCHAR(20) NOT NULL CHECK (TrangThai IN ('DaThanhToan', 'ChuaThanhToan', 'Huy')),  -- Trạng thái hóa đơn
     FOREIGN KEY (MaKhachHang) REFERENCES NguoiDung(MaNguoiDung)
 );
@@ -119,17 +118,6 @@ CREATE TABLE ChiTietHoaDon (
     FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon),
     FOREIGN KEY (MaVeXe) REFERENCES VeXe(MaVeXe)
 );
-CREATE TABLE KhuyenMai (
-    MaKhuyenMai INT PRIMARY KEY IDENTITY,
-    Code NVARCHAR(50) UNIQUE NOT NULL,  -- Mã giảm giá
-    LoaiKhuyenMai NVARCHAR(20) NOT NULL CHECK (LoaiKhuyenMai IN ('PhanTram', 'TienMat')), 
-    MucGiamGia DECIMAL(10,2) NOT NULL,  -- Mức giảm giá (nếu là % thì tính trên tổng hóa đơn)
-    SoLuong INT NOT NULL,  -- Tổng số lần sử dụng có thể
-    SoLuongDaDung INT DEFAULT 0,  -- Số lần đã sử dụng
-    NgayBatDau DATETIME NOT NULL, 
-    NgayKetThuc DATETIME NOT NULL
-);
-
 
 -- Bảng ThanhToan: Quản lý giao dịch thanh toán ngân hàng
 CREATE TABLE ThanhToan (
@@ -154,10 +142,6 @@ CREATE TABLE DanhGia (
    
     FOREIGN KEY (MaNguoiDung) REFERENCES NguoiDung(MaNguoiDung)
 );
-INSERT INTO DanhGia ( MaNguoiDung, MaXe, DiemDanhGia, BinhLuan)
-
-VALUES (4,1,5,N'xe chạy nhanh sạch sẽ')
-
 -- Bảng BaoCao: Quản lý thông tin thống kê và báo cáo
 CREATE TABLE BaoCao (
     MaBaoCao INT PRIMARY KEY IDENTITY,
@@ -175,21 +159,4 @@ VALUES
     ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
 
 	use QLChuyenXe
-
-	select *from ChuyenXe
-	Select *from DiemDonTraKhach where MaTuyenXe = 2 and LoaiDiem='Tra'
-	select *from HoaDon
-		select *from ChiTietHoaDon
-	
-
-
-	INSERT INTO GheNgoi(MaChuyenXe,SoGhe , DaDat)
-VALUES 
-    (1,10,1)
-    SELECT GETDATE();
-	ALTER TABLE VeXe DROP COLUMN GiaVe;
-
-
-
-
-SELECT a = SCOPE_IDENTITY();
+	select * from NguoiDung

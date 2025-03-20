@@ -7,7 +7,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using static xediep.DAL.DataSet1;
 
 namespace xediep.webControl
 {
@@ -16,20 +15,22 @@ namespace xediep.webControl
         public string AuthTokenExists = "false"; // Mặc định chưa đăng nhập
         HttpCookie authCookie;
         public string txtbnt="Đăng Nhập";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             
              authCookie = Request.Cookies["AuthToken"];
             if (authCookie != null)
             {
+                DataRow dr = NguoiDungBLL.Instance.AuthenticateByToken(authCookie.Value);
+                NguoiDung ng = new NguoiDung(dr);
                 AuthTokenExists = "true"; // Có cookie, đã đăng nhập
-                txtbnt = "Tài Khoảng";
-                profile.Text = txtbnt;
+                txtbnt = ng.HoTen;
+                if (name != null) { this.name.InnerText = txtbnt; }
+                Session["Role"] = ng.MaNguoiDung;
             }
-            else
-            {
-                txtbnt = "Đăng Nhập";
-            }
+           
         }
 
         protected void btnProfile(object sender, EventArgs e)

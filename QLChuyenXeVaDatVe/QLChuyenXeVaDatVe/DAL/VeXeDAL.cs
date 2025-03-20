@@ -75,5 +75,19 @@ namespace DAL
 
             return data;
         }
+        public List<VeXe> GetALL()
+        {
+            List<VeXe> list = new List<VeXe>();
+            string query = "SELECT * FROM VeXe";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                VeXe ve = new VeXe(item);
+                list.Add(ve);
+            }
+
+            return list;
+        }
     }
+
 }

@@ -15,6 +15,15 @@ namespace QLChuyenXeVaDatVe
     {
 
         /// <summary>
+        /// btnAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAdd;
+
+        /// <summary>
         /// gvDiemDonTraKhach control.
         /// </summary>
         /// <remarks>
@@ -69,6 +78,15 @@ namespace QLChuyenXeVaDatVe
         protected global::System.Web.UI.WebControls.DropDownList ddlLoaiDiem;
 
         /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
+
+        /// <summary>
         /// btnFix control.
         /// </summary>
         /// <remarks>
@@ -85,14 +103,5 @@ namespace QLChuyenXeVaDatVe
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
-
-        /// <summary>
-        /// Button1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

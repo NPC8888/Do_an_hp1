@@ -14,12 +14,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: white;
         }
 
         .menu {
-            background-color:royalblue;
-            color: white;
+            border-bottom: 2px solid black; /* Độ dày, kiểu và màu của viền */
+
+            background-color: white;
+            color: black;
             padding: 0px 20px;
             display: flex;
             align-items: center;
@@ -51,12 +53,11 @@
                 }
 
         .container {
-          
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-     
+
 
         @media (max-width: 768px) {
             .menu {
@@ -73,33 +74,111 @@
                     justify-content: flex-start;
                 }
         }
+        /* Menu dọc */
+        .wrapper {
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Menu dọc */
+        .sidebar {
+            width: 10%;
+            background-color: royalblue;
+            color: white;
+            padding: 20px;
+        }
+
+            .sidebar ul {
+                list-style: none;
+                padding: 0;
+            }
+
+                .sidebar ul li {
+                    margin-bottom: 10px;
+                }
+
+                    .sidebar ul li a {
+                        color: white;
+                        text-decoration: none;
+                        display: block;
+                        padding: 10px;
+                        background: #4169E1;
+                        border-radius: 5px;
+                        transition: background 0.3s;
+                    }
+
+                        .sidebar ul li a:hover {
+                            background: #3558c6;
+                        }
+
+        /* Nội dung */
+        .content {
+            flex-grow: 1;
+            background: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                text-align: center;
+            }
+
+                .sidebar ul {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                }
+
+                    .sidebar ul li {
+                        margin: 0;
+                    }
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style=" color: orange; margin-left: 10%; display: flex; align-items: center; gap: 10%; padding: 10px;">
-            <h1 style="font-size: 20px;">Hotline: 0399240653</h1>
-            <div style="display: flex; gap: 20px;margin-left:20%;cursor:pointer">
-                <strong onclick="#">Dịch vụ</strong>
-                <strong onclick="#">Giới thiệu</strong>
-            </div>
-        </div>
         <div class="menu">
-            <img onclick="iconlgclik()" src="jpg/iconlg.png" />
-            <div>
-                <uc:BtnLogin runat="server" ID="BtnLogin" />
+            <img onclick="iconlgclik()" src="jpg/output-onlinegiftools.gif" />
+            <h1 style="font-size: 20px;">Hotline: 0399240653</h1>
+            <div style="display: flex; gap: 40px; margin-left: 10%; cursor: pointer">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='TraCuu.aspx'">
+                    <img style="height: 20px" src="jpg/search.png" />
+                    <strong>Tra cứu</strong>
+
+                </div>
+
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img style="height: 20px" src="jpg/giohang.png" />
+                    <strong onclick="#">Đơn hàng của tôi</strong>
+                </div>
+
+
+
+                <div>
+                    <uc:BtnLogin runat="server" ID="BtnLogin" />
+                </div>
             </div>
         </div>
 
-        <div class="container">
+        <div class="content">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
+
+
     </form>
 
     <script>
         function iconlgclik() {
             window.location.href = "TrangChu.aspx";
+        }
+        function toggleMenu() {
+            document.getElementById("menu").classList.toggle("active");
         }
     </script>
 </body>

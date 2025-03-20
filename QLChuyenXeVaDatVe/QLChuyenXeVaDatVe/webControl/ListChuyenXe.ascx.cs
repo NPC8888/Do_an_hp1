@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing.Printing;
+using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -16,16 +17,19 @@ namespace xediep.webControl
     public partial class ListChuyenXe : System.Web.UI.UserControl
     {
         public List<ChuyenXe> lchuyenxe = new List<ChuyenXe>();
-        
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                
+                // Nếu có dữ liệu đã sắp xếp, bind lại danh sách chuyến xe
                
             }
         }
+        
+      
+     
         public (string DiemDon, string DiemDen) LayDiemDiDiemDenByMaTuyenXe(string id)
         {
             return TuyenXeBLL.Instance.GetDiemDiDiemDenFromMaTuyenXe(int.Parse(id));
@@ -42,6 +46,8 @@ namespace xediep.webControl
 
            
         }
+
+   
 
         // Lấy bình luận từ chuyến xe có mã MaCX
 

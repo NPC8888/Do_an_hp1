@@ -17,7 +17,7 @@
 
                 <asp:CommandField
                     ShowSelectButton="True"
-                    SelectText="Fix"
+                    SelectText="Xem"
                     ControlStyle-CssClass="btn-select" />
             </Columns>
         </asp:GridView>
@@ -34,7 +34,8 @@
     <div id="popupDiv" class="popup">
         <div class="popup-content">
             <div>
-                <button type="button" onclick="hidePopup()" style="margin-left: 95%; cursor: pointer; background-color: red">X</button>
+                <button type="button" onclick="hidePopup()" style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
+                </button>
                 <h3>Thông Tin Tuyến Xe Xe</h3>
             </div>
 
@@ -53,7 +54,9 @@
         </div>
     </div>
     <div class="XacNhan" id="divxacnhan" runat="server">
-        !!!! Xác nhận xóa <br />niếu xóa toàn bộ các chuyến xe thuộc tuyến đường !!!!
+        !!!! Xác nhận xóa
+        <br />
+        niếu xóa toàn bộ các chuyến xe thuộc tuyến đường !!!!
         <br />
         <asp:Button ID="btnXacNhan" runat="server" Text="Xác nhận" OnClick="btnXacNhan_Click" CssClass="btn-primary" />
         <asp:Button ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click" CssClass="btn-danger" />
@@ -130,7 +133,7 @@
             margin: auto;
             padding: 20px;
             background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         
         }
 
         h2 {
@@ -236,9 +239,9 @@
         function hidePopup() {
             document.getElementById("popupDiv").style.display = "none";
         }
-       
 
-        
+
+
 
 
     </script>

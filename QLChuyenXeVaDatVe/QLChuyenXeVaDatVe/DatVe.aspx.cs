@@ -20,6 +20,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using xediep.BLL;
 using xediep.Models;
+using xediep;
 
 namespace xediep
 {
@@ -45,7 +46,7 @@ namespace xediep
             if (!IsPostBack)
             {
 
-                Response.Write("Debug: " + Request.Url.ToString()); // Kiểm tra URL đầy đủ
+               
                 if (Request.QueryString["id"] == null)
                 {
                     Response.Write("Lỗi: Không có ID chuyến xe.");
@@ -65,7 +66,7 @@ namespace xediep
                 idtuyenXe = cx.MaTuyenXe.ToString();
                 lblTotalPrice.Text = cx.Price.ToString();
 
-
+                
 
 
                 if (string.IsNullOrEmpty(idChuyenXe))
@@ -75,8 +76,8 @@ namespace xediep
                 }
 
 
-                trangThaiGhe = new string[100];
-                for (int i = 0; i < 100; i++)
+                trangThaiGhe = new string[150];
+                for (int i = 0; i < 150; i++)
                 {
                     trangThaiGhe[i] = "0";
                 }
@@ -193,7 +194,7 @@ namespace xediep
                             nguoi = ng;
                         }
                     }
-                    if (nguoi.MaNguoiDung == 0 ||nguoi==null)
+                    if (nguoi.MaNguoiDung == 0 || nguoi == null)
                     {
                         return "Lỗi: Không tìm thấy khách hàng.";
                     }
@@ -201,26 +202,80 @@ namespace xediep
 
                     VeXeBLL veXeBLL = new VeXeBLL();
                     HoaDonBLL hoaDonBLL = new HoaDonBLL();
-                    HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()),TrangThai= "DaThanhToan", MaKhachHang = nguoi.MaNguoiDung };
-                    
+                    HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()), TrangThai = "DaThanhToan", MaKhachHang = nguoi.MaNguoiDung };
+
                     int mahoadon = hoaDonBLL.InsertHoaDonCallbackmahoadon(a);
                     ChiTietHoaDonBLL chiTietHoaDonBLL = new ChiTietHoaDonBLL();
                     ChuyenXe chuyen = ChuyenXeBLL.Instance.GetChuyenXeByMaCX(int.Parse(MaChuyenXe));
-                    
+
                     ThanhToanBLL thanhToanBLL = new ThanhToanBLL();
-                    if (mahoadon ==0)
+                    if (mahoadon == 0)
                     {
                         return "Lỗi: Không thể tạo hóa đơn.";
                     }
                     ThanhToan thanhToan = new ThanhToan { MaHoaDon = mahoadon, PhuongThucThanhToan = "online", TrangThai = "thanhcong" };
-                    
+
                     thanhToanBLL.InsertThanhToan(thanhToan);
                     foreach (int soGhe in TachChuoiThanhList(soghe))
                     {
                         int idve = VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra));
-                        
+
                         ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon { MaHoaDon = mahoadon, MaVeXe = idve, GiaVe = chuyen.Price };
-                        bool chi=chiTietHoaDonBLL.InsertChiTietHoaDon(chiTietHoaDon);
+                        bool chi = chiTietHoaDonBLL.InsertChiTietHoaDon(chiTietHoaDon);
+                        if (chi == false)
+                        {
+                            return "loi";
+
+                        }
+                    }
+
+                }
+                return "Đã đặt vé thành công số ghế: " + soghe;
+            }
+            catch (Exception ex)
+            {
+                return "Lỗi: " + ex.Message;
+            }
+        }
+
+        [WebMethod]
+        public static string SaveBookingb(string MaChuyenXe, string Hoten, string SoDT, string soghe, string MaDiemDon, string MaDiemTra, string tongtieng)
+        {
+            try
+            {
+                HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
+                if (authCookie != null)
+                {
+                    NguoiDung nguoi = new NguoiDung();
+                    string token = authCookie.Value;
+                    foreach (var ng in NguoiDungBLL.Instance.GetAll())
+                    {
+                        if (ng.Token == token)
+                        {
+                            nguoi = ng;
+                        }
+                    }
+                    if (nguoi.MaNguoiDung == 0 || nguoi == null)
+                    {
+                        return "Lỗi: Không tìm thấy khách hàng.";
+                    }
+
+
+                    VeXeBLL veXeBLL = new VeXeBLL();
+                    HoaDonBLL hoaDonBLL = new HoaDonBLL();
+                    HoaDon a = new HoaDon { TongTien = decimal.Parse(tongtieng.ToString()), TrangThai = "ChuaThanhToan", MaKhachHang = nguoi.MaNguoiDung };
+
+                    int mahoadon = hoaDonBLL.InsertHoaDonCallbackmahoadon(a);
+                    ChiTietHoaDonBLL chiTietHoaDonBLL = new ChiTietHoaDonBLL();
+                    ChuyenXe chuyen = ChuyenXeBLL.Instance.GetChuyenXeByMaCX(int.Parse(MaChuyenXe));
+
+
+                    foreach (int soGhe in TachChuoiThanhList(soghe))
+                    {
+                        int idve = VeXeBLL.Instance.InsertDatVe(0, int.Parse(MaChuyenXe), nguoi.MaNguoiDung, "DD", DateTime.Now, Hoten, SoDT, soGhe, int.Parse(MaDiemDon), int.Parse(MaDiemTra));
+
+                        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon { MaHoaDon = mahoadon, MaVeXe = idve, GiaVe = chuyen.Price };
+                        bool chi = chiTietHoaDonBLL.InsertChiTietHoaDon(chiTietHoaDon);
                         if (chi == false)
                         {
                             return "loi";

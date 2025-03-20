@@ -4,7 +4,8 @@
 
     <div class="container">
         <h2>Quản Lý Xe Khách</h2>
-        <button class="btn-primary" type="button" onclick="showPopup()">Thêm Mới</button>
+        <asp:Button runat="server" Text="Thêm Mới" OnClientClick="showPopup(); return false;" CssClass="btn-primary" />
+
         <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
             DataKeyNames="MaXe,BienSoXe,LoaiXe,SoChoNgoi,SoTang,SoDay,SoGheMoiDay" OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
             <Columns>
@@ -23,7 +24,8 @@
 
     <div id="popupDiv" class="popup" style="display: none;">
         <div class="popup-content">
-            <button type="button" onclick="hidePopup()" style="margin-left: 95%; cursor: pointer; background-color: red">X</button>
+            <button type="button" onclick="hidePopup()" style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
+            </button>
             <h3>Thông Tin Xe Khách</h3>
             <label>Mã Xe:</label>
             <asp:TextBox ID="txtMaXe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
@@ -170,6 +172,7 @@
             background-color: #dc3545;
             color: white;
         }
+
         .btn-primary {
             background-color: #007bff;
             color: white;

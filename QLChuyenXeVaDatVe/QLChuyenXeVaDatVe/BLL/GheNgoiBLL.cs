@@ -17,6 +17,21 @@ namespace xediep.BLL
             get { if (instance == null) instance = new GheNgoiBLL(); return GheNgoiBLL.instance; }
             private set => instance = value;
         }
+        public List<GheNgoi> GetAllGheNgoi()
+        {
+            return GheNgoiDAL.Instance.GetALL();
+        }
+        public GheNgoi GetGheNgoiByMaGhe(int id)
+        {
+            foreach (GheNgoi item in GetAllGheNgoi())
+            {
+                if (item.MaGhe == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         public bool DeleteGheNgoiById(string id)
         {
             int i =GheNgoiDAL.Instance.DeleteGheNgoiById(id);

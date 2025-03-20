@@ -4,66 +4,129 @@
 <%@ Register Src="~/webControl/ThanhTimKiem.ascx" TagPrefix="uc1" TagName="ThanhTimKiem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <style>
-     
-        
-        .header {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            
-            color: #333;
+        .a {
+            color: black;
+            text-decoration: none;
+            background-color: none;
         }
-        .search-section, .list-section {
-            margin-bottom: 20px;
+
+
+        .search-section {
+
             padding: 15px;
-            background-color: #ffffff;
+            background-color: none;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .list-section h2 {
-            text-align: center;
-            color:black;
-        }
-        .clock-container {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            background-color: #ffcc00;
-            padding: 10px;
+
+        .list-section {
+            background-color:none;
             border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
+            .list-section h2 {
+                text-align: center;
+                color: black;
+            }
+
+
+
         footer {
             text-align: center;
             padding: 15px;
             margin-top: 20px;
-            background-color: #343a40;
+            background-color: lightslategray;
             color: #ffffff;
             border-radius: 5px;
         }
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
+
+            footer a {
+                color: #ffcc00;
+                text-decoration: none;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: aliceblue;
+            color: #333;
+        }
+
+        td {
+            background-color: aliceblue;
+            color: #555;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            background-color: #ff7f50;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #ff5733;
+            }
+
+        .bodye {
+            background-image: url(https://carshop.vn/wp-content/uploads/2022/07/hyundai-universe-4-15466488907371579447485.jpg);
+            background-size: cover; /* Hình nền phủ đầy phần tử */
+            background-position: center;
         }
     </style>
 
-   
-        <header class="header">
-            <h1>Xin chào quý khách</h1>
-        </header>
+    <div class="bodye">
         <div class="search-section">
             <uc1:ThanhTimKiem runat="server" ID="ThanhTimKiem" />
         </div>
-        <div class="list-section">
-            <h2>Các chuyến xe phổ biến</h2>
-            <uc1:ListChuyenXe runat="server" ID="ListChuyenXe" />
-        </div>
-    
-        <div class="clock-container">
-            <div id="clock"></div>
-        </div>
-    
+    </div>
+    <div class="list-section">
+        <uc1:ListChuyenXe runat="server" ID="ListChuyenXe" />
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Tuyến xe</th>
+                <th>Tổng số chuyến xe</th>
+                <th>Tìm kiếm chuyến xe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%foreach (var tuyenxe in xediep.BLL.TuyenXeBLL.Instance.GetALLTuyenXe())
+                {
+
+            %>
+            <%if (tuyenxe.TrangThai == "HoatDong")
+                {  %>
+            <tr>
+                <td><%=tuyenxe.DiemDi %> ⇒ <%=tuyenxe.DiemDen %></td>
+                <td><%=xediep.BLL.ChuyenXeBLL.Instance.GetALLChuyenXeByTuyenXe(tuyenxe.MaTuyenXe).Count().ToString() %></td>
+                <td><a class="a" href="ListChuyenXe.aspx?diemdi=<%=tuyenxe.DiemDi %>&diemDen=<%=tuyenxe.DiemDen%>" aria-grabbed="true">Tìm Chuyến Xe</a></td>
+            </tr>
+            <%} %>
+            <%} %>
+        </tbody>
+    </table>
+
+
     <footer>
         <p>&copy; 2025 Website Bán Vé Xe. All rights reserved.</p>
         <p>Liên hệ: <a href="mailto:support@banvexe.com">support@banvexe.com</a></p>
@@ -71,14 +134,6 @@
     </footer>
 
     <script>
-        function updateClock() {
-            var now = new Date();
-            var hours = now.getHours().toString().padStart(2, '0');
-            var minutes = now.getMinutes().toString().padStart(2, '0');
-            var seconds = now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('clock').innerText = hours + ':' + minutes + ':' + seconds;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+
+</script>
 </asp:Content>

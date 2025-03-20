@@ -2,7 +2,7 @@
 
 <div class="containerr">
     <div class="logo-container">
-        <img src="Asscet/Icon/LgWeb.png" alt="Logo" class="logo">
+        <img src="../jpg/logo.png" alt="Logo" class="logo">
     </div>
     <h1>Bến Xe DNC</h1>
     <div class="search-section">
@@ -18,20 +18,14 @@
 </div>
 
 <style>
-   .containerr {
-    padding: 20px;
-    background: url(https://vexeonline.com/wp-content/uploads/2022/12/slider-2-1.png);
-    background-size: cover; /* Hình nền phủ đầy phần tử */
-    background-position: center; /* Canh giữa hình nền */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-    .containerr:hover {
-        transform: scale(1.02);
+    .containerr {
+        padding: 20px;
+      
+        border-radius: 10px;
+        text-align: center;
+        
     }
+
 
     .logo-container {
         text-align: center;
@@ -44,7 +38,6 @@
     }
 
     h1 {
-        
         font-size: 24px;
         margin-bottom: 15px;
         font-family: 'Roboto', sans-serif;
@@ -66,17 +59,17 @@
         font-size: 16px;
         min-width: 180px;
         max-width: 250px;
-        transition: border-color 0.3s ease;
+  
     }
 
-    .dropdown:focus, .date-picker:focus {
-        border-color: #6a11cb;
-        outline: none;
-    }
+        .dropdown:focus, .date-picker:focus {
+            border-color: none;
+            outline: none;
+        }
 
     .btn {
-        background-color: mediumspringgreen;
-        color: white;
+        background-color:white;
+        color:black;
         border: none;
         padding: 12px 20px;
         font-size: 16px;
@@ -88,17 +81,12 @@
         min-width: 150px;
     }
 
-    .btn:hover {
-        background: linear-gradient(to right, #4e0dab, #1a5dc9);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    }
-
     .results {
         margin-top: 20px;
         padding: 10px;
         background: #fff;
         border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+       
         display: none;
     }
 

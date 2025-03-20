@@ -1,7 +1,9 @@
 ﻿
-body {
+.obody {
+    background: url(https://vexeonline.com/wp-content/uploads/2022/12/slider-2-1.png);
+    background-size: cover; /* Hình nền phủ đầy phần tử */
+    background-position: center; /* Canh giữa hình nền */
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
     margin: 0;
     display: flex;
     justify-content: center;

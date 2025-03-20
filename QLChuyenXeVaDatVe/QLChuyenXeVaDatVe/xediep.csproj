@@ -161,26 +161,53 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asscet\Icon\LgWeb.png" />
-    <Content Include="ChiTietDatVe.aspx" />
+    <Content Include="ChiTietChuyenXe.aspx" />
     <Content Include="css\datve.css" />
+    <Content Include="css\QuanLy.css" />
+    <Content Include="jpg\documents.gif" />
+    <Content Include="jpg\locations.gif" />
+    <Content Include="jpg\logout.gif" />
+    <Content Include="jpg\Mbus.png" />
+    <Content Include="jpg\MChuyenXeicon.gif" />
+    <Content Include="jpg\Mdoanhthu.gif" />
+    <Content Include="jpg\Mfeedback.gif" />
+    <Content Include="jpg\Mphuongtien.gif" />
+    <Content Include="jpg\Mtuyenduong.gif" />
+    <Content Include="jpg\quaylai.png" />
     <Content Include="css\StyleListCX.css" />
     <Content Include="css\StyleLogin.css" />
+    <Content Include="DangKyTaiKhoan.aspx" />
     <Content Include="DatVe.aspx" />
+    <Content Include="DoiMatKhau.aspx" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="huongdan.txt" />
     <Content Include="jpg\1.jpg" />
+    <Content Include="jpg\bus.gif" />
     <Content Include="jpg\iconlg.png" />
+    <Content Include="jpg\iconX.png" />
+    <Content Include="jpg\giohang.png" />
+    <Content Include="jpg\logo.png" />
+    <Content Include="jpg\output-onlinegiftools.gif" />
+    <Content Include="jpg\search.png" />
+    <Content Include="jpg\user.png" />
     <Content Include="js\JsLogin.js" />
     <Content Include="QuanLyChuyenXe.aspx" />
     <Content Include="QuanLyDiemDonTraKhach.aspx" />
+    <Content Include="QuanLyHoaDon.aspx" />
+    <Content Include="QuanLyNguoiDung.aspx" />
     <Content Include="QuanLyTuyenXe.aspx" />
     <Content Include="QuanLyXeKhach.aspx" />
-    <Content Include="testapi.aspx" />
+    <Content Include="TraCuu.aspx" />
+    <Content Include="TrangChiTietHoaDon.aspx" />
     <Content Include="TrangChu.aspx" />
     <Content Include="TrangChuQuanTri.aspx" />
+    <Content Include="TrangQuanTri.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
+    <Content Include="webControl\BoLoc.ascx" />
     <Content Include="webControl\BtnLogin.ascx" />
     <Content Include="webControl\ListChuyenXe.ascx" />
+    <Content Include="jpg\HuongDan.jpeg" />
     <Content Include="webControl\ThanhTimKiem.ascx" />
     <Content Include="ListChuyenXe.aspx" />
     <Content Include="profile.aspx" />
@@ -205,12 +232,12 @@
     <Compile Include="BLL\TuyenXeBLL.cs" />
     <Compile Include="BLL\XacThucThanhToanBLL.cs" />
     <Compile Include="BLL\XeKhachBLL.cs" />
-    <Compile Include="ChiTietDatVe.aspx.cs">
-      <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
+    <Compile Include="ChiTietChuyenXe.aspx.cs">
+      <DependentUpon>ChiTietChuyenXe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ChiTietDatVe.aspx.designer.cs">
-      <DependentUpon>ChiTietDatVe.aspx</DependentUpon>
+    <Compile Include="ChiTietChuyenXe.aspx.designer.cs">
+      <DependentUpon>ChiTietChuyenXe.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAL\BaoCaoDAL.cs" />
     <Compile Include="DAL\ChiTietHoaDonDAL.cs" />
@@ -230,12 +257,26 @@
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\TuyenXeDAL.cs" />
     <Compile Include="DAL\XeKhachDAL.cs" />
+    <Compile Include="DangKyTaiKhoan.aspx.cs">
+      <DependentUpon>DangKyTaiKhoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DangKyTaiKhoan.aspx.designer.cs">
+      <DependentUpon>DangKyTaiKhoan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DatVe.aspx.cs">
       <DependentUpon>DatVe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DatVe.aspx.designer.cs">
       <DependentUpon>DatVe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DoiMatKhau.aspx.cs">
+      <DependentUpon>DoiMatKhau.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DoiMatKhau.aspx.designer.cs">
+      <DependentUpon>DoiMatKhau.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\BaoCao.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
@@ -278,6 +319,20 @@
     <Compile Include="QuanLyDiemDonTraKhach.aspx.designer.cs">
       <DependentUpon>QuanLyDiemDonTraKhach.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyHoaDon.aspx.cs">
+      <DependentUpon>QuanLyHoaDon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyHoaDon.aspx.designer.cs">
+      <DependentUpon>QuanLyHoaDon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyNguoiDung.aspx.cs">
+      <DependentUpon>QuanLyNguoiDung.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyNguoiDung.aspx.designer.cs">
+      <DependentUpon>QuanLyNguoiDung.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyTuyenXe.aspx.cs">
       <DependentUpon>QuanLyTuyenXe.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -292,12 +347,19 @@
     <Compile Include="QuanLyXeKhach.aspx.designer.cs">
       <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>
     </Compile>
-    <Compile Include="testapi.aspx.cs">
-      <DependentUpon>testapi.aspx</DependentUpon>
+    <Compile Include="TraCuu.aspx.cs">
+      <DependentUpon>TraCuu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="testapi.aspx.designer.cs">
-      <DependentUpon>testapi.aspx</DependentUpon>
+    <Compile Include="TraCuu.aspx.designer.cs">
+      <DependentUpon>TraCuu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrangChiTietHoaDon.aspx.cs">
+      <DependentUpon>TrangChiTietHoaDon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrangChiTietHoaDon.aspx.designer.cs">
+      <DependentUpon>TrangChiTietHoaDon.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrangChu.aspx.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
@@ -312,6 +374,20 @@
     </Compile>
     <Compile Include="TrangChuQuanTri.aspx.designer.cs">
       <DependentUpon>TrangChuQuanTri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TrangQuanTri.aspx.cs">
+      <DependentUpon>TrangQuanTri.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrangQuanTri.aspx.designer.cs">
+      <DependentUpon>TrangQuanTri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webControl\BoLoc.ascx.cs">
+      <DependentUpon>BoLoc.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webControl\BoLoc.ascx.designer.cs">
+      <DependentUpon>BoLoc.ascx</DependentUpon>
     </Compile>
     <Compile Include="webControl\BtnLogin.ascx.cs">
       <DependentUpon>BtnLogin.ascx</DependentUpon>
@@ -350,10 +426,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Backgroud.Master" />
+    <Content Include="ThongTinWeb.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MQuanTri.Master" />
     <Content Include="DAL\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
-    <Content Include="Backgroud.Master" />
     <None Include="DAL\DataSet1.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -362,10 +442,6 @@
     <Content Include="DAL\DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
-    <Content Include="ThongTinWeb.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MQuanTri.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

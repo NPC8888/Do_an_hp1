@@ -116,14 +116,14 @@ namespace DAL
 
         public bool UpdateNguoiDung(NguoiDung nd)
         {
-            string query = string.Format("UPDATE NguoiDung SET TenDangNhap = '{0}', MatKhau = N'{1}', HoTen = {2},SoDienThoai={3}, Email='{4}' WHERE MaNguoiDung = {5}, VaiTro='{6}'", nd.TenDangNhap,nd.MatKhau,nd.HoTen,nd.SDT,nd.EMai);
+            string query = string.Format("UPDATE NguoiDung SET TenDangNhap = '{0}', MatKhau = N'{1}', HoTen = '{2}',  SoDienThoai={3}, Email='{4}', VaiTro='{5}' WHERE MaNguoiDung = {6} ", nd.TenDangNhap,nd.MatKhau,nd.HoTen,nd.SDT,nd.EMai,nd.VaiTro,nd.MaNguoiDung);
             int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
 
         public bool DeleteNguoiDung(int nd)
         {
-            string query = "DELETE FROM NguoiDung WHERE MaNguoiDung = " + nd;
+            string query = "DELETE FROM NguoiDung WHERE MaNguoiDung = " + nd.ToString();
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { nd });
             return result > 0;
         }

@@ -29,6 +29,7 @@ namespace QLChuyenXeVaDatVe.DAL
             {
                 HoaDon hoaDon = new HoaDon(item);
                 hoaDons.Add(hoaDon);
+
             }
             return hoaDons;
         }
@@ -45,17 +46,17 @@ namespace QLChuyenXeVaDatVe.DAL
         public bool InsertHoaDon(HoaDon hoaDon)
         {
             string query = "INSERT INTO HoaDon (MaKhachHang, TongTien, TrangThai) VALUES (@MaKhachHang, @TongTien, @TrangThai)";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { hoaDon.MaKhachHang, hoaDon.TongTien, hoaDon.MaPhuongThuc, hoaDon.TrangThai });
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { hoaDon.MaKhachHang, hoaDon.TongTien, hoaDon.TrangThai });
             return result > 0;
         }
         public int InsertHoaDonback(HoaDon hoaDon)
         {
-            string query = string.Format("INSERT INTO HoaDon (MaKhachHang, TongTien, TrangThai) VALUES ({0}, {1}, '{2}'); SELECT SCOPE_IDENTITY()",hoaDon.MaKhachHang,hoaDon.TongTien,hoaDon.TrangThai); 
-            
+            string query = string.Format("INSERT INTO HoaDon (MaKhachHang, TongTien, TrangThai) VALUES ({0}, {1}, '{2}'); SELECT SCOPE_IDENTITY()", hoaDon.MaKhachHang, hoaDon.TongTien, hoaDon.TrangThai);
+
             object result = DataProvider.Instance.ExecuteScalar(query);
             int newGheId = Convert.ToInt32(result);
             return newGheId;
-            
+
         }
     }
 }

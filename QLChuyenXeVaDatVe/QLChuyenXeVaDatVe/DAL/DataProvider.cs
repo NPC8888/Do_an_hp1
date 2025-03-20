@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QLChuyenXeVaDatVe.DAL.DataSet1TableAdapters;
 namespace DAL
 {
     public class DataProvider
@@ -20,7 +20,7 @@ namespace DAL
         public DataProvider() { }
 
 
-        private string connectionSTR = @"Data Source=LAPTOP-3B68DA7A\SQLEXPRESS;Initial Catalog=QLChuyenXe;Integrated Security=True";
+        private string connectionSTR = @"Data Source=LAPTOP-3B68DA7A\SQLEXPRESS;Initial Catalog=QLChuyenXe;Integrated Security=True;Timeout=100;";
 
 
         public DataTable ExecuteQuery(string query, object[] parameter = null)

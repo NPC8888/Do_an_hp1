@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using Models;
+using QLChuyenXeVaDatVe.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
@@ -35,21 +36,21 @@ namespace xediep
             List<ChuyenXe> ChuyenXe = ChuyenXeBLL.Instance.GetALLChuyenXe();
             gvXeKhach.DataSource = ChuyenXe;
             gvXeKhach.DataBind();
-            
+
 
         }
         private void LoadDDLTuyenXe()
-        { 
+        {
             List<TuyenXe> list = TuyenXeBLL.Instance.GetALLTuyenXe();
             foreach (TuyenXe item in list)
             {
                 ddlTuyenXe.Items.Add(new ListItem(item.DiemDi + " - " + item.DiemDen, item.MaTuyenXe.ToString()));
-            }   
-          
+            }
+
         }
         private void LoadDDLTaiXe()
         {
-            List<NguoiDung> list =NguoiDungBLL.Instance.GetAllTaiXe();
+            List<NguoiDung> list = NguoiDungBLL.Instance.GetAllTaiXe();
             foreach (NguoiDung item in list)
             {
                 ddlTaiXe.Items.Add(new ListItem(item.HoTen, item.MaNguoiDung.ToString()));
@@ -61,7 +62,7 @@ namespace xediep
             List<XeKhach> list = XeKhachBLL.Instance.GetAllXeKhach();
             foreach (XeKhach item in list)
             {
-                ddlXe.Items.Add(new ListItem(item.LoaiXe+"-"+item.BienSoXe+"("+item.SoChoNgoi+"Chỗ)", item.MaXe.ToString()));
+                ddlXe.Items.Add(new ListItem(item.LoaiXe + "-" + item.BienSoXe + "(" + item.SoChoNgoi + "Chỗ)", item.MaXe.ToString()));
             }
 
         }
@@ -71,7 +72,7 @@ namespace xediep
         {
             ChuyenXe newCX = new ChuyenXe
             {
-                
+
                 MaTuyenXe = int.Parse(ddlTuyenXe.SelectedValue),
                 TgDen = DateTime.Parse(txtTgDen.Text),
                 TgKhoiHanh = DateTime.Parse(txtTgKhoiHanh.Text),
@@ -87,7 +88,7 @@ namespace xediep
             if (result)
             {
                 LoadXeKhachData();
-                
+
                 Response.Write("<script>alert('Thêm thành công!');</script>");
             }
             else
@@ -101,35 +102,35 @@ namespace xediep
         {
             if (gvXeKhach.SelectedRow != null) // Kiểm tra xem có dòng nào được chọn không
             {
-                
-
-                    ChuyenXe updatedXe = new ChuyenXe
-                    {
-                        MaCx = int.Parse(txtMaCX.Text),
-                        MaTuyenXe=int.Parse(ddlTuyenXe.SelectedValue),
-                        TgDen = DateTime.Parse(txtTgDen.Text),
-                        TgKhoiHanh = DateTime.Parse(txtTgKhoiHanh.Text),
-                        Price = decimal.Parse(txtPrice.Text),
-                        TrangThai = txtTrangThai.Text,
-                        MaTaiXe = int.Parse(ddlTaiXe.SelectedValue),
-                        MaXe = int.Parse(ddlXe.SelectedValue)
 
 
-                    };
-                    bool result = ChuyenXeBLL.Instance.UpdateChuyenXe(updatedXe);
-                    if (result)
-                    {
-                        LoadXeKhachData();
-                        
-                        Response.Write("<script>alert('Cập nhật xe thành công!');</script>");
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Lỗi khi cập nhật xe!');</script>");
-                    }
-                    // Gửi đối tượng updatedXe đến tầng xử lý dữ liệu (BLL/DAL) để cập nhật
-                
-              
+                ChuyenXe updatedXe = new ChuyenXe
+                {
+                    MaCx = int.Parse(txtMaCX.Text),
+                    MaTuyenXe = int.Parse(ddlTuyenXe.SelectedValue),
+                    TgDen = DateTime.Parse(txtTgDen.Text),
+                    TgKhoiHanh = DateTime.Parse(txtTgKhoiHanh.Text),
+                    Price = decimal.Parse(txtPrice.Text),
+                    TrangThai = txtTrangThai.Text,
+                    MaTaiXe = int.Parse(ddlTaiXe.SelectedValue),
+                    MaXe = int.Parse(ddlXe.SelectedValue)
+
+
+                };
+                bool result = ChuyenXeBLL.Instance.UpdateChuyenXe(updatedXe);
+                if (result)
+                {
+                    LoadXeKhachData();
+
+                    Response.Write("<script>alert('Cập nhật xe thành công!');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Lỗi khi cập nhật xe!');</script>");
+                }
+                // Gửi đối tượng updatedXe đến tầng xử lý dữ liệu (BLL/DAL) để cập nhật
+
+
 
             }
             else
@@ -150,7 +151,7 @@ namespace xediep
             if (result)
             {
                 LoadXeKhachData();
-                
+
                 Response.Write("<script>alert('Xóa thành công!');</script>");
             }
             else
@@ -160,7 +161,7 @@ namespace xediep
         }
 
         // Handle selecting an item from GridView (to edit)
-       
+
         protected void gvXeKhach_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Lấy dữ liệu từ dòng được chọn
@@ -182,7 +183,7 @@ namespace xediep
             string maTaiXe = gvXeKhach.DataKeys[index].Values["MaTaiXe"].ToString();
             string maXe = gvXeKhach.DataKeys[index].Values["MaXe"].ToString();
             string trangThai = gvXeKhach.DataKeys[index].Values["TrangThai"].ToString();
-            
+
 
             // Đổ dữ liệu vào TextBox trong popup
             txtMaCX.Text = maCX;
@@ -206,20 +207,35 @@ namespace xediep
         {
             txtMaCX.Text = "";
             ddlTuyenXe.SelectedValue = null;
-            txtTgKhoiHanh.Text = "" ;
+            txtTgKhoiHanh.Text = "";
             txtTgDen.Text = "";
             txtPrice.Text = "";
             ddlTaiXe.SelectedValue = null;
             ddlXe.SelectedValue = null;
             txtTrangThai.Text = "";
             //ẩn btn fix,delete
-            btnFix.Visible=false;
-            btnDelete.Visible= false;
+            btnFix.Visible = false;
+            btnDelete.Visible = false;
             ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
         // Clear form fields
 
 
+        protected void gvHoaDon_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ChiTiet")
+            {
+                // Lấy chỉ mục của hàng chứa nút được nhấn
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+
+                // Lấy dữ liệu từ hàng tương ứng
+                GridViewRow row = gvXeKhach.Rows[rowIndex];
+                string maHoaDon = row.Cells[0].Text; // Lấy Mã Hóa Đơn từ cột đầu tiên
+
+                // Chuyển hướng đến trang chi tiết hóa đơn
+                Response.Redirect("ChiTietChuyenXe.aspx?id=" + maHoaDon);
+            }
+        }
 
 
 

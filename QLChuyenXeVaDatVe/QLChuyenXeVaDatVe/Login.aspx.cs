@@ -28,9 +28,14 @@ namespace xediep
                 authCookie.HttpOnly = true;
                 Response.Cookies.Add(authCookie);
                 DataRow dr= NguoiDungBLL.Instance.AuthenticateByToken(token);
-                if(dr != null && dr["VaiTro"].ToString()=="QuanTri")
+                
+                if (dr != null && dr["VaiTro"].ToString()=="QuanTri")
                 {
-                Response.Redirect("TrangChuQuanTri.aspx");
+                Response.Redirect("TrangQuanTri.aspx");
+                }
+                else if(dr != null && dr["VaiTro"].ToString() == "TaiXe")
+                {
+
                 }
                 else { Response.Redirect("TrangChu.aspx"); }
                

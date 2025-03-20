@@ -10,15 +10,16 @@
 
 
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" OnClick="ThemMoi" CssClass="btn-primary" />
-
-
+        <asp:TextBox ID="txtS" runat="server" TextMode="Date" class="date-picker"></asp:TextBox>
+        <asp:TextBox ID="txtE" runat="server" TextMode="Date" class="date-picker"></asp:TextBox>
+        <asp:Button ID="btnTK" runat="server" Text="Thống kê" CssClass="btn-primary" BackColor="#FF9999" />
         <!-- GridView to display Xe Khach List -->
-        <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
+        <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="GridViewClass"
             DataKeyNames="MaCX,MaTuyenXe,TgKhoiHanh,TgDen,Price,MaTaiXe,MaXe,TrangThai"
-            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
+            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" OnRowCommand="gvHoaDon_RowCommand" BackColor="#FF99FF" BorderColor="#3333FF">
             <Columns>
-                <asp:BoundField DataField="MaCX" HeaderText="Mã Chuyến Xe" SortExpression="MaCX" />
-                <asp:BoundField DataField="MaTuyenXe" HeaderText="Mã Tuyến Xe" SortExpression="MaTuyenXe" />
+                <asp:BoundField DataField="MaCX" HeaderText="Mã Chuyến xe" SortExpression="MaCX" />
+                <asp:BoundField DataField="MaTuyenXe" HeaderText="Mã Tuyến" SortExpression="MaTuyenXe" />
                 <asp:BoundField DataField="TgKhoiHanh" HeaderText="Thời Gian Khởi Hành" SortExpression="TgKhoiHanh" />
                 <asp:BoundField DataField="TgDen" HeaderText="Thời Gian Đến" SortExpression="TgDen" />
                 <asp:BoundField DataField="Price" HeaderText="Giá Vé" SortExpression="Price" />
@@ -27,9 +28,10 @@
                 <asp:BoundField DataField="TrangThai" HeaderText="Trạng Thái" SortExpression="TrangThai" />
                 <asp:CommandField
                     ShowSelectButton="True"
-                    SelectText="Fix"
+                    SelectText="Chỉnh sửa"
+                    HeaderText="Chỉnh sửa"
                     ControlStyle-CssClass="btn-select" />
-
+                <asp:ButtonField ButtonType="Button" CommandName="ChiTiet" Text="Xem" ControlStyle-BorderColor="White" FooterStyle-Width="100%" />
             </Columns>
         </asp:GridView>
 
@@ -48,7 +50,9 @@
     <div id="popupDiv" class="popup">
         <div class="popup-content">
             <div>
-                <button type="button" onclick="hidePopup()" style="margin-left: 95%" class="btn-danger">X </button>
+                <button type="button" onclick="hidePopup()"
+                    style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
+                </button>
                 <h3>Thông Tin Chuyến Xe</h3>
             </div>
 
@@ -86,159 +90,7 @@
     </div>
 
 
-
-    <style>
-        /* CSS to style the page */
-        .popup {
-            display: none; /* Ẩn mặc định */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            z-index: 1000;
-            width: 60%;
-        }
-
-        .popup-content {
-            text-align: center;
-        }
-
-        .popup-input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-
-
-        .dropdown, .date-picker {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            min-width: 100%;
-            transition: border-color 0.3s ease;
-        }
-
-        .btn-select {
-            color: #28a745 !important;
-            background-color:khaki;
-            font-weight: bold;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-            .btn-select:hover {
-                color: #218838 !important;
-                
-            }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            padding: 10px 15px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Thay đổi từ 'button' thành 'input' */
-        input.btn-primary {
-            background-color: #007bff;
-            color: white;
-        }
-
-        input.btn-warning {
-            background-color: #ffc107;
-            color: white;
-        }
-
-        input.btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f8f9fa;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        button, .table {
-            margin-bottom: 20px;
-        }
-
-        @keyframes blink {
-            0% {
-                background-color: #ffcc00;
-            }
-
-            50% {
-                background-color: #ffeb99;
-            }
-            /* Màu nhạt hơn */
-            100% {
-                background-color: #ffcc00;
-            }
-        }
-
-        .selected-row {
-            animation: blink 1s infinite alternate; /* Nhấp nháy */
-        }
-    </style>
+    <link rel="stylesheet" href="css/QuanLy.css">
 
 
     <script>

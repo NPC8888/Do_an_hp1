@@ -18,13 +18,18 @@ namespace xediep
         {
           if (!IsPostBack)
             {
-                ListChuyenXe.lchuyenxe = ChuyenXeBLL.Instance.GetALLChuyenXe();
-
-
+                foreach (var item in ChuyenXeBLL.Instance.GetALLChuyenXe())
+                {
+                    ListChuyenXe.lchuyenxe.Add(new ChuyenXe(item));
+                }
 
             }
 
         }
+        //private List<ChuyenXe> LoadlChuyenXePhoBien()
+        //{
+            
+        //}
 
         
     }

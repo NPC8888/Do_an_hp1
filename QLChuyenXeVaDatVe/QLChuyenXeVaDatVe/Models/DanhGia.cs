@@ -4,7 +4,7 @@ using System.Data;
 namespace Models
 {
     public class DanhGia
-    {
+    {   public DanhGia() { }
         public DanhGia(DataRow row)
         {
             this.MaDanhGia = row["MaDanhGia"] != DBNull.Value ? Convert.ToInt32(row["MaDanhGia"]) : 0;

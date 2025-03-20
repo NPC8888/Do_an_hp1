@@ -5,14 +5,20 @@
     <style>
         .container {
             max-width: 600px;
-            margin: 20px auto;
+            margin: auto;
             text-align: center;
         }
 
+        .containerr {
+            display: flex;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
         /* Cấu trúc ghế: driver, tầng 1 & tầng 2 */
         .seat-grid {
             display: grid;
-            grid-template-columns: repeat( 60px); /* 4 ghế mỗi hàng */
+            grid-template-columns: repeat( 60px);
             gap: 10px;
             justify-content: center;
             margin-bottom: 20px;
@@ -30,8 +36,9 @@
             margin: 5px;
             text-align: center;
             line-height: 40px;
-            background-color: darkgray;
+            background-color: #fff;
             border-radius: 5px;
+            border: 2px solid;
             cursor: pointer;
         }
 
@@ -43,7 +50,7 @@
             line-height: 40px;
             border-radius: 5px;
             cursor: pointer;
-            background-color: darkkhaki;
+            background-color: #a59f9f;
             cursor: not-allowed;
         }
 
@@ -51,22 +58,6 @@
         .seat.selected {
             background-color: #3498db; /* Chỗ đang chọn */
         }
-
-        .seat-driver {
-            width: 30px;
-            height: 30px;
-            background-color: #f39c12;
-            color: #fff;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: not-allowed;
-            margin: 0 auto;
-        }
-
         /* Các tầng ghế có thể có khoảng cách riêng */
 
 
@@ -102,23 +93,26 @@
 
         .form-group label {
             font-size: 1rem;
-            color: #4CAF50;
+            color: black;
             margin-bottom: 5px;
             display: block;
         }
 
         .btnNext {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            border: none;
-            padding: 12px 20px;
+            background: #fff;
+            color: black;
+            border: 2px solid;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 25px;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            padding: 10px;
+            margin-bottom: 5%;
         }
+
+            .btnNext:hover {
+                background: #a59f9f;
+            }
 
         .aaa {
             display: flex;
@@ -129,17 +123,8 @@
             width: 100%;
             padding: 10px;
             font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
         }
 
-            .form-group .form-control:focus {
-                border-color: #3498db;
-                outline: none;
-                box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-            }
 
         /* Dropdown */
         .dropdown-container {
@@ -151,11 +136,11 @@
                 font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 5px;
-                color: #007bff;
+                color: black;
             }
 
         .custom-dropdown {
-            width: 100%;
+            width: 50%;
             padding: 10px;
             border: 2px solid #007bff;
             border-radius: 5px;
@@ -164,16 +149,6 @@
             color: #333;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
-
-            .custom-dropdown:hover {
-                border-color: #0056b3;
-            }
-
-            .custom-dropdown:focus {
-                border-color: #0056b3;
-                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-                outline: none;
-            }
 
         /* Panel xác nhận đặt vé */
         .booking-confirmation {
@@ -254,30 +229,37 @@
             .close-btn:hover {
                 background: darkred;
             }
+
+        GhiChu {
+            height: 20px;
+            width: 20px;
+        }
     </style>
 
     <asp:ScriptManager runat="server" EnablePageMethods="true" />
 
     <!-- Thanh trạng thái -->
-    <div style="display: flex; justify-content: center; align-items: center; margin: 5% 10%;">
-        <div>
-            <div id="Step1" class="circle active">1</div>
-            <span>Chọn ghế</span>
-        </div>
-        <div id="Line1" class="progress-line"></div>
-        <div>
-            <div id="Step2" class="circle">2</div>
-            <span>Nhập thông tin</span>
-        </div>
-        <div id="Line2" class="progress-line"></div>
-        <div>
-            <div id="Step3" class="circle">3</div>
-            <span>Xác nhận đặt vé</span>
+    <div style="display: flex; justify-content: center; align-items: center; margin: auto">
+        <div style="display: flex; justify-content: center; align-items: center; min-width: 40%; margin: 2% 0 1% 0">
+            <div>
+                <div id="Step1" class="circle active">1</div>
+                <span>Chọn ghế</span>
+            </div>
+            <div id="Line1" class="progress-line"></div>
+            <div>
+                <div id="Step2" class="circle">2</div>
+                <span>Nhập thông tin</span>
+            </div>
+            <div id="Line2" class="progress-line"></div>
+            <div>
+                <div id="Step3" class="circle">3</div>
+                <span>Xác nhận đặt vé</span>
+            </div>
         </div>
     </div>
     <!-- Nội dung từng bước -->
     <div id="StepContent1" class="container">
-        <h2>Bước 1: Chọn ghế Và Điểm Đón, Trả</h2>
+
         <div class="dropdown-container">
             <label for="ddlDiemDon">🚏 Điểm đón:</label>
             <asp:DropDownList ID="ddlDiemDon" runat="server" CssClass="custom-dropdown">
@@ -285,56 +267,68 @@
         </div>
 
         <div class="dropdown-container">
-            <label for="ddlDiemTra">🎯 Điểm trả:</label>
+            <label for="ddlDiemTra">🎯 Điểm trả :</label>
             <asp:DropDownList ID="ddlDiemTra" runat="server" CssClass="custom-dropdown">
             </asp:DropDownList>
         </div>
-
-        <div class="aaa">
-            <div class="container">
-                <!-- Ghế tài xế -->
-                <div class="seat-grid" id="driverSeat">
-                    <div class="seat-driver">Tài xế</div>
-
-                </div>
-                <% int soghe = 1; for (int i = 1; i <= tang; i++)
-                    { %>
-                <!-- Tầng <%=i %> -->
-                <p>Tầng<%=i %></p>
-                <div class="seat-grid floor-<%=i %>">
-                    <% for (int j = 1; j <= day; j++)
-                        { %>
-                    <div class="seat-row">
-                        <% for (int k = 1; k <= ghe; k++)
-                            {
-                                if (trangThaiGhe[soghe] == "0")
-                                {  %>
-                        <div class="seat" id="seat<%=i %><%=j %><%=k %>"
-                            onclick="toggleSeatSelection('seat<%=i %><%=j %><%=k %>',<%=soghe %>)">
-                            <%=soghe %>
-                        </div>
-                        <% }
-                            else
-                            {  %>
-                        <div class="taken">
-                            <%=soghe %>
-                        </div>
-                        <%} %>
-                        <% soghe++;
-                            } %>
-                    </div>
-                    <% } %>
-                </div>
-                <% } %>
-
-                <p>Ghế đã chọn: <span id="selectedSeats"></span></p>
+        <div style="display: flex; align-items: center; gap: 30px; margin: 10px 30%">
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <div style="background-color: white; width: 15px; height: 15px; border: 1px solid black;"></div>
+                <p style="margin: 0;">Ghế trống</p>
             </div>
 
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <div style="background-color: gray; width: 15px; height: 15px; border: 1px solid black;"></div>
+                <p style="margin: 0;">Đã đặt</p>
+            </div>
         </div>
+
+        <div class="containerr">
+
+            <% int soghe = 1; for (int i = 1; i <= tang; i++)
+                { %>
+            <div class="container">
+
+                <p>Tầng<%=i %></p>
+                <div class="containerr">
+
+                    <div class="seat-grid floor-<%=i %>">
+                        <% for (int j = 1; j <= day; j++)
+                            { %>
+                        <div class="seat-row">
+                            <% for (int k = 1; k <= ghe; k++)
+                                {
+                                    if (trangThaiGhe[soghe] == "0")
+                                    {  %>
+                            <div class="seat" id="seat<%=i %><%=j %><%=k %>"
+                                onclick="toggleSeatSelection('seat<%=i %><%=j %><%=k %>',<%=soghe %>)">
+                                <%=soghe %>
+                            </div>
+                            <% }
+                                else
+                                {  %>
+                            <div class="taken">
+                                <%=soghe %>
+                            </div>
+                            <%} %>
+                            <% soghe++;
+                                } %>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+
+        <p>Ghế đã chọn: <span id="selectedSeats"></span></p>
     </div>
-    <div id="StepContent2" class="container" style="display: none;">
-        <h2>Bước 2: Nhập thông tin</h2>
-        <div class="form-container">
+
+    <!-- Nội dung từng bước -->
+    <div id="StepContent2" class="container" style="display: none; background:none">
+
+        <div style="background:none">
             <!-- Họ tên -->
             <div class="form-group">
                 <asp:Label ID="lbID" runat="server"></asp:Label>
@@ -347,26 +341,23 @@
                 <label for="txtSoDienThoai">Số điện thoại:</label>
                 <asp:TextBox ID="txtSoDienThoai" runat="server" CssClass="form-control" placeholder="Nhập số điện thoại" />
             </div>
-            <div class="form-group">
-                <label for="txtSoDienThoai">Gamil nhận hóa đơn và vé điện tử:</label>
-                <asp:TextBox ID="txtGmail" runat="server" CssClass="form-control" placeholder="Nhập gmail" />
-            </div>
+
 
 
         </div>
 
     </div>
-
+    <!-- Nội dung từng bước -->
     <div id="StepContent3" class="container" style="display: none;">
-        <h2>Bước 3: Xác nhận đặt vé</h2>
+
 
         <asp:Panel ID="pnlBookingConfirmation" runat="server" CssClass="booking-confirmation">
-            <label for="paymentMethod">Chọn phương thức thanh toán:</label>
-            <select id="paymentMethod">
+            <label for="paymentMethod">phương thức thanh toán:</label>
+            <select id="paymentMethod" class="custom-dropdown" style="max-width:150px;max-height:60px; font-size:12px">
                 <option value="online">Thanh toán online</option>
                 <option value="onboard">Thanh toán khi lên xe</option>
             </select>
-            <h2>Nội dung</h2>
+            
             <p>
             <p>
                 <strong>Xe khách:</strong>
@@ -400,7 +391,7 @@
         <div class="popup-content">
 
             <img src="" id="imgQR" alt="QR Code" />
-            <div class="info" id ="pr">Số tiền: <span id="amount">100,000</span> VNĐ</div>
+            <div class="info" id="pr">Số tiền: <span id="amount">100,000</span> VNĐ</div>
             <div class="info" id="t">Thời gian còn lại: <span id="countdown" class="countdown">02:00</span></div>
             <button type="button" class="close-btn" onclick="(() => window.location.href = '/TrangChu.aspx')()">Về trang chủ</button>
         </div>
@@ -431,18 +422,18 @@
                 timeLeft--;
                 setTimeout(updateCountdown, 1000);
             } else {
-                closePopup();
+                document.getElementById("popupDiv").style.visibility = "hidden";
             }
         }
 
         function closePopup() {
             // document.getElementById("popupDiv").style.visibility = 'hidden';
-            document.getElementById("t").style.display = "none";
+            document.getElementById("t").innerText = "Thanh toán thành công";
             document.getElementById("pr").style.display = "none";
-            
-            imgQR.src = 'https://media.giphy.com/media/111ebonMs90YLu/giphy.gif';
-           
-            
+
+            imgQR.src = 'https://i.pinimg.com/originals/70/a5/52/70a552e8e955049c8587b2d7606cd6a6.gif';
+
+
         }
         //updateCountdown();
 
@@ -497,12 +488,29 @@
                 var MaDiemDon = don.value;
                 var tra = document.getElementById('<%= ddlDiemTra.ClientID %>');
                 var MaDiemTra = tra.value;
-                var magiaodich ='<%=QLChuyenXeVaDatVe.BLL.ThanhToanBLL.Magiaodichtamthoi() %>';
-                imgQR.src = "https://img.vietqr.io/image/970422-0888501238888-compact.png?amount=" + tongtieng + "&addInfo=" + magiaodich;
-                document.getElementById("popupDiv").style.visibility = 'visible';
-                document.getElementById('amount').innerText = tongtieng;
-                updateCountdown();
-                kiemTraThanhToan("6CA975D2A4",MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, 2000);
+                var phuongthucc = document.getElementById('paymentMethod');
+
+                if (phuongthucc.value == "online") {
+                    var magiaodich = '<%=QLChuyenXeVaDatVe.BLL.ThanhToanBLL.Magiaodichtamthoi() %>';
+                    imgQR.src = "https://img.vietqr.io/image/970422-0888501238888-compact.png?amount=" + tongtieng + "&addInfo=" + magiaodich;
+                    document.getElementById("popupDiv").style.visibility = 'visible';
+                    document.getElementById('amount').innerText = tongtieng;
+                    updateCountdown();
+                    kiemTraThanhToan(magiaodich, MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng);
+                }
+                else {
+
+                    PageMethods.SaveBookingb(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng, function (response) {
+
+                        alert(response);
+                        window.location.href = "TrangChu.aspx";
+
+
+                    }, function (error) {
+
+                    });
+
+                }
 
 
 
@@ -512,7 +520,7 @@
             }
         });
 
-        function kiemTraThanhToan(magd,MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng) {
+        function kiemTraThanhToan(magd, MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng) {
             fetch("DatVe.aspx/KiemTraThanhToan", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -526,9 +534,9 @@
                             alert(response);
 
                         }, function (error) {
-                            
+
                         });
-                        
+
                         closePopup();
                     } else {
                         setTimeout(() => kiemTraThanhToan(tien, magd), 3000); // 🔹 Truyền lại tham số
