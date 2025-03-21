@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using xediep.BLL;
 using xediep.Models;
+using xediep.webControl;
 
 namespace QLChuyenXeVaDatVe
 {
@@ -176,6 +177,19 @@ namespace QLChuyenXeVaDatVe
             ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
 
+        protected void btnTimKiem(object sender, EventArgs e)
+        {
+            List<NguoiDung> l = new List<NguoiDung>();
+            l = NguoiDungBLL.Instance.GetAll();
+            l = l.Where(x => BoLoc.TimKiem(x, txtTim.Text)).ToList();
+
+            gvNguoiDung.DataSource = l;
+            gvNguoiDung.DataBind();
+            if (txtTim.Text.Length==0)
+            {
+                LoadDiemDonTraKhach();
+            }
+        }
         private string checkInPut()
         {
             string error = "";
@@ -183,10 +197,6 @@ namespace QLChuyenXeVaDatVe
             {
                 error += "Họ tên không được để trống! <br/>";
 
-            }
-            if (string.IsNullOrEmpty(txtTenDangNhap.Text))
-            {
-                error += "Tên đăng nhập không được để trống! <br/>";
             }
             if (string.IsNullOrEmpty(txtMatKhau.Text))
             {

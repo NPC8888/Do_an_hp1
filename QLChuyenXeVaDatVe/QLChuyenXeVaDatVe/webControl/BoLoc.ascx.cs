@@ -71,6 +71,16 @@ namespace xediep.webControl
                    RemoveDiacritics(chuyenXe.TrangThai.ToLower()).Contains(keywordNormalized) ||
                    RemoveDiacritics(chuyenXe.Price.ToString().ToLower()).Contains(keywordNormalized);
         }
+        public static bool TimKiem(NguoiDung nguoi, string keyword)
+        {
+            if (nguoi == null || string.IsNullOrWhiteSpace(keyword)) return false;
+
+            string keywordNormalized = RemoveDiacritics(keyword.ToLower());
+
+            return RemoveDiacritics(nguoi.HoTen.ToString().ToLower()).Contains(keywordNormalized) ||
+                   RemoveDiacritics(nguoi.EMai.ToString().ToLower()).Contains(keywordNormalized);
+                  
+        }
     }
 
 }
@@ -91,30 +101,30 @@ public class EmailService
 
         //try
         //{
-            MailMessage mail = new MailMessage
-            {
-                From = new MailAddress(senderEmail),
-                Subject = subject,
-                Body = body,
-                IsBodyHtml = true // Gửi email HTML
-            };
+        MailMessage mail = new MailMessage
+        {
+            From = new MailAddress(senderEmail),
+            Subject = subject,
+            Body = body,
+            IsBodyHtml = true // Gửi email HTML
+        };
 
-            mail.To.Add(toEmail);
+        mail.To.Add(toEmail);
 
-            using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
-            {
-                smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
-                smtp.EnableSsl = true;
-                smtp.Send(mail);
-            }
+        using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
+        {
+            smtp.Credentials = new NetworkCredential(senderEmail, senderPassword);
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
+        }
 
-            Console.WriteLine("✅ Email đã gửi thành công đến " + toEmail);
-            return true;
-       // }
-      //  catch (Exception ex)
+        Console.WriteLine("✅ Email đã gửi thành công đến " + toEmail);
+        return true;
+        // }
+        //  catch (Exception ex)
         //{
-         //   Console.WriteLine("❌ Lỗi gửi email: " + ex.Message);
-         //   return false;
+        //   Console.WriteLine("❌ Lỗi gửi email: " + ex.Message);
+        //   return false;
         //}
     }
 }

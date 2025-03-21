@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -237,7 +238,30 @@ namespace xediep
             }
         }
 
+        protected void ThongKe(object sender, EventArgs e)
+        {
+            if (txtE.Text == null || txtE.Text.Length == 0 || txtS.Text == null || txtS.Text.Length == 0)
+            {
+                Response.Write("<script>alert('Vui lòng điền đầy đủ ngày bắt đầu ngày kết thúc!');</script>");
+                return;
+            }
+           List<ChuyenXe> chuyenXes = new List<ChuyenXe>();
+           foreach(var cx in ChuyenXeBLL.Instance.GetALLChuyenXe())
+            {
+                DateTime startDate, endDate;
+                if (DateTime.TryParse(txtS.Text, out startDate) && DateTime.TryParse(txtE.Text, out endDate))
+                {
+                    endDate = endDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59);
+                    if (cx.TgKhoiHanh >= startDate && cx.TgKhoiHanh <= endDate)
+                    {
+                        chuyenXes.Add(cx);
+                    }
+                }
+            }
+            gvXeKhach.DataSource = chuyenXes;
+            gvXeKhach.DataBind();
 
+        }
 
 
 

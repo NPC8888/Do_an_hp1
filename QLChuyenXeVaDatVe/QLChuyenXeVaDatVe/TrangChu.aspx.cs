@@ -9,6 +9,9 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
 using xediep.BLL;
+using BLL;
+using System.Data;
+using System.Xml.Linq;
 
 namespace xediep
 {
@@ -16,22 +19,39 @@ namespace xediep
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          if (!IsPostBack)
+            if (!IsPostBack)
             {
                 foreach (var item in ChuyenXeBLL.Instance.GetALLChuyenXe())
                 {
                     ListChuyenXe.lchuyenxe.Add(new ChuyenXe(item));
                 }
-
+                HttpCookie authCookie = Request.Cookies["AuthToken"];
+                if (authCookie != null)
+                {
+                    DataRow dr = NguoiDungBLL.Instance.AuthenticateByToken(authCookie.Value);
+                    NguoiDung ng = new NguoiDung(dr);
+                    Session["Role"] = ng.MaNguoiDung;
+                    if (ng.VaiTro == "TaiXe")
+                    {
+                        return;
+                    }
+                    else if(ng.VaiTro=="QuanTri")
+                    {
+                        Response.Redirect("TrangQuanTri.aspx");
+                    }
+                 
+                }
             }
+         
+
 
         }
         //private List<ChuyenXe> LoadlChuyenXePhoBien()
         //{
-            
+
         //}
 
-        
+
     }
 
 }

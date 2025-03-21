@@ -1,5 +1,18 @@
 ﻿
-/* CSS to style the page */
+.XacNhan {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 30%;
+}
+
 .popup {
     display: none; /* Ẩn mặc định */
     position: fixed;
@@ -8,6 +21,7 @@
     transform: translate(-50%, -50%);
     background: white;
     padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     z-index: 1000;
     width: 60%;
@@ -29,7 +43,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    min-width: 20%;
+    min-width: 100%;
     transition: border-color 0.3s ease;
 }
 
@@ -48,10 +62,11 @@
     }
 
 .container {
-    width: 100%;
+    width: 80%;
     margin: auto;
     padding: 20px;
-    background-color: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -106,19 +121,25 @@ input.btn-danger {
     color: white;
 }
 
-.GridViewClass {
-    width: 100%;
-    border:2px solid;
-    border-collapse: collapse; /* Đảm bảo viền hiển thị đúng */
-    margin-top: 20px;
+.btn-primary {
+    background-color: #007bff;
+    color: white;
 }
 
-    .GridViewClass th, .GridViewClass td {
-        text-align: center; /* Căn giữa nội dung theo chiều ngang */
-        vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
-        padding: 10px; /* Thêm khoảng cách để dễ nhìn hơn */
-        border: 2px solid #333; /* Thêm viền cho ô */
-    }
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+}
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -128,34 +149,6 @@ button, .table {
     margin-bottom: 20px;
 }
 
-@keyframes blink {
-    0% {
-        background-color: #ffcc00;
-    }
-
-    50% {
-        background-color: #ffeb99;
-    }
-    /* Màu nhạt hơn */
-    100% {
-        background-color: #ffcc00;
-    }
-}
-
 .selected-row {
     animation: blink 1s infinite alternate; /* Nhấp nháy */
-}
-
-.btnX {
-    margin-left: 90%;
-    background: none;
-    border: none;
-    outline: none;
-    background-image: url('~/jpg/iconX.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 70px;
-    height: 70px;
-    border: none;
-    cursor: pointer
 }

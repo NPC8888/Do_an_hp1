@@ -11,20 +11,22 @@
     <form id="form1" runat="server">
         <div class="container">
             <h2>Đổi Mật Khẩu</h2>
-            <asp:Label runat="server" AssociatedControlID="txtOldPassword" Text="Tên Đăng Nhập:" />
-            <asp:TextBox ID="txtName" runat="server" CssClass="input-box" placeholder="Tên Đăng Nhập" />
-            <asp:Label runat="server" AssociatedControlID="txtOldPassword" Text="Mật khẩu cũ:" />
-            <asp:TextBox ID="txtOldPassword" runat="server" CssClass="input-box" placeholder="Nhập mật khẩu cũ..." TextMode="Password" />
+            <div style="padding:20px">
+                <asp:Label runat="server" AssociatedControlID="txtOldPassword" Text="Tên Đăng Nhập:" />
+                <asp:TextBox ID="txtName" runat="server" CssClass="input-box" placeholder="Tên Đăng Nhập" />
+                <asp:Label runat="server" AssociatedControlID="txtOldPassword" Text="Mật khẩu cũ:" />
+                <asp:TextBox ID="txtOldPassword" runat="server" CssClass="input-box" placeholder="Nhập mật khẩu cũ..." TextMode="Password" />
 
-            <asp:Label runat="server" AssociatedControlID="txtNewPassword" Text="Mật khẩu mới:" />
-            <asp:TextBox ID="txtNewPassword" runat="server" CssClass="input-box" placeholder="Nhập mật khẩu mới..." TextMode="Password" />
+                <asp:Label runat="server" AssociatedControlID="txtNewPassword" Text="Mật khẩu mới:" />
+                <asp:TextBox ID="txtNewPassword" runat="server" CssClass="input-box" placeholder="Nhập mật khẩu mới..." TextMode="Password" />
 
-            <asp:Label runat="server" AssociatedControlID="txtConfirmPassword" Text="Nhập lại mật khẩu mới:" />
-            <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="input-box" placeholder="Nhập lại mật khẩu mới..." TextMode="Password" />
+                <asp:Label runat="server" AssociatedControlID="txtConfirmPassword" Text="Nhập lại mật khẩu mới:" />
+                <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="input-box" placeholder="Nhập lại mật khẩu mới..." TextMode="Password" />
 
-            <asp:Button ID="btnChangePassword" runat="server" CssClass="btn" Text="Đổi Mật Khẩu" OnClick="btnChangePassword_Click" />
+                <asp:Button ID="btnChangePassword" runat="server" CssClass="btn" Text="Đổi Mật Khẩu" OnClick="btnChangePassword_Click" />
 
-            <asp:Label ID="lblMessage" runat="server" CssClass="message-label" ForeColor="Red" />
+                <asp:Label ID="lblMessage" runat="server" CssClass="message-label" ForeColor="Red" />
+            </div>
         </div>
     </form>
 
@@ -66,9 +68,9 @@
 
         .btn {
             width: 100%;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            background-color: white;
+            color: black;
+            border: 2px solid;
             padding: 10px;
             margin-top: 10px;
             font-size: 16px;
@@ -77,7 +79,8 @@
         }
 
             .btn:hover {
-                background-color: #0056b3;
+                background-color: black;
+                color: white;
             }
 
         .message-label {

@@ -101,30 +101,7 @@
     <div class="list-section">
         <uc1:ListChuyenXe runat="server" ID="ListChuyenXe" />
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Tuyến xe</th>
-                <th>Tổng số chuyến xe</th>
-                <th>Tìm kiếm chuyến xe</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%foreach (var tuyenxe in xediep.BLL.TuyenXeBLL.Instance.GetALLTuyenXe())
-                {
-
-            %>
-            <%if (tuyenxe.TrangThai == "HoatDong")
-                {  %>
-            <tr>
-                <td><%=tuyenxe.DiemDi %> ⇒ <%=tuyenxe.DiemDen %></td>
-                <td><%=xediep.BLL.ChuyenXeBLL.Instance.GetALLChuyenXeByTuyenXe(tuyenxe.MaTuyenXe).Count().ToString() %></td>
-                <td><a class="a" href="ListChuyenXe.aspx?diemdi=<%=tuyenxe.DiemDi %>&diemDen=<%=tuyenxe.DiemDen%>" aria-grabbed="true">Tìm Chuyến Xe</a></td>
-            </tr>
-            <%} %>
-            <%} %>
-        </tbody>
-    </table>
+  
 
 
     <footer>

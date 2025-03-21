@@ -1,7 +1,6 @@
 ﻿/*USE master;
 ALTER DATABASE QLChuyenXe SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE QLChuyenXe;
-
 */
 Create Database QLChuyenXe;
 go
@@ -154,9 +153,6 @@ CREATE TABLE BaoCao (
 go
 INSERT INTO NguoiDung (TenDangNhap, MatKhau, HoTen, SoDienThoai, Email, VaiTro )
 VALUES 
-    ('nguyenan', 'hashed_password_1', 'Nguyen An', '0912345678', 'nguyenan@email.com', 'KhachHang'),
-    ('admin01', 'hashed_password_2', 'Admin Quản Trị', '0909876543', 'admin01@email.com', 'QuanTri'),
-    ('lethanh', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
-
-	use QLChuyenXe
-	select * from NguoiDung
+    ('nguyenan@email.com', 'hashed_password_1', 'nguyenan', '0912345678', 'nguyenan@email.com', 'KhachHang'),
+    ('admin01@email.com', 'hashed_password_2', 'Admin', '0909876543', 'admin01@email.com', 'QuanTri'),
+    ('lethanh@email.com', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');

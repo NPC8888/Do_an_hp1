@@ -302,7 +302,7 @@ namespace xediep
             Debug.WriteLine("Bắt đầu kiểm tra thanh toán...");
 
             XacThucThanhToanBLL thanhToanBLL = new XacThucThanhToanBLL();
-            int tongSoLanLap = (5 * 60) / 2;
+            int tongSoLanLap = (2 * 60) / 2;
 
             for (int i = 0; i < tongSoLanLap; i++)
             {

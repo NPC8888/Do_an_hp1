@@ -2,13 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h2>Quản Lý Chuyến Xe </h2>
+        <h2>Quản Lý địa điểm</h2>
 
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" OnClick="ThemMoi" CssClass="btn-primary" />
 
-        <asp:GridView ID="gvTuyenXe" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
+        <asp:GridView ID="gvTuyenXe" runat="server" AutoGenerateColumns="False" CssClass="table"
             DataKeyNames="MaTuyenXe,DiemDi,DiemDen,TrangThai"
-            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
+            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BorderColor="Black">
             <Columns>
                 <asp:BoundField DataField="MaTuyenXe" HeaderText="Mã Tuyến Xe" SortExpression="MaTuyenXe" />
                 <asp:BoundField DataField="DiemDi" HeaderText="Điểm đi" SortExpression="DiemDi" />
@@ -133,7 +133,7 @@
             margin: auto;
             padding: 20px;
             background-color: #ffffff;
-         
+            vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
         }
 
         h2 {
@@ -189,9 +189,11 @@
         }
 
         table {
-            width: 100%;
+            width: 90%;
             margin-top: 20px;
             border-collapse: collapse;
+            text-align: center; /* Căn giữa nội dung theo chiều ngang */
+            vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
         }
 
         th, td {
@@ -211,23 +213,7 @@
             margin-bottom: 20px;
         }
 
-        @keyframes blink {
-            0% {
-                background-color: #ffcc00;
-            }
 
-            50% {
-                background-color: #ffeb99;
-            }
-            /* Màu nhạt hơn */
-            100% {
-                background-color: #ffcc00;
-            }
-        }
-
-        .selected-row {
-            animation: blink 1s infinite alternate; /* Nhấp nháy */
-        }
     </style>
 
 

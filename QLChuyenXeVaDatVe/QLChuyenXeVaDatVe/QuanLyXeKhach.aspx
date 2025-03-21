@@ -7,7 +7,7 @@
         <asp:Button runat="server" Text="Thêm Mới" OnClientClick="showPopup(); return false;" CssClass="btn-primary" />
 
         <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
-            DataKeyNames="MaXe,BienSoXe,LoaiXe,SoChoNgoi,SoTang,SoDay,SoGheMoiDay" OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
+            DataKeyNames="MaXe,BienSoXe,LoaiXe,SoChoNgoi,SoTang,SoDay,SoGheMoiDay" OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="White" BorderColor="Black">
             <Columns>
                 <asp:BoundField DataField="MaXe" HeaderText="Mã Xe" SortExpression="MaXe" />
                 <asp:BoundField DataField="BienSoXe" HeaderText="Biển Số Xe" SortExpression="BienSoXe" />
@@ -19,7 +19,7 @@
                 <asp:CommandField ShowSelectButton="True" SelectText="Chỉnh Sửa" ControlStyle-CssClass="btn-select" />
             </Columns>
         </asp:GridView>
-    </div>
+    
     <asp:ScriptManager runat="server" />
 
     <div id="popupDiv" class="popup" style="display: none;">
@@ -46,7 +46,7 @@
             <asp:Button ID="btnDelete" runat="server" Text="Xóa" OnClick="btnDelete_Click" CssClass="btn-danger" />
         </div>
     </div>
-
+    </div>
 
 
     <style>
@@ -199,20 +199,6 @@
 
         button, .table {
             margin-bottom: 20px;
-        }
-
-        @keyframes blink {
-            0% {
-                background-color: #ffcc00;
-            }
-
-            50% {
-                background-color: #ffeb99;
-            }
-            /* Màu nhạt hơn */
-            100% {
-                background-color: #ffcc00;
-            }
         }
 
         .selected-row {

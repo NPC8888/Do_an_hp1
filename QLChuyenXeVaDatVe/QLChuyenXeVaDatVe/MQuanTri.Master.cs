@@ -38,6 +38,8 @@ namespace xediep
                 {
 
                     NguoiDung = new NguoiDung(user);
+                    Session["Role"]=NguoiDung.MaNguoiDung;
+                    
                 }
                 else
                 {

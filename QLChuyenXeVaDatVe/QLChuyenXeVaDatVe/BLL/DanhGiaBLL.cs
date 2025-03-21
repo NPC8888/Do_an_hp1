@@ -7,7 +7,7 @@ namespace BLL
 {
     public class DanhGiaBLL
     {
-        // Singleton pattern để chỉ có một instance của DanhGiaBLL
+
         private static DanhGiaBLL instance;
 
         public static DanhGiaBLL Instance
@@ -21,26 +21,68 @@ namespace BLL
         // Lấy danh sách đánh giá cho một chuyến xe
         public List<DanhGia> GetDanhGiaByMaCX(int maCX)
         {
-            // Sử dụng DAL để lấy dữ liệu từ cơ sở dữ liệu
+
             return DanhGiaDAL.Instance.GetDanhGiaByMaCX(maCX);
         }
+        public DanhGia GetDanhGiaByMaDanhGia(int madanhgia)
+        { foreach(var d in DanhGiaBLL.instance.GetALL())
+            {
+                if (d.MaDanhGia == madanhgia)
+                {
+                    return d;
+                }
+            }
+        return null;
+        }
+        public List<DanhGia> GetALL()
+        {
 
+            return DanhGiaDAL.Instance.GetAllDanhGia();
+        }
         // Thêm một đánh giá mới
         public bool AddDanhGia(DanhGia danhGia)
         {
-            // Kiểm tra dữ liệu đầu vào (có thể thêm các kiểm tra khác nếu cần)
+
             if (danhGia.DiemDanhGia < 1 || danhGia.DiemDanhGia > 5 || string.IsNullOrEmpty(danhGia.BinhLuan))
             {
-                return false; // Trả về false nếu dữ liệu không hợp lệ
+                return false;
             }
 
-            // Sử dụng DAL để thêm dữ liệu vào cơ sở dữ liệu
+
             int newDanhGiaId = DanhGiaDAL.Instance.InsertDanhGia(danhGia);
 
-            // Kiểm tra nếu việc thêm thành công (trả về id đánh giá mới)
+
+            return newDanhGiaId > 0;
+        }
+        public bool DeleteDanhGia(int danhGia)
+        {
+            // Kiểm tra dữ liệu đầu vào (có thể thêm các kiểm tra khác nếu cần)
+            if (danhGia == 0)
+            {
+                return false;
+            }
+
+
+            int newDanhGiaId = DanhGiaDAL.Instance.DeleteDanhGia(danhGia) ? 0 : 1;
+
+
             return newDanhGiaId > 0;
         }
 
+        public bool UpdateDanhGia(DanhGia danhGia)
+        {
+            // Kiểm tra dữ liệu đầu vào (có thể thêm các kiểm tra khác nếu cần)
+            if (danhGia == null)
+            {
+                return false;
+            }
+
+
+            int newDanhGiaId = DanhGiaDAL.Instance.UpdateDanhGia(danhGia) ? 0 : 1;
+
+
+            return newDanhGiaId > 0;
+        }
 
         // Tính điểm trung bình cho chuyến xe
         public double CalculateAverageRating(int maCX)

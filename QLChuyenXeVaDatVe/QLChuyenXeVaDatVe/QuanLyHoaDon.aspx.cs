@@ -88,5 +88,10 @@ namespace xediep
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
+
+        protected void txtE_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

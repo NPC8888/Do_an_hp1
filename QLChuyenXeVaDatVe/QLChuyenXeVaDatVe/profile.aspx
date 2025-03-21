@@ -80,7 +80,7 @@
 
         <div id="editModal" class="modal">
             <div class="modal-content">
-                
+
                 <button type="button" onclick="hidePopup()"
                     style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 50px; height: 50px; border: none; cursor: pointer">
                 </button>
@@ -94,7 +94,7 @@
                     <input type="tel" id="editPhone" name="editPhone" runat="server" required>
                 </div>
 
-                <asp:Button ID="btnfix" CssClass="modern-button" runat="server" OnClick="btnFix" Text="Lưu thay đổi" />
+                <asp:Button ID="btnfix" CssClass="btn" runat="server" OnClick="btnFix" Text="Lưu thay đổi" />
 
 
             </div>
@@ -194,23 +194,29 @@
 
 
 
-            /* Nút hiện đại */
-            .modern-button {
-                background-color: mediumspringgreen;
-                color: white;
-                border: none;
-                padding: 12px 24px;
-                border-radius: 25px;
+            .btn {
+                width: 100%;
+                background-color: white;
+                color: black;
+                border: 2px solid;
+                padding: 10px;
+                margin-top: 10px;
                 font-size: 16px;
-                font-weight: 500;
                 cursor: pointer;
+                border-radius: 5px;
             }
+
+                .btn:hover {
+                    background-color: black;
+                    color: white;
+                }
 
             /* Modal */
 
             .modal {
                 position: fixed;
                 visibility: hidden;
+                color:black;
                 left: 0;
                 top: 0;
                 width: 100%;
@@ -224,11 +230,11 @@
 
             .modal-content {
                 background: white;
-                padding-bottom: 10px;
-                width: 30%;
-                max-width: 30%;
+                padding:20px;
+                width: 20%;
+                max-width: 20%;
                 display: flex;
-                gap: 50px;
+                gap: 20px;
                 flex-direction: column; /* Sắp xếp các phần tử theo cột */
                 align-items: center; /* Căn giữa theo chiều ngang */
                 justify-content: center; /* Căn giữa theo chiều dọc */
@@ -307,7 +313,7 @@
             });
 
             // Ẩn modal khi nhấn nút đóng (x)
-            function hidePopup(){
+            function hidePopup() {
                 modal.style.visibility = 'hidden';
             };
 

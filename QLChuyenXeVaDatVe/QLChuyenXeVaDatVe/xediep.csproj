@@ -161,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asscet\Icon\LgWeb.png" />
+    <Content Include="Asscet\MP4\BG2.mp4" />
+    <Content Include="Asscet\MP4\BG.mp4" />
     <Content Include="ChiTietChuyenXe.aspx" />
     <Content Include="css\datve.css" />
     <Content Include="css\QuanLy.css" />
@@ -175,12 +177,9 @@
     <Content Include="jpg\Mtuyenduong.gif" />
     <Content Include="jpg\quaylai.png" />
     <Content Include="css\StyleListCX.css" />
-    <Content Include="css\StyleLogin.css" />
     <Content Include="DangKyTaiKhoan.aspx" />
     <Content Include="DatVe.aspx" />
     <Content Include="DoiMatKhau.aspx" />
-    <Content Include="HtmlPage1.html" />
-    <Content Include="huongdan.txt" />
     <Content Include="jpg\1.jpg" />
     <Content Include="jpg\bus.gif" />
     <Content Include="jpg\iconlg.png" />
@@ -192,6 +191,7 @@
     <Content Include="jpg\user.png" />
     <Content Include="js\JsLogin.js" />
     <Content Include="QuanLyChuyenXe.aspx" />
+    <Content Include="QuanLyDanhGia.aspx" />
     <Content Include="QuanLyDiemDonTraKhach.aspx" />
     <Content Include="QuanLyHoaDon.aspx" />
     <Content Include="QuanLyNguoiDung.aspx" />
@@ -200,7 +200,6 @@
     <Content Include="TraCuu.aspx" />
     <Content Include="TrangChiTietHoaDon.aspx" />
     <Content Include="TrangChu.aspx" />
-    <Content Include="TrangChuQuanTri.aspx" />
     <Content Include="TrangQuanTri.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
@@ -312,6 +311,13 @@
     <Compile Include="QuanLyChuyenXe.aspx.designer.cs">
       <DependentUpon>QuanLyChuyenXe.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyDanhGia.aspx.cs">
+      <DependentUpon>QuanLyDanhGia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyDanhGia.aspx.designer.cs">
+      <DependentUpon>QuanLyDanhGia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyDiemDonTraKhach.aspx.cs">
       <DependentUpon>QuanLyDiemDonTraKhach.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -367,13 +373,6 @@
     </Compile>
     <Compile Include="TrangChu.aspx.designer.cs">
       <DependentUpon>TrangChu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TrangChuQuanTri.aspx.cs">
-      <DependentUpon>TrangChuQuanTri.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TrangChuQuanTri.aspx.designer.cs">
-      <DependentUpon>TrangChuQuanTri.aspx</DependentUpon>
     </Compile>
     <Compile Include="TrangQuanTri.aspx.cs">
       <DependentUpon>TrangQuanTri.aspx</DependentUpon>

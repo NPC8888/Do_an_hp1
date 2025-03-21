@@ -7,13 +7,13 @@
         <div style="display: flex;">
             <asp:Button ID="btnAdd" runat="server" Text="Tạo báo cáo" OnClick="ThemMoi" CssClass="btn-primary" />
             <asp:TextBox ID="txtS" runat="server" TextMode="Date" class="date-picker"></asp:TextBox>
-            <asp:TextBox ID="txtE" runat="server" TextMode="Date" class="date-picker"></asp:TextBox>
+            <asp:TextBox ID="txtE" runat="server" TextMode="Date" class="date-picker" OnTextChanged="txtE_TextChanged"></asp:TextBox>
             <asp:Button ID="btnTK" runat="server" Text="Thống kê" OnClick="ThongKe" CssClass="btn-primary" BackColor="#FF9999" />
         </div>
         <!-- GridView to display Xe Khach List -->
         <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="GridViewClass"
             DataKeyNames="MaHoaDon,MaKhachHang,TongTien,TrangThai,ThoiGianThanhToan"
-            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="#FF99FF" BorderColor="#3333FF">
+            OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BorderColor="Blue">
             <Columns>
                 <asp:BoundField DataField="MaHoaDon" HeaderText="Mã hóa đơn" SortExpression="MaHoaDon" />
                 <asp:BoundField DataField="MaKhachHang" HeaderText="Mã khách hàng" SortExpression="MaKhachHang" />

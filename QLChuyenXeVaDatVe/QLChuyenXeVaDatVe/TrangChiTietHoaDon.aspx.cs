@@ -34,17 +34,27 @@ namespace QLChuyenXeVaDatVe
         }
         private void phanquyen()
         {
-            string role = Session["Role"].ToString();
-            NguoiDung ng = NguoiDungBLL.Instance.GetNguoiDungByMaND(int.Parse(role));
-            if (ng.VaiTro == "KhachHang")
+           
+            if (Session["Role"] != null)
             {
-                txtMaill.InnerText = ng.EMai;
+                string role = Session["Role"].ToString();
+                NguoiDung ng = NguoiDungBLL.Instance.GetNguoiDungByMaND(int.Parse(role));
+                if (ng.VaiTro == "KhachHang")
+                {
+                    txtMaill.InnerText = ng.EMai;
+                }
+                else
+                {
+                    IconMaill.Visible = false;
+                    btnDanhGia.Visible = false;
+
+                }
+               
             }
             else
             {
                 IconMaill.Visible = false;
                 btnDanhGia.Visible = false;
-                
             }
         }
         private void loadChiTiet()
@@ -109,11 +119,11 @@ namespace QLChuyenXeVaDatVe
 
         //webmethod nhanhoadon
         [WebMethod]
-        public static string SendEmail(string maHoaDon,string Gmaill)
+        public static string SendEmail(string maHoaDon, string Gmaill)
         {
             try
             {
-                string htmlContent = GenerateInvoiceHtml(maHoaDon   ); // Sinh nội dung email
+                string htmlContent = GenerateInvoiceHtml(maHoaDon); // Sinh nội dung email
 
                 if (string.IsNullOrEmpty(htmlContent))
                 {
@@ -153,9 +163,9 @@ namespace QLChuyenXeVaDatVe
             string invoiceId = hoaDon.MaHoaDon.ToString();
             string ngayLap = hoaDon.ThoiGianThanhToan.ToString("dd/MM/yyyy");
             string trangThai = hoaDon.TrangThai;
-            string tongTien = hoaDon.TongTien.ToString()+"VND";
+            string tongTien = hoaDon.TongTien.ToString() + "VND";
             string soghe = "";
-            foreach(chitiet ct in danhSachChuyenXe)
+            foreach (chitiet ct in danhSachChuyenXe)
             {
                 soghe += " " + ct.SoGhe.ToString();
             }
