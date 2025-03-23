@@ -45,7 +45,7 @@ namespace QLChuyenXeVaDatVe
                 DataRow dr = NguoiDungBLL.Instance.AuthenticateByToken(authCookie.Value);
 
                 NguoiDung ng = new NguoiDung(dr);
-                Session["Role"] = ng.VaiTro;
+                Session["Role"] = ng.MaNguoiDung;
             }
         }
     }

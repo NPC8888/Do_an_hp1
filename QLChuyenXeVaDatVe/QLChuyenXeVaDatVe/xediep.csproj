@@ -166,6 +166,7 @@
     <Content Include="ChiTietChuyenXe.aspx" />
     <Content Include="css\datve.css" />
     <Content Include="css\QuanLy.css" />
+    <Content Include="jpg\calendar.gif" />
     <Content Include="jpg\documents.gif" />
     <Content Include="jpg\locations.gif" />
     <Content Include="jpg\logout.gif" />
@@ -197,10 +198,12 @@
     <Content Include="QuanLyNguoiDung.aspx" />
     <Content Include="QuanLyTuyenXe.aspx" />
     <Content Include="QuanLyXeKhach.aspx" />
+    <Content Include="TListChuyenXe.aspx" />
     <Content Include="TraCuu.aspx" />
     <Content Include="TrangChiTietHoaDon.aspx" />
     <Content Include="TrangChu.aspx" />
     <Content Include="TrangQuanTri.aspx" />
+    <Content Include="TTrangChu.aspx" />
     <Content Include="Web.config" />
     <Content Include="Login.aspx" />
     <Content Include="webControl\BoLoc.ascx" />
@@ -353,6 +356,20 @@
     <Compile Include="QuanLyXeKhach.aspx.designer.cs">
       <DependentUpon>QuanLyXeKhach.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TaiXeBackgrod.Master.cs">
+      <DependentUpon>TaiXeBackgrod.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TaiXeBackgrod.Master.designer.cs">
+      <DependentUpon>TaiXeBackgrod.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TListChuyenXe.aspx.cs">
+      <DependentUpon>TListChuyenXe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TListChuyenXe.aspx.designer.cs">
+      <DependentUpon>TListChuyenXe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TraCuu.aspx.cs">
       <DependentUpon>TraCuu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -380,6 +397,13 @@
     </Compile>
     <Compile Include="TrangQuanTri.aspx.designer.cs">
       <DependentUpon>TrangQuanTri.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TTrangChu.aspx.cs">
+      <DependentUpon>TTrangChu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TTrangChu.aspx.designer.cs">
+      <DependentUpon>TTrangChu.aspx</DependentUpon>
     </Compile>
     <Compile Include="webControl\BoLoc.ascx.cs">
       <DependentUpon>BoLoc.ascx</DependentUpon>
@@ -442,6 +466,7 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="TaiXeBackgrod.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

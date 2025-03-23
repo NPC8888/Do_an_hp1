@@ -33,7 +33,7 @@ namespace xediep
                     Session["Role"] = ng.MaNguoiDung;
                     if (ng.VaiTro == "TaiXe")
                     {
-                        return;
+                        Response.Redirect("TTrangChu.aspx");
                     }
                     else if(ng.VaiTro=="QuanTri")
                     {

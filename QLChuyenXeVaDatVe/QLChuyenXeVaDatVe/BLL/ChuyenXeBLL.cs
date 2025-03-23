@@ -39,12 +39,37 @@ namespace xediep.BLL
            
             return l;
         }
+       
         public List<ChuyenXe> GetALLChuyenXeByTuyenXe(int MaTuyen)
         {
             List<ChuyenXe> l = new List<ChuyenXe>();
            foreach (ChuyenXe item in ChuyenXeDAL.Instance.GetALLCX())
             {
                 if (item.MaTuyenXe == MaTuyen)
+                {
+                    l.Add(item);
+                }
+            }
+            return l;
+        }
+        public List<ChuyenXe> GetALLChuyenXeByMaTaiXe(int id)
+        {
+            List<ChuyenXe> l = new List<ChuyenXe>();
+            foreach (ChuyenXe item in ChuyenXeDAL.Instance.GetALLCX())
+            {
+                if (item.MaTaiXe == id)
+                {
+                    l.Add(item);
+                }
+            }
+            return l;
+        }
+        public List<ChuyenXe> GetALLChuyenXeByMaTaiXeaddDate(int id, DateTime d)
+        {
+            List<ChuyenXe> l = new List<ChuyenXe>();
+            foreach (ChuyenXe item in ChuyenXeDAL.Instance.GetALLCX())
+            {
+                if (item.MaTaiXe == id&&item.TgKhoiHanh.Date==d)
                 {
                     l.Add(item);
                 }

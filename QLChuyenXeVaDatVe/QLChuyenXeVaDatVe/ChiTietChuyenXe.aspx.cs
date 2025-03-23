@@ -15,7 +15,7 @@ namespace QLChuyenXeVaDatVe
     public partial class ChiTietChuyenXe : System.Web.UI.Page
     {
         private string idChuyenXe; // ID chuyến xe từ query string
-        private string idtuyenXe; // ID tuyến xe từ chyuyenxe
+       
         public string[] trangThaiGhe; // Mảng trạng thái ghế
         public ChuyenXe cx = new ChuyenXe();
         public XeKhach xe = new XeKhach();

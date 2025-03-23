@@ -5,41 +5,39 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace xediep
+namespace QLChuyenXeVaDatVe
 {
-    public partial class MQuanTri : System.Web.UI.MasterPage
+    public partial class TaiXeBackgrod : System.Web.UI.MasterPage
     {
         NguoiDung NguoiDung = new NguoiDung();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Checkcoki();
 
-            }
-           
+        }
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            NguoiDungBLL.Instance.Logout(Request.Cookies["AuthToken"].Value);
+            Checkcoki();
         }
         void Checkcoki()
         {
-
             HttpCookie authCookie = Request.Cookies["AuthToken"];
             if (authCookie != null)
             {
                 string token = authCookie.Value;
                 NguoiDungBLL userBLL = new NguoiDungBLL();
                 DataRow user = userBLL.AuthenticateByToken(token);
-               
+
 
                 if (user != null && user["VaiTro"].ToString() == "QuanTri") // Token hợp lệ
                 {
 
                     NguoiDung = new NguoiDung(user);
-                    Session["Role"]=NguoiDung.MaNguoiDung;
-                    
+                    Session["Role"] = NguoiDung.MaNguoiDung;
+
                 }
                 else
                 {
@@ -52,19 +50,6 @@ namespace xediep
                 // Không có token, chuyển về trang đăng nhập
                 Response.Redirect("Login.aspx");
             }
-
-
-        }
-
-        protected void btnLogout_Click(object sender, EventArgs e)
-        {
-            NguoiDungBLL.Instance.Logout(Request.Cookies["AuthToken"].Value);
-            Checkcoki();
-        }
-        [WebMethod]
-        public string SoLuongYeuCauThanhToan()
-        {
-            return "";
         }
     }
 }

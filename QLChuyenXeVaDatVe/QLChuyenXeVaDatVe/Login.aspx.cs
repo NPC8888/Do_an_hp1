@@ -35,6 +35,8 @@ namespace xediep
                 }
                 else if(dr != null && dr["VaiTro"].ToString() == "TaiXe")
                 {
+                    Session["Role"] = dr["MaNguoiDung"].ToString();
+                    Response.Redirect("TTrangChu.aspx");
 
                 }
                 else { Response.Redirect("TrangChu.aspx"); }
