@@ -6,7 +6,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using xediep.BLL;
+using xediep.BLL.BLL;
+using xediep.DAL;
 using xediep.Models;
+using xediep.webControl;
 
 namespace QLChuyenXeVaDatVe
 {
@@ -14,13 +17,18 @@ namespace QLChuyenXeVaDatVe
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            tuyenxe();
+            if (!IsPostBack){
+                tuyenxe();
+            }
 
         }
         private void tuyenxe()
         {
             gvTuyenXe.DataSource = TuyenXeBLL.Instance.GetALLTuyenXe();
             gvTuyenXe.DataBind();
+            ddlTrangThai.Items.Clear();
+            ddlTrangThai.Items.Add(new ListItem("Hoạt động", "HD"));
+            ddlTrangThai.Items.Add(new ListItem("Không hoạt động", "KHD")); 
             List<string> tinhThanh = new List<string>
         {
             "An Giang", "Bà Rịa - Vũng Tàu", "Bạc Liêu", "Bắc Kạn", "Bắc Giang",
@@ -37,21 +45,45 @@ namespace QLChuyenXeVaDatVe
             "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
             "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
         };
+            ddlDiemDen.Items.Clear();
+            ddlDiemDi.Items.Clear();
             foreach (string tinh in tinhThanh)
             {
                 ddlDiemDi.Items.Add(new ListItem(tinh, tinh));
                 ddlDiemDen.Items.Add(new ListItem(tinh, tinh));
             }
         }
+        protected void btnTim_Click(object sender, EventArgs e)
+        {
+            string key = txtTim.Text;
+            if (key != null&&key!="")
+            {
+                var xes = TuyenXeBLL.Instance.GetALLTuyenXe();
+                var list = xes.Where(x => BoLoc.TimKiem(x, txtTim.Text)).ToList();
+                gvTuyenXe.DataSource = list;
+                gvTuyenXe.DataBind();
 
+            }
+            else
+            {
+                tuyenxe();
+            }
+
+
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            if (!checkInPut())
+            {
+                Response.Write("<script>alert('Điểm đến và điểm đi không được trùng nhau!');</script>");
+                return;
+            }
             TuyenXe updatedTuyen = new TuyenXe
             {
 
                 DiemDi = ddlDiemDi.Text,
                 DiemDen = ddlDiemDen.Text,
-                TrangThai = txtTrangThai.Text
+                TrangThai = ddlTrangThai.SelectedValue
 
 
             };
@@ -71,6 +103,11 @@ namespace QLChuyenXeVaDatVe
         // Edit XeKhach
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            if (!checkInPut())
+            {
+                Response.Write("<script>alert('Điểm đến và điểm đi không được trùng nhau!');</script>");
+                return;
+            }
             if (gvTuyenXe.SelectedRow != null) // Kiểm tra xem có dòng nào được chọn không
             {
 
@@ -80,7 +117,7 @@ namespace QLChuyenXeVaDatVe
                     MaTuyenXe = int.Parse(txtMaTuyenXe.Text),
                     DiemDi = ddlDiemDi.Text,
                     DiemDen = ddlDiemDen.Text,
-                    TrangThai = txtTrangThai.Text
+                    TrangThai = ddlTrangThai.SelectedValue
 
 
                 };
@@ -163,7 +200,7 @@ namespace QLChuyenXeVaDatVe
 
             ddlDiemDi.SelectedValue = diemDi;
             ddlDiemDen.SelectedValue = diemden;
-            txtTrangThai.Text = trangThai;
+            ddlTrangThai.SelectedValue = trangThai;
             //hiện btn fix,delete
             btnFix.Visible = true;
             btnDelete.Visible = true;
@@ -178,7 +215,7 @@ namespace QLChuyenXeVaDatVe
             txtMaTuyenXe.Text = "";
             ddlDiemDi.SelectedValue = null;
             ddlDiemDen.SelectedValue = null;
-            txtTrangThai.Text = "";
+            ddlTrangThai.SelectedIndex = 0;
             //ẩn btn fix,delete
             btnFix.Visible = false;
             btnDelete.Visible = false;
@@ -193,34 +230,40 @@ namespace QLChuyenXeVaDatVe
 
                 if (txtMaTuyenXe.Text != null)
                 {
-                    List<ChuyenXe> list = ChuyenXeBLL.Instance.GetALLChuyenXe();
-                    foreach (ChuyenXe chuyen in list)
+                   foreach(var tx in TuyenXeBLL.Instance.GetALLTuyenXe())
                     {
-                        if (chuyen.MaTuyenXe == macx)
+                        if (tx.MaTuyenXe == macx)
                         {
-                            ChuyenXeBLL.Instance.DeleteChuyenXe(chuyen.MaCx);
+                            tx.TrangThai = "KHD";
+                            TuyenXeDAL.Instance.UpdateTuyenXe(tx);
                         }
                     }
-                    tuyenxe();
-                    bool result = TuyenXeBLL.Instance.RemoveTuyenXe(macx);
-                    Response.Write("<script>alert('Xóa thành công!');</script>");
+                    Response.Write("<script>alert('Ẩn thành công!');</script>");
                 }
                 else
                 {
-                    Response.Write("<script>alert('Lỗi khi xóa!');</script>");
+                    Response.Write("<script>alert('Lỗi khi ẩn!');</script>");
 
                 }
+                divxacnhan.Style.Add("display", "none");
+                tuyenxe();
             }
             catch
             {
-                Response.Write("<script>alert('Không thể xóa các chuyến xe có vé!');</script>");
+                Response.Write("<script>alert('Lỗi hệ thống!');</script>");
 
 
             }
+        
         }
         protected void btnHuy_Click(object sender, EventArgs e)
         {
             divxacnhan.Style.Add("display", "none");
+        }
+
+         bool checkInPut()
+        {   if (ddlDiemDen.SelectedValue == ddlDiemDi.SelectedValue) return false;
+            return true;
         }
     }
 }

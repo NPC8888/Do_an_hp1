@@ -25,12 +25,12 @@ namespace QLChuyenXeVaDatVe
                 }
                 else
                 {
-                    Response.Write("<script>alert('Hóa đơn không tồn tại!');</script>");
+                    lblThongBao.Text = "Hóa đơn không tồn tại!";
                 }
             }
             else
             {
-                Response.Write("<script>alert('Vui lòng nhập từ khóa tra cứu!');</script>");
+                lblThongBao.Text = "Vui lòng nhap mã hóa đơn!";
             }
         }
 

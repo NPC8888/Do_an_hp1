@@ -50,6 +50,12 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.3.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.3.0\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
     </Reference>
@@ -153,6 +159,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -166,6 +173,7 @@
     <Content Include="ChiTietChuyenXe.aspx" />
     <Content Include="css\datve.css" />
     <Content Include="css\QuanLy.css" />
+    <Content Include="Global.asax" />
     <Content Include="jpg\calendar.gif" />
     <Content Include="jpg\documents.gif" />
     <Content Include="jpg\locations.gif" />
@@ -191,6 +199,8 @@
     <Content Include="jpg\search.png" />
     <Content Include="jpg\user.png" />
     <Content Include="js\JsLogin.js" />
+    <Content Include="LichSuDatVe.aspx" />
+    <Content Include="QuanLyBaoCao.aspx" />
     <Content Include="QuanLyChuyenXe.aspx" />
     <Content Include="QuanLyDanhGia.aspx" />
     <Content Include="QuanLyDiemDonTraKhach.aspx" />
@@ -199,6 +209,7 @@
     <Content Include="QuanLyTuyenXe.aspx" />
     <Content Include="QuanLyXeKhach.aspx" />
     <Content Include="TListChuyenXe.aspx" />
+    <Content Include="TQuanLyChuyenDi.aspx" />
     <Content Include="TraCuu.aspx" />
     <Content Include="TrangChiTietHoaDon.aspx" />
     <Content Include="TrangChu.aspx" />
@@ -208,6 +219,7 @@
     <Content Include="Login.aspx" />
     <Content Include="webControl\BoLoc.ascx" />
     <Content Include="webControl\BtnLogin.ascx" />
+    <Content Include="jpg\chart.gif" />
     <Content Include="webControl\ListChuyenXe.ascx" />
     <Content Include="jpg\HuongDan.jpeg" />
     <Content Include="webControl\ThanhTimKiem.ascx" />
@@ -222,6 +234,7 @@
     <Compile Include="Backgroud.Master.designer.cs">
       <DependentUpon>Backgroud.Master</DependentUpon>
     </Compile>
+    <Compile Include="BLL\BaoCaoBLL.cs" />
     <Compile Include="BLL\ChiTietHoaDonBLL.cs" />
     <Compile Include="BLL\ChuyenXeBLL.cs" />
     <Compile Include="BLL\DanhGiaBLL.cs" />
@@ -280,6 +293,16 @@
     <Compile Include="DoiMatKhau.aspx.designer.cs">
       <DependentUpon>DoiMatKhau.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LichSuDatVe.aspx.cs">
+      <DependentUpon>LichSuDatVe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LichSuDatVe.aspx.designer.cs">
+      <DependentUpon>LichSuDatVe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\BaoCao.cs" />
     <Compile Include="Models\ChiTietHoaDon.cs" />
     <Compile Include="Models\ChuyenXe.cs" />
@@ -306,6 +329,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyBaoCao.aspx.cs">
+      <DependentUpon>QuanLyBaoCao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuanLyBaoCao.aspx.designer.cs">
+      <DependentUpon>QuanLyBaoCao.aspx</DependentUpon>
     </Compile>
     <Compile Include="QuanLyChuyenXe.aspx.cs">
       <DependentUpon>QuanLyChuyenXe.aspx</DependentUpon>
@@ -369,6 +399,13 @@
     </Compile>
     <Compile Include="TListChuyenXe.aspx.designer.cs">
       <DependentUpon>TListChuyenXe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TQuanLyChuyenDi.aspx.cs">
+      <DependentUpon>TQuanLyChuyenDi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TQuanLyChuyenDi.aspx.designer.cs">
+      <DependentUpon>TQuanLyChuyenDi.aspx</DependentUpon>
     </Compile>
     <Compile Include="TraCuu.aspx.cs">
       <DependentUpon>TraCuu.aspx</DependentUpon>

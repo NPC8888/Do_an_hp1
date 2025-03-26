@@ -4,10 +4,11 @@
     <div class="container">
         <h2>Quản Lý Đánh Giá</h2>
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" CssClass="btn-primary" OnClick="ThemMoi" />
-
+        <asp:TextBox ID="txtTim" runat="server" Width="20%" BorderStyle="Solid" BorderWidth="3px"></asp:TextBox>
+        <asp:Button ID="btnTK" runat="server" Text="Tìm kiếm" CssClass="btn-primary" BackColor="#FF9999" OnClick="btnTim_Click" />
         <asp:GridView ID="gvDanhGia" runat="server" AutoGenerateColumns="False" CssClass="GridViewClass"
             DataKeyNames="MaDanhGia,MaXe,MaNguoiDung,DiemDanhGia,BinhLuan"
-            OnSelectedIndexChanged="gvDanhGia_SelectedIndexChanged"  BackColor="White" BorderColor="Black">
+            OnSelectedIndexChanged="gvDanhGia_SelectedIndexChanged" BackColor="White" BorderColor="Black">
             <Columns>
                 <asp:BoundField DataField="MaDanhGia" HeaderText="Mã Đánh Giá" SortExpression="MaDanhGia" />
                 <asp:BoundField DataField="MaXe" HeaderText="Mã Xe" SortExpression="MaXe" />

@@ -5,7 +5,8 @@
     <div class="container">
         <h2>Quản Lý Xe Khách</h2>
         <asp:Button runat="server" Text="Thêm Mới" OnClientClick="showPopup(); return false;" CssClass="btn-primary" />
-
+        <asp:TextBox ID="txtTim" runat="server" Width="20%" BorderStyle="Solid" BorderWidth="3px"></asp:TextBox>
+        <asp:Button ID="btnTK" runat="server" Text="Tìm kiếm" CssClass="btn-primary" OnClick="btnTim_Click" BackColor="#FF9999" />
         <asp:GridView ID="gvXeKhach" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
             DataKeyNames="MaXe,BienSoXe,LoaiXe,SoChoNgoi,SoTang,SoDay,SoGheMoiDay" OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BackColor="White" BorderColor="Black">
             <Columns>
@@ -19,33 +20,37 @@
                 <asp:CommandField ShowSelectButton="True" SelectText="Chỉnh Sửa" ControlStyle-CssClass="btn-select" />
             </Columns>
         </asp:GridView>
-    
-    <asp:ScriptManager runat="server" />
 
-    <div id="popupDiv" class="popup" style="display: none;">
-        <div class="popup-content">
-            <button type="button" onclick="hidePopup()" style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
-            </button>
-            <h3>Thông Tin Xe Khách</h3>
-            <label>Mã Xe:</label>
-            <asp:TextBox ID="txtMaXe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
-            <label>Biển Số Xe:</label>
-            <asp:TextBox ID="txtBienSoXe" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Loại Xe:</label>
-            <asp:TextBox ID="txtLoaiXe" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Chỗ Ngồi:</label>
-            <asp:TextBox ID="txtSoChoNgoi" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Tầng:</label>
-            <asp:TextBox ID="txtSoTang" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Dãy:</label>
-            <asp:TextBox ID="txtSoDay" runat="server" CssClass="popup-input"></asp:TextBox>
-            <label>Số Ghế Mỗi Dãy:</label>
-            <asp:TextBox ID="txtSoGheMoiDay" runat="server" CssClass="popup-input"></asp:TextBox>
-            <asp:Button ID="btnAdd" runat="server" Text="Thêm Xe Khách" OnClick="btnAdd_Click" CssClass="btn-primary" />
-            <asp:Button ID="btnSave" runat="server" Text="Lưu" OnClick="btnSave_Click" CssClass="btn-warning" />
-            <asp:Button ID="btnDelete" runat="server" Text="Xóa" OnClick="btnDelete_Click" CssClass="btn-danger" />
+        <asp:ScriptManager runat="server" />
+
+        <div id="popupDiv" class="popup" style="display: none;">
+            <div class="popup-content">
+                <button type="button" onclick="hidePopup()" style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
+                </button>
+                <h3>Thông Tin Xe Khách</h3>
+                <label>Mã Xe:</label>
+                <asp:TextBox ID="txtMaXe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
+                <label>Biển Số Xe:</label>
+                <asp:TextBox ID="txtBienSoXe" runat="server" CssClass="popup-input"></asp:TextBox>
+                <label>Loại Xe:</label>
+                <asp:TextBox ID="txtLoaiXe" runat="server" CssClass="popup-input"></asp:TextBox>
+                <label>Số Chỗ Ngồi:</label>
+                <asp:TextBox ID="txtSoChoNgoi" runat="server" CssClass="popup-input"></asp:TextBox>
+
+                <label>Số Tầng:</label>
+                <asp:TextBox ID="txtSoTang" runat="server" CssClass="popup-input"></asp:TextBox>
+
+                <label>Số Dãy:</label>
+                <asp:TextBox ID="txtSoDay" runat="server" CssClass="popup-input"></asp:TextBox>
+
+                <label>Số Ghế Mỗi Dãy:</label>
+                <asp:TextBox ID="txtSoGheMoiDay" runat="server" CssClass="popup-input"></asp:TextBox>
+
+                <asp:Button ID="btnAdd" runat="server" Text="Thêm Xe Khách" OnClick="btnAdd_Click" CssClass="btn-primary" />
+                <asp:Button ID="btnSave" runat="server" Text="Lưu"  OnClick="btnSave_Click" CssClass="btn-warning" />
+                <asp:Button ID="btnDelete" runat="server" Text="Xóa" OnClick="btnDelete_Click" CssClass="btn-danger" />
+            </div>
         </div>
-    </div>
     </div>
 
 
@@ -214,6 +219,20 @@
             document.getElementById("popupDiv").style.display = "none";
         }
 
+        function validateForm() {
+            // Lấy giá trị các ô nhập
+            var bienSoXe = document.getElementById('<%= txtBienSoXe.ClientID %>').value.trim();
+            var loaiXe = document.getElementById('<%= txtLoaiXe.ClientID %>').value.trim();
+            var soChoNgoi = document.getElementById('<%= txtSoChoNgoi.ClientID %>').value.trim();
+            var soTang = document.getElementById('<%= txtSoTang.ClientID %>').value.trim();
+            var soDay = document.getElementById('<%= txtSoDay.ClientID %>').value.trim();
+            var soGheMoiDay = document.getElementById('<%= txtSoGheMoiDay.ClientID %>').value.trim();
+
+
+        }
+
+
     </script>
+
 
 </asp:Content>

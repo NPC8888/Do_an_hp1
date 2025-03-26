@@ -4,6 +4,7 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI.WebControls;
 
@@ -21,9 +22,23 @@ namespace xediep.BLL
        public List<ChuyenXe> GetALLChuyenXeByDatatimeMoreThanNow()
         {
             List<ChuyenXe> l= new List<ChuyenXe>();
-            l = ChuyenXeDAL.Instance.GetListChuyenXe();
+            l = ChuyenXeDAL.Instance.GetALLCX();
+            
            
             return l;
+        }
+        public List<ChuyenXe> GetALLChuyenXeToDay()
+        {
+            List<ChuyenXe> cxs = new List<ChuyenXe>();
+            List<ChuyenXe> l = new List<ChuyenXe>();
+            l = ChuyenXeDAL.Instance.GetALLCX();
+            foreach (var cx in l)
+            {
+                if (cx.TgKhoiHanh.Date == DateTime.Today.Date) cxs.Add(cx);
+
+            }
+
+            return cxs;
         }
         public List<ChuyenXe> GetALLChuyenXe()
         {
@@ -35,7 +50,10 @@ namespace xediep.BLL
         public List<ChuyenXe> GetALLChuyenXeByTuyenXeAndDate(int MaTuyen ,string date)
         {
             List<ChuyenXe> l = new List<ChuyenXe>();
-            l = ChuyenXeDAL.Instance.SearchChuyenXeByMaTuyenXe(MaTuyen,date);
+            foreach(var cx in ChuyenXeBLL.Instance.GetALLChuyenXe())
+            {
+                if (cx.TgKhoiHanh.Date == DateTime.Parse(date).Date && cx.MaTuyenXe == MaTuyen) l.Add(cx);
+            }
            
             return l;
         }
@@ -111,6 +129,38 @@ namespace xediep.BLL
         public List<ChuyenXe> SearchChuyenXe(string maTuyenXe)
         {
             return ChuyenXeDAL.Instance.SearchChuyenXe(maTuyenXe);
+        }
+
+        //hàm tự động cập nhật trạng thái chuyến xe mỗi 1p
+        private static Timer _timer;
+        public static void Start()
+        {
+            
+            _timer = new Timer(autoUpdateTrangThai, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+        }
+
+
+        public static void autoUpdateTrangThai(object state) 
+        {
+            List<ChuyenXe> cxs = ChuyenXeBLL.Instance.GetALLChuyenXe();
+            foreach (var cx in cxs)
+            {
+                int count = 0;
+                if (cx.TgKhoiHanh <= DateTime.Now && cx.TgDen > DateTime.Now)
+                {
+                    cx.TrangThai = "DangChay";
+                    count++;
+                }
+                else if (cx.TgDen <= DateTime.Now)
+                {
+                    cx.TrangThai = "DaChay";
+                    count++;
+                }
+                if (count > 0)
+                {
+                    ChuyenXeDAL.Instance.UpdateChuyenXe(cx);
+                }
+            }
         }
 
     }

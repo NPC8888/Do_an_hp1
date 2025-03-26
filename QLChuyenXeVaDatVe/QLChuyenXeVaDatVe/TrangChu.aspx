@@ -98,7 +98,9 @@
             <uc1:ThanhTimKiem runat="server" ID="ThanhTimKiem" />
         </div>
     </div>
+    <h3 style="margin-left:45%">Chuyến xe hôm nay</h3>
     <div class="list-section">
+        
         <uc1:ListChuyenXe runat="server" ID="ListChuyenXe" />
     </div>
   

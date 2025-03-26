@@ -123,13 +123,13 @@ namespace xediep
         protected global::System.Web.UI.WebControls.DropDownList ddlXe;
 
         /// <summary>
-        /// txtTrangThai control.
+        /// ddlTrangThai control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTrangThai;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTrangThai;
 
         /// <summary>
         /// btnAddd control.

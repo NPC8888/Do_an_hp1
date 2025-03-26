@@ -47,6 +47,10 @@ namespace xediep
             {
                 ddlTuyenXe.Items.Add(new ListItem(item.DiemDi + " - " + item.DiemDen, item.MaTuyenXe.ToString()));
             }
+            ddlTrangThai.Items.Clear();
+            ddlTrangThai.Items.Add(new ListItem("Chưa khởi hàng", "ChuaChay"));
+            ddlTrangThai.Items.Add(new ListItem("Đang chạy", "DangChay"));
+            ddlTrangThai.Items.Add(new ListItem("Đang chạy", "DaChay"));
 
         }
         private void LoadDDLTaiXe()
@@ -71,6 +75,7 @@ namespace xediep
         // Add XeKhach
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            if (checkInputChuyenXe() == false) return;
             ChuyenXe newCX = new ChuyenXe
             {
 
@@ -78,7 +83,7 @@ namespace xediep
                 TgDen = DateTime.Parse(txtTgDen.Text),
                 TgKhoiHanh = DateTime.Parse(txtTgKhoiHanh.Text),
                 Price = decimal.Parse(txtPrice.Text),
-                TrangThai = txtTrangThai.Text,
+                TrangThai = ddlTrangThai.SelectedValue,
                 MaTaiXe = int.Parse(ddlTaiXe.SelectedValue),
                 MaXe = int.Parse(ddlXe.SelectedValue)
 
@@ -101,6 +106,7 @@ namespace xediep
         // Edit XeKhach
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            if (checkInputChuyenXe() == false) return;
             if (gvXeKhach.SelectedRow != null) // Kiểm tra xem có dòng nào được chọn không
             {
 
@@ -112,7 +118,7 @@ namespace xediep
                     TgDen = DateTime.Parse(txtTgDen.Text),
                     TgKhoiHanh = DateTime.Parse(txtTgKhoiHanh.Text),
                     Price = decimal.Parse(txtPrice.Text),
-                    TrangThai = txtTrangThai.Text,
+                    TrangThai = ddlTrangThai.SelectedValue,
                     MaTaiXe = int.Parse(ddlTaiXe.SelectedValue),
                     MaXe = int.Parse(ddlXe.SelectedValue)
 
@@ -147,17 +153,24 @@ namespace xediep
         // Delete XeKhach
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            int macx = int.Parse(txtMaCX.Text);
-            bool result = ChuyenXeBLL.Instance.DeleteChuyenXe(macx);
-            if (result)
+            try
             {
-                LoadXeKhachData();
+                int macx = int.Parse(txtMaCX.Text);
+                bool result = ChuyenXeBLL.Instance.DeleteChuyenXe(macx);
+                if (result)
+                {
+                    LoadXeKhachData();
 
-                Response.Write("<script>alert('Xóa thành công!');</script>");
+                    Response.Write("<script>alert('Xóa thành công!');</script>");
+                }
+                else
+                {
+                    Response.Write("<script>alert('Lỗi khi xóa!');</script>");
+                }
             }
-            else
+            catch
             {
-                Response.Write("<script>alert('Lỗi khi xóa!');</script>");
+                Response.Write("<script>alert('Có liên kết nhiều dữ liệu không thể xóa!');</script>");
             }
         }
 
@@ -194,7 +207,7 @@ namespace xediep
             txtPrice.Text = price;
             ddlTaiXe.SelectedValue = maTaiXe;
             ddlXe.SelectedValue = maXe;
-            txtTrangThai.Text = trangThai;
+            ddlTrangThai.SelectedValue = trangThai;
             //hiện btn fix,delete
             btnFix.Visible = true;
             btnDelete.Visible = true;
@@ -213,7 +226,7 @@ namespace xediep
             txtPrice.Text = "";
             ddlTaiXe.SelectedValue = null;
             ddlXe.SelectedValue = null;
-            txtTrangThai.Text = "";
+            ddlTrangThai.SelectedIndex = 0;
             //ẩn btn fix,delete
             btnFix.Visible = false;
             btnDelete.Visible = false;
@@ -245,8 +258,8 @@ namespace xediep
                 Response.Write("<script>alert('Vui lòng điền đầy đủ ngày bắt đầu ngày kết thúc!');</script>");
                 return;
             }
-           List<ChuyenXe> chuyenXes = new List<ChuyenXe>();
-           foreach(var cx in ChuyenXeBLL.Instance.GetALLChuyenXe())
+            List<ChuyenXe> chuyenXes = new List<ChuyenXe>();
+            foreach (var cx in ChuyenXeBLL.Instance.GetALLChuyenXe())
             {
                 DateTime startDate, endDate;
                 if (DateTime.TryParse(txtS.Text, out startDate) && DateTime.TryParse(txtE.Text, out endDate))
@@ -261,6 +274,50 @@ namespace xediep
             gvXeKhach.DataSource = chuyenXes;
             gvXeKhach.DataBind();
 
+        }
+        bool checkInputChuyenXe()
+        {
+            // Kiểm tra không để trống
+            if (string.IsNullOrWhiteSpace(txtTgKhoiHanh.Text) ||
+                string.IsNullOrWhiteSpace(txtTgDen.Text) ||
+                string.IsNullOrWhiteSpace(txtPrice.Text))
+            {
+                Response.Write("<script>alert('Vui lòng nhập đầy đủ thông tin!');</script>");
+                return false;
+            }
+
+
+
+            // Kiểm tra định dạng ngày giờ khởi hành
+            if (!DateTime.TryParse(txtTgKhoiHanh.Text, out DateTime tgKhoiHanh))
+            {
+                Response.Write("<script>alert('Thời gian khởi hành không hợp lệ!');</script>");
+                return false;
+            }
+
+            // Kiểm tra định dạng ngày giờ đến
+            if (!DateTime.TryParse(txtTgDen.Text, out DateTime tgDen))
+            {
+                Response.Write("<script>alert('Thời gian đến không hợp lệ!');</script>");
+                return false;
+            }
+
+            // Kiểm tra thời gian đến phải sau thời gian khởi hành
+            if (tgDen <= tgKhoiHanh)
+            {
+                Response.Write("<script>alert('Thời gian đến phải lớn hơn thời gian khởi hành!');</script>");
+                return false;
+            }
+
+            // Kiểm tra giá vé hợp lệ (số dương)
+            if (!decimal.TryParse(txtPrice.Text, out decimal giaVe) || giaVe <= 0)
+            {
+                Response.Write("<script>alert('Giá vé phải là số dương!');</script>");
+                return false;
+            }
+
+            // Nếu tất cả hợp lệ
+            return true;
         }
 
 

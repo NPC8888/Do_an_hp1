@@ -5,9 +5,9 @@
         <h2>Quản Lý doanh thu </h2>
         <link rel="stylesheet" href="css/QuanLy.css">
         <div style="display: flex;">
-            <asp:Button ID="btnAdd" runat="server" Text="Tạo báo cáo" OnClick="ThemMoi" CssClass="btn-primary" />
-            <asp:TextBox ID="txtS" runat="server" TextMode="Date" class="date-picker"></asp:TextBox>
-            <asp:TextBox ID="txtE" runat="server" TextMode="Date" class="date-picker" OnTextChanged="txtE_TextChanged"></asp:TextBox>
+            <asp:Button ID="btnAdd" runat="server" Text="Tạo báo cáo" OnClick="ThemMoi" UseSubmitBehavior="false" CssClass="btn-primary" />
+            <asp:TextBox ID="txtS" runat="server" TextMode="Date" Width="300px" ></asp:TextBox>
+            <asp:TextBox ID="txtE" runat="server" TextMode="Date" Width="300px" OnTextChanged="txtE_TextChanged"></asp:TextBox>
             <asp:Button ID="btnTK" runat="server" Text="Thống kê" OnClick="ThongKe" CssClass="btn-primary" BackColor="#FF9999" />
         </div>
         <!-- GridView to display Xe Khach List -->
@@ -99,7 +99,9 @@
                 width: 100% !important;
                 height: 50% !important;
             }
+
         </style>
+
 
         <div class="dashboard">
 
@@ -189,17 +191,17 @@
                 <h3>Thông Tin Chuyến Xe</h3>
             </div>
             <label for="txtTgKhoiHanh">Ngày bắt đầu:</label>
-            <asp:TextBox ID="txtStar" runat="server" CssClass="popup-input"></asp:TextBox>
+            <asp:TextBox ID="txtStar" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
             <label for="txtTgDen">Ngày kết thúc:</label>
-            <asp:TextBox ID="txtEnd" runat="server" CssClass="popup-input"></asp:TextBox>
+            <asp:TextBox ID="txtEnd" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
             <label for="txtPrice">Tổng số vé:</label>
-            <asp:TextBox ID="txtTongVe" runat="server" CssClass="popup-input"></asp:TextBox>
+            <asp:TextBox ID="txtTongVe" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
             <label for="txtPrice">Tổng tiền:</label>
-            <asp:TextBox ID="txtTongTien" runat="server" CssClass="popup-input"></asp:TextBox>
+            <asp:TextBox ID="txtTongTien" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
             <label for="txtMaTaiXe">Loại báo cáo:</label>
             <asp:DropDownList ID="ddlLoaiBaoCao" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
 
-            <asp:Button ID="btnFix" runat="server" Text="Xác nhận tạo báo cáo" OnClick="ThemMoi" CssClass="btn-primary" />
+            <asp:Button ID="btnFix" runat="server" Text="Xác nhận tạo báo cáo" OnClick="TaoBaoCao" CssClass="btn-primary" />
         </div>
     </div>
 

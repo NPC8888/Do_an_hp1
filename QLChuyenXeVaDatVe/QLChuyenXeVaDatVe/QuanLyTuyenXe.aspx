@@ -2,10 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h2>Quản Lý địa điểm</h2>
+        <h2>Quản Lý Tuyến Đường</h2>
 
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" OnClick="ThemMoi" CssClass="btn-primary" />
-
+        <asp:TextBox ID="txtTim" runat="server" Width="20%" BorderStyle="Solid" BorderWidth="3px"></asp:TextBox>
+        <asp:Button ID="btnTK" runat="server" Text="Tìm kiếm" CssClass="btn-primary" BackColor="#FF9999" OnClick="btnTim_Click" />
         <asp:GridView ID="gvTuyenXe" runat="server" AutoGenerateColumns="False" CssClass="table"
             DataKeyNames="MaTuyenXe,DiemDi,DiemDen,TrangThai"
             OnSelectedIndexChanged="gvXeKhach_SelectedIndexChanged" BorderColor="Black">
@@ -47,16 +48,16 @@
             <label for="txtMaTaiXe">Điểm đến:</label>
             <asp:DropDownList ID="ddlDiemDen" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <label for="txtTrangThai">Trạng Thái:</label>
-            <asp:TextBox ID="txtTrangThai" runat="server" CssClass="popup-input"></asp:TextBox>
+           <asp:DropDownList ID="ddlTrangThai" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <asp:Button ID="btnAddd" runat="server" Text="Thêm Chuyến Xe" OnClick="btnAdd_Click" CssClass="btn-primary" />
             <asp:Button ID="btnFix" runat="server" Text="Lưu Thay Đổi" OnClick="btnEdit_Click" CssClass="btn-warning" />
             <asp:Button ID="btnDelete" runat="server" Text="Xóa Chuyến Xe" OnClick="btnDelete_Click" CssClass="btn-danger" />
         </div>
     </div>
     <div class="XacNhan" id="divxacnhan" runat="server">
-        !!!! Xác nhận xóa
+        !Lưu ý 
         <br />
-        niếu xóa toàn bộ các chuyến xe thuộc tuyến đường !!!!
+       Tuyến này có nhiều liên kết không thể xóa<br /> bạn có muốn đổi trạng thái không hoạt động không ?
         <br />
         <asp:Button ID="btnXacNhan" runat="server" Text="Xác nhận" OnClick="btnXacNhan_Click" CssClass="btn-primary" />
         <asp:Button ID="btnHuy" runat="server" Text="Hủy" OnClick="btnHuy_Click" CssClass="btn-danger" />
@@ -74,7 +75,8 @@
             transform: translate(-50%, -50%);
             background: white;
             padding: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+           
+           border:2px solid;
             border-radius: 10px;
             z-index: 1000;
             width: 30%;
@@ -212,8 +214,6 @@
         button, .table {
             margin-bottom: 20px;
         }
-
-
     </style>
 
 

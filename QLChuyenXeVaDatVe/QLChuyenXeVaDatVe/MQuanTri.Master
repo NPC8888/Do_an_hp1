@@ -51,7 +51,6 @@
 
         .container {
             background-color: #fff;
-            
         }
 
 
@@ -161,14 +160,18 @@
     <form id="form1" runat="server">
         <div class="menu">
             <img onclick="iconlgclik()" src="jpg/output-onlinegiftools.gif" />
-            <h1 class="blinking-text">Quản trị hệ thống xe khách DNC</h1>
+            <h1 class="blinking-text">Hệ thống xe khách DNC</h1>
             <div style="display: flex; gap: 20px; margin-left: 5%; cursor: pointer">
                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyHoaDon.aspx'">
                     <img style="height: 30px" src="jpg/Mdoanhthu.gif" />
                     <strong>Doanh thu</strong>
 
                 </div>
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyBaoCao.aspx'">
+                    <img style="height: 30px" src="jpg/chart.gif" />
+                    <strong>Báo cáo</strong>
 
+                </div>
                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;" onclick="window.location.href='QuanLyDanhGia.aspx'">
                     <img style="height: 30px" src="jpg/Mfeedback.gif" />
                     <strong>Đánh giá</strong>

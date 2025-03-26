@@ -28,7 +28,7 @@ namespace xediep
             {
 
                 LoadUserInfo();
-                LoadTicketHistory();
+                
                 idNguoiDung = Request.QueryString["id"];
 
 
@@ -53,6 +53,7 @@ namespace xediep
 
         public void btnFix(object sender, EventArgs e)
         {
+            if (checkInputUser() == false) return;
             DataRow uses = NguoiDungBLL.Instance.AuthenticateByToken(Request.Cookies["AuthToken"].Value);
             use = new NguoiDung(uses);
 
@@ -61,24 +62,6 @@ namespace xediep
             LoadUserInfo();
         }
 
-        private void LoadTicketHistory()
-        {
-            HoaDonBLL hd = new HoaDonBLL();
-            // Dữ liệu giả lập - thay bằng database
-            List<HoaDon> lHD = new List<HoaDon>();
-            foreach (var item in hd.GetAllHoaDon())
-            {
-                if (item.MaKhachHang == use.MaNguoiDung)
-                {
-                    lHD.Add(item);
-                }
-            }
-            
-
-
-            rptTickets.DataSource = lHD;
-            rptTickets.DataBind();
-        }
 
 
         protected void btnLogout_Click(object sender, EventArgs e)
@@ -113,59 +96,38 @@ namespace xediep
             // Chuyển hướng về trang Login
             Response.Redirect("TrangChu.aspx");
         }
+        bool checkInputUser()
+        {
+            // Kiểm tra không để trống
+            if (string.IsNullOrWhiteSpace(editFullName.Value) || string.IsNullOrWhiteSpace(editPhone.Value))
+            {
+                Response.Write("<script>alert('Vui lòng nhập đầy đủ Họ và Tên, Số Điện Thoại!');</script>");
+                return false;
+            }
+
+            // Kiểm tra Họ và Tên (Chỉ chứa chữ cái, có khoảng trắng)
+            string namePattern = @"^[\p{L} ]+$"; // Hỗ trợ unicode
+            if (!System.Text.RegularExpressions.Regex.IsMatch(editFullName.Value, namePattern))
+            {
+                Response.Write("<script>alert('Họ và Tên chỉ được chứa chữ cái!');</script>");
+                return false;
+            }
+
+            // Kiểm tra số điện thoại hợp lệ (10 số, bắt đầu bằng 0)
+            string phonePattern = @"^0[0-9]{9}$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(editPhone.Value, phonePattern))
+            {
+                Response.Write("<script>alert('Số điện thoại không hợp lệ! Phải có 10 chữ số và bắt đầu bằng 0.');</script>");
+                return false;
+            }
+
+            // Nếu tất cả hợp lệ
+            return true;
+        }
 
 
         //danhgia
 
-        [WebMethod]
-        public static string DanhGiaCX(string MaChuyenXe, string SoSao, string NoiDung, string MaDatVe
-            )
-        {
-            
-            try { 
-            HttpCookie authCookie = HttpContext.Current.Request.Cookies["AuthToken"];
-            if (authCookie != null)
-            {
-                string token = authCookie.Value;
-                NguoiDungBLL userBLL = new NguoiDungBLL();
-                DataRow user = userBLL.AuthenticateByToken(token);
-                NguoiDung nguoi = new NguoiDung(user);
-                DanhGia dg = new DanhGia(100, int.Parse(MaChuyenXe),nguoi.MaNguoiDung, int.Parse(SoSao), NoiDung);
-                if (DanhGiaBLL.Instance.AddDanhGia(dg)&&VeXeBLL.Instance.FixTrangThaiKhiDanhGia(MaDatVe))
-                {
-
-                    return "Danh giá thành công!" ;
-                }
-                return "that bai";
-            }
-            
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
-
-            return "khong co nguoi dung";
-            
-
-        }
-        [WebMethod]
-        public static string HuyVeById(string id)
-        {
-            try
-            {
-                if (VeXeBLL.Instance.FixTrangThaiKhiHuy(id.ToString()))
-                {
-                    return "Hủy Thành Công";
-
-                }
-                return "Thất Bại";
-            }
-            catch(Exception ex)
-            {
-                return ex.ToString() ;
-            }
-        }
 
     }
 }

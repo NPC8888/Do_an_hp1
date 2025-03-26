@@ -234,6 +234,9 @@
             height: 20px;
             width: 20px;
         }
+        .l{
+            color:white;
+        }
     </style>
 
     <asp:ScriptManager runat="server" EnablePageMethods="true" />
@@ -331,7 +334,7 @@
         <div style="background:none">
             <!-- Họ tên -->
             <div class="form-group">
-                <asp:Label ID="lbID" runat="server"></asp:Label>
+                <asp:Label ID="lbID" runat="server" CssClass="l"></asp:Label>
                 <label for="txtHoTen">Họ và Tên:</label>
                 <asp:TextBox ID="txtHoTen" runat="server" CssClass="form-control" placeholder="Nhập họ và tên" />
             </div>
@@ -531,7 +534,7 @@
                     if (data.d === "thanhcong") {  // Kiểm tra phản hồi từ server
                         PageMethods.SaveBooking(MachuyenXe, txtHoVaTen, txtSDT, SoGhe, MaDiemDon, MaDiemTra, tongtieng, function (response) {
 
-                            alert(response);
+                            
 
                         }, function (error) {
 

@@ -63,7 +63,7 @@ namespace BLL
             }
 
 
-            int newDanhGiaId = DanhGiaDAL.Instance.DeleteDanhGia(danhGia) ? 0 : 1;
+            int newDanhGiaId = DanhGiaDAL.Instance.DeleteDanhGia(danhGia) ? 1 : 0;
 
 
             return newDanhGiaId > 0;
@@ -78,7 +78,7 @@ namespace BLL
             }
 
 
-            int newDanhGiaId = DanhGiaDAL.Instance.UpdateDanhGia(danhGia) ? 0 : 1;
+            int newDanhGiaId = DanhGiaDAL.Instance.UpdateDanhGia(danhGia) ? 1 : 0;
 
 
             return newDanhGiaId > 0;

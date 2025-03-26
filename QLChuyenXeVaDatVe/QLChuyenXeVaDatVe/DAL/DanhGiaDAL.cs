@@ -61,15 +61,14 @@ namespace DAL
         }
         public bool UpdateDanhGia(DanhGia danhGia)
         {
-            string query = "UPDATE DanhGia SET MaXe = @MaXe, MaNguoiDung = @MaNguoiDung, DiemDanhGia = @DiemDanhGia, BinhLuan = @BinhLuan WHERE MaDanhGia = @MaDanhGia";
-            int result = DataProvider.Instance.ExecuteNonQuery(query,
-                new object[] { danhGia.MaXe, danhGia.MaNguoiDung, danhGia.DiemDanhGia, danhGia.BinhLuan, danhGia.MaDanhGia });
+            string query = string.Format("UPDATE DanhGia SET MaXe = {0}  , MaNguoiDung = {1} , DiemDanhGia = {2} , BinhLuan = N'{3}' WHERE MaDanhGia = {4} ", danhGia.MaXe, danhGia.MaNguoiDung, danhGia.DiemDanhGia, danhGia.BinhLuan, danhGia.MaDanhGia);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
         public bool DeleteDanhGia(int maDanhGia)
         {
-            string query = "DELETE FROM DanhGia WHERE MaDanhGia = @MaDanhGia";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { maDanhGia });
+            string query = string.Format("DELETE FROM DanhGia WHERE MaDanhGia = {0} ", maDanhGia);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
             return result > 0;
         }
 

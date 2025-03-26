@@ -156,4 +156,3 @@ VALUES
     ('nguyenan@email.com', 'hashed_password_1', 'nguyenan', '0912345678', 'nguyenan@email.com', 'KhachHang'),
     ('admin01@email.com', 'hashed_password_2', 'Admin', '0909876543', 'admin01@email.com', 'QuanTri'),
     ('lethanh@email.com', 'hashed_password_3', 'Le Thanh', '0922334455', 'lethanh@email.com', 'TaiXe');
-	select *from ChuyenXe

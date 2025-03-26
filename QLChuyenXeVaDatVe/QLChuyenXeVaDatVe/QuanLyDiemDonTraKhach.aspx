@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container">
-        <h2>Quản Lý Chuyến Xe </h2>
+        <h2>Quản Lý Địa Điểm </h2>
         <asp:Button ID="btnAdd" runat="server" Text="Thêm Mới" OnClientClick="showPopup(); return false;" CssClass="btn-primary" />
+        <asp:TextBox ID="txtTim" runat="server" Width="20%" BorderStyle="Solid" BorderWidth="3px"></asp:TextBox>
+        <asp:Button ID="btnTK" runat="server" Text="Tìm kiếm" CssClass="btn-primary" BackColor="#FF9999" OnClick="btnTim_Click" />
         <asp:GridView ID="gvDiemDonTraKhach" runat="server" AutoGenerateColumns="False" DataKeyNames="MaDiem,TenDiem,MaTuyenXe,DiaChi,LoaiDiem"
             OnSelectedIndexChanged="gvDiemDon_SelectedIndexChanged" CssClass="table" BorderColor="#3333FF">
             <Columns>

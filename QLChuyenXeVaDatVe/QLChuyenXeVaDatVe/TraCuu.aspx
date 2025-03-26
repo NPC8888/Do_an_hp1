@@ -4,11 +4,15 @@
     <div class="tra-cuu-container">
         <asp:TextBox ID="txtTraCuu" runat="server" CssClass="tra-cuu-input" placeholder="Nhập mã hóa đơn..."></asp:TextBox>
         <asp:Button ID="btnTraCuu" runat="server" Text="Tra cứu" CssClass="tra-cuu-btn" OnClick="btnTraCuu_Click" />
+
     </div>
-    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; height:auto">
-    <img src="jpg/HuongDan.jpeg" />
-    
-</div>
+    <div class="tra-cuu-container">
+        <asp:Label ID="lblThongBao" runat="server" ForeColor="Red"></asp:Label></div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; height: auto">
+        <img src="jpg/HuongDan.jpeg" />
+
+    </div>
     <style>
         .tra-cuu-container {
             display: flex;
@@ -18,10 +22,9 @@
             padding: 20px;
             border-radius: 5px;
             background: #fff;
-            width: 100%; 
-            height:100%;
-            margin-bottom:10%;
-        
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10%;
         }
 
 

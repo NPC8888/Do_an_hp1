@@ -7,7 +7,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using xediep.BLL;
+using xediep.BLL.BLL;
 using xediep.Models;
+using xediep.webControl;
 
 namespace QLChuyenXeVaDatVe
 {
@@ -24,7 +26,7 @@ namespace QLChuyenXeVaDatVe
 
         private void LoadDiemDonTraKhach()
         {
-           
+
             gvDiemDonTraKhach.DataSource = DiemDonTraKhachBLL.Instance.GetALL();
             gvDiemDonTraKhach.DataBind();
         }
@@ -32,26 +34,48 @@ namespace QLChuyenXeVaDatVe
         {
             List<TuyenXe> list = TuyenXeBLL.Instance.GetALLTuyenXe();
             foreach (TuyenXe item in list)
-            {   
+            {
                 ddlTuyenXe.Items.Add(new ListItem(item.DiemDi + " - " + item.DiemDen, item.MaTuyenXe.ToString()));
             }
             ddlLoaiDiem.Items.Add(new ListItem("Điểm đón", "DD"));
             ddlLoaiDiem.Items.Add(new ListItem("Điểm trả", "DT"));
             ddlTuyenXe.DataBind();
         }
+        protected void btnTim_Click(object sender, EventArgs e)
+        {
+            string key = txtTim.Text;
+            if (key != null && key != "")
+            {
+                var xes = DiemDonTraKhachBLL.Instance.GetALL();
+                var list = xes.Where(x => BoLoc.TimKiem(x, txtTim.Text)).ToList();
+                gvDiemDonTraKhach.DataSource = list;
+                gvDiemDonTraKhach.DataBind();
 
+            }
+            else
+            {
+                LoadDiemDonTraKhach();
+            }
+
+
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            if (checkInPut()==false)
+            {
+                Response.Write("<script>alert('Không được để trống thông tin!');</script>"); return;
+            }
+            
             DiemDonTraKhach newDiem = new DiemDonTraKhach
             {
                 MaTuyenXe = int.Parse(ddlTuyenXe.SelectedValue),
                 TenDiem = txtTenDiem.Text,
                 DiaChi = txtDiaChi.Text,
                 LoaiDiem = ddlLoaiDiem.SelectedValue,
-                
-                
+
+
             };
-           
+
             bool result = DiemDonTraKhachBLL.Instance.InsertDiemDonTraKhach(newDiem);
             if (result)
             {
@@ -66,6 +90,10 @@ namespace QLChuyenXeVaDatVe
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            if (checkInPut() == false)
+            {
+                Response.Write("<script>alert('Không được để trống thông tin!');</script>"); return;
+            }
             if (gvDiemDonTraKhach.SelectedRow != null)
             {
                 DiemDonTraKhach updatedDiem = new DiemDonTraKhach
@@ -111,7 +139,7 @@ namespace QLChuyenXeVaDatVe
             txtMaDiem.Text = gvDiemDonTraKhach.DataKeys[index].Values["MaDiem"].ToString();
             txtTenDiem.Text = gvDiemDonTraKhach.DataKeys[index].Values["TenDiem"].ToString();
             txtDiaChi.Text = gvDiemDonTraKhach.DataKeys[index].Values["DiaChi"].ToString();
-            string TuyenXe= gvDiemDonTraKhach.DataKeys[index].Values["MaTuyenXe"].ToString();
+            string TuyenXe = gvDiemDonTraKhach.DataKeys[index].Values["MaTuyenXe"].ToString();
             ddlTuyenXe.SelectedValue = TuyenXe;
 
 
@@ -123,7 +151,7 @@ namespace QLChuyenXeVaDatVe
         protected void btnThemMoi_Click(object sender, EventArgs e)
         {
             txtMaDiem.Text = "";
-            ddlTuyenXe.SelectedValue =null;
+            ddlTuyenXe.SelectedValue = null;
             txtTenDiem.Text = "";
             txtDiaChi.Text = "";
             ddlLoaiDiem.SelectedIndex = 0;
@@ -131,6 +159,13 @@ namespace QLChuyenXeVaDatVe
             btnDelete.Visible = false;
             ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
-
+        bool checkInPut()
+        {
+            if (string.IsNullOrWhiteSpace(txtDiaChi.Text) || string.IsNullOrWhiteSpace(txtTenDiem.Text))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace xediep
                 string date = Session["DateSh"].ToString();
                 int matuyen = TuyenXeBLL.Instance.GetMaTuyenXeByDiemDiDiemDen(diemdi, diemden);
                 
-                lChuyenXe = ChuyenXeDAL.Instance.SearchChuyenXeByMaTuyenXe(matuyen, date);
+                lChuyenXe = ChuyenXeBLL.Instance.GetALLChuyenXeByTuyenXeAndDate(matuyen, date);
 
                 // Lưu vào Session để dùng lại sau PostBack
                 Session["lChuyenXe"] = lChuyenXe;

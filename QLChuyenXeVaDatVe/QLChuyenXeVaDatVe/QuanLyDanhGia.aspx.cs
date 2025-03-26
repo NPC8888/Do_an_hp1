@@ -6,7 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using xediep.BLL;
 using xediep.BLL.BLL;
+using xediep.Models;
+using xediep.webControl;
 
 namespace QLChuyenXeVaDatVe
 {
@@ -44,9 +47,27 @@ namespace QLChuyenXeVaDatVe
             }
             ddlMaXe.DataBind();
         }
+        protected void btnTim_Click(object sender, EventArgs e)
+        {
+            string key = txtTim.Text;
+            if (key != null && key != "")
+            {
+                var dgs = DanhGiaBLL.Instance.GetALL();
+                var list = dgs.Where(x => BoLoc.TimKiem(x, txtTim.Text)).ToList();
+                gvDanhGia.DataSource = list;
+                gvDanhGia.DataBind();
+
+            }
+            else
+            {
+                LoadDanhGia();
+            }
+
+
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-
+            if (checkInputDanhGia() == false) return;
             DanhGia newDanhGia = new DanhGia
             {
                 MaNguoiDung = int.Parse(ddlMaNguoiDung.SelectedValue),
@@ -68,6 +89,7 @@ namespace QLChuyenXeVaDatVe
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+            if(checkInputDanhGia()==false) return;
             if (gvDanhGia.SelectedRow != null)
             {
                 DanhGia updatedDanhGia = new DanhGia
@@ -78,11 +100,13 @@ namespace QLChuyenXeVaDatVe
                     BinhLuan = txtBinhLuan.Text,
                     DiemDanhGia = int.Parse(txtDiemDanhGia.Text)
                 };
+
                 bool result = DanhGiaBLL.Instance.UpdateDanhGia(updatedDanhGia);
                 if (result)
                 {
                     LoadDanhGia();
                     Response.Write("<script>alert('Cập nhật thành công!');</script>");
+                    
                 }
                 else
                 {
@@ -126,7 +150,7 @@ namespace QLChuyenXeVaDatVe
             txtMaDanhGia.Text = danhgia.MaDanhGia.ToString();
             ddlMaNguoiDung.SelectedValue = danhgia.MaNguoiDung.ToString();
             ddlMaXe.SelectedValue = danhgia.MaXe.ToString();
-            txtBinhLuan.Text = danhgia.BinhLuan;
+            txtBinhLuan.Text = danhgia.BinhLuan.ToString();
             txtDiemDanhGia.Text = danhgia.DiemDanhGia.ToString();
 
             btnFix.Visible = true;
@@ -147,6 +171,36 @@ namespace QLChuyenXeVaDatVe
             btnDelete.Visible = false;
             ScriptManager.RegisterStartupScript(this, GetType(), "showPopup", "showPopup();", true);
         }
+
+        bool checkInputDanhGia()
+        {
+            // Kiểm tra không để trống
+            if (string.IsNullOrWhiteSpace(txtDiemDanhGia.Text) || string.IsNullOrWhiteSpace(txtBinhLuan.Text))
+            {
+                Response.Write("<script>alert('Vui lòng nhập đầy đủ thông tin!');</script>");
+                return false;
+            }
+
+            
+
+            // Kiểm tra Điểm Đánh Giá hợp lệ (1 - 5)
+            if (!int.TryParse(txtDiemDanhGia.Text, out int diemDanhGia) || diemDanhGia < 1 || diemDanhGia > 5)
+            {
+                Response.Write("<script>alert('Điểm đánh giá phải từ 1 đến 5!');</script>");
+                return false;
+            }
+
+            // Kiểm tra độ dài bình luận
+            if (txtBinhLuan.Text.Length < 5 || txtBinhLuan.Text.Length > 500)
+            {
+                Response.Write("<script>alert('Bình luận phải từ 5 đến 500 ký tự!');</script>");
+                return false;
+            }
+
+            // Nếu tất cả hợp lệ
+            return true;
+        }
+
     }
 }
 

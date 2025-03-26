@@ -34,6 +34,12 @@ namespace QLChuyenXeVaDatVe.DAL
 
             return baoCaos;
         }
+        public bool InsetBaoCap(BaoCao bc)
+        {
+            string query = string.Format("INSERT INTO BaoCao (LoaiBaoCao, NgayBatDau, NgayKetThuc, TongSoVe, TongDoanhThu) VALUES (N'{0}', '{1}', '{2}', '{3}', '{4}')", bc.LoaiBaoCao, bc.NgayBatDau.ToString("yyyy-MM-dd"), bc.NgayKetThuc.ToString("yyyy-MM-dd"), bc.TongSoVe, bc.TongDoanhThu);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result > 0;
+        }
 
     }
 }

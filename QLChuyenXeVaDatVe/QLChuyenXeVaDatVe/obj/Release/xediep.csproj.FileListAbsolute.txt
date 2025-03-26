@@ -94,3 +94,7 @@ C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\xediep.csproj.Up2Date
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\QLChuyenXeVaDatVe.dll
 C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\obj\Release\QLChuyenXeVaDatVe.pdb
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\DocumentFormat.OpenXml.dll
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\DocumentFormat.OpenXml.Framework.dll
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\DocumentFormat.OpenXml.xml
+C:\Users\ASUS\Desktop\Do_an_hp1\QLChuyenXeVaDatVe\QLChuyenXeVaDatVe\bin\DocumentFormat.OpenXml.Framework.xml

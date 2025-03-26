@@ -12,8 +12,8 @@
     <%= (lchuyenxe[i].TgDen - lchuyenxe[i].TgKhoiHanh).Minutes %>'
         </div>
         <div class="thong-tin"><%=xediep.BLL.BLL.XeKhachBLL.Instance.GetXeKhachByMaXe(lchuyenxe[i].MaXe).LoaiXe %></div>
-        <div class="thong-tin">⏰ <b><%= lchuyenxe[i].TgKhoiHanh.Hour.ToString()+":"+lchuyenxe[i].TgKhoiHanh.Minute.ToString() %></b> • <%=LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDen %></div>
-        <div class="thong-tin">📍 <b><%= lchuyenxe[i].TgDen.Hour.ToString()+":"+lchuyenxe[i].TgDen.Minute.ToString() %></b> • <%=LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDon %></div>
+        <div class="thong-tin">⏰ <b><%= lchuyenxe[i].TgKhoiHanh.Hour.ToString()+":"+lchuyenxe[i].TgKhoiHanh.Minute.ToString() %></b> • <%=LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDon %></div>
+        <div class="thong-tin">📍 <b><%= lchuyenxe[i].TgDen.Hour.ToString()+":"+lchuyenxe[i].TgDen.Minute.ToString() %></b> • <%=LayDiemDiDiemDenByMaTuyenXe(lchuyenxe[i].MaTuyenXe.ToString()).DiemDen %></div>
     </div>
     <div>
         <div class="gia-ve"><%=lchuyenxe[i].Price.ToString()+":VND" %></div>

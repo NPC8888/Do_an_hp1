@@ -73,7 +73,7 @@ namespace xediep.DAL
 
         public bool DeleteTuyenXe(int maXe)
         {
-            string query = "DELETE FROM TuyenXe WHERE MaXe = " + maXe;
+            string query = "DELETE FROM TuyenXe WHERE MaTuyenXe = " + maXe;
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { maXe });
             return result > 0;
         }

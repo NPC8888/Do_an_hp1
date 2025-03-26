@@ -96,19 +96,7 @@ namespace DAL
 
         }
 
-        public List<ChuyenXe> SearchChuyenXeByMaTuyenXe(int maTuyenXe, string ngayKhoiHanh)
-        {
-            List<ChuyenXe> list = new List<ChuyenXe>();
-            string query = string.Format("SELECT * FROM ChuyenXe WHERE MaTuyenXe = {0} AND ThoiGianKhoiHanh >= '{1}'", maTuyenXe, ngayKhoiHanh);
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in data.Rows)
-            {
-                ChuyenXe chuyenXe = new ChuyenXe(item);
-                list.Add(chuyenXe);
-            }
-            return list;
-        }
+  
         public ChuyenXe getGiaXeByMaXe(string id)
         {
             int i = int.Parse(id);

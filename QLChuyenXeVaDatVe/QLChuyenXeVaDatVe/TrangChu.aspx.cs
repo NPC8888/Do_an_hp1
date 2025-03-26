@@ -21,7 +21,7 @@ namespace xediep
         {
             if (!IsPostBack)
             {
-                foreach (var item in ChuyenXeBLL.Instance.GetALLChuyenXe())
+                foreach (var item in ChuyenXeBLL.Instance.GetALLChuyenXeToDay())
                 {
                     ListChuyenXe.lchuyenxe.Add(new ChuyenXe(item));
                 }

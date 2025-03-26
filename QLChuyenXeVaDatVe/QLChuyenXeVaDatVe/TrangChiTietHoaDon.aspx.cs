@@ -125,19 +125,15 @@ namespace QLChuyenXeVaDatVe
             {
                 string htmlContent = GenerateInvoiceHtml(maHoaDon); // Sinh nội dung email
 
-                if (string.IsNullOrEmpty(htmlContent))
-                {
-                    return "Lỗi: Nội dung HTML rỗng hoặc null.";
-                }
-
+             
                 EmailService emailService = new EmailService();
                 bool success = emailService.SendMail(Gmaill, "Tiêu đề Email", htmlContent);
 
                 return success ? "Email đã gửi thành công" : "Lỗi khi gửi email";
             }
-            catch (Exception ex)
+            catch
             {
-                return "Lỗi hệ thống: " + ex.Message;
+                return "Lỗi định dạng gmail";
             }
         }
         //tao Noi dung maill

@@ -58,11 +58,11 @@
                 <button type="button" onclick="hidePopup()"
                     style="margin-left: 90%; background: none; border: none; outline: none; background-image: url('/jpg/iconX.png'); background-size: contain; background-repeat: no-repeat; width: 70px; height: 70px; border: none; cursor: pointer">
                 </button>
-                <h3>Thông Tin Chuyến Xe</h3>
+              
             </div>
 
             <label for="txtMaCX">Mã Chuyến Xe:</label>
-            <asp:TextBox ID="txtMaCX" runat="server" CssClass="popup-input" ReadOnly="true"></asp:TextBox>
+            <asp:TextBox ID="txtMaCX" runat="server" CssClass="popup-input" ReadOnly="true" Width="90%"></asp:TextBox>
 
             <label for="txtMaTuyenXe">Mã Tuyến Xe:</label>
             <asp:DropDownList ID="ddlTuyenXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
@@ -77,14 +77,14 @@
 
 
             <label for="txtPrice">Giá Vé:</label>
-            <asp:TextBox ID="txtPrice" runat="server" CssClass="popup-input"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" CssClass="popup-input" Width="90%"></asp:TextBox>
 
             <label for="txtMaTaiXe">Tài Xế:</label>
             <asp:DropDownList ID="ddlTaiXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <label for="txtMaTaiXe">Mã Xe:</label>
             <asp:DropDownList ID="ddlXe" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <label for="txtTrangThai">Trạng Thái:</label>
-            <asp:TextBox ID="txtTrangThai" runat="server" CssClass="popup-input"></asp:TextBox>
+             <asp:DropDownList ID="ddlTrangThai" CssClass="date-picker popup-input" runat="server"></asp:DropDownList>
             <asp:Button ID="btnAddd" runat="server" Text="Thêm Chuyến Xe" OnClick="btnAdd_Click" CssClass="btn-primary" />
             <asp:Button ID="btnFix" runat="server" Text="Lưu Thay Đổi" OnClick="btnEdit_Click" CssClass="btn-warning" />
             <asp:Button ID="btnDelete" runat="server" Text="Xóa Chuyến Xe" OnClick="btnDelete_Click" CssClass="btn-danger" />
@@ -118,7 +118,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            padding: 20px;
+            padding: 5px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             z-index: 1000;
@@ -130,8 +130,8 @@
         }
 
         .popup-input {
-            width: 100%;
-            padding: 8px;
+            width: 90%;
+            padding: 2px;
             margin-bottom: 10px;
         }
 
