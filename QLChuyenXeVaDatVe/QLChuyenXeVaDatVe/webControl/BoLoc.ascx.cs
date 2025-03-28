@@ -25,7 +25,6 @@ namespace xediep.webControl
         {
             if (string.IsNullOrWhiteSpace(text))
                 return text;
-
             return string.Concat(text.Normalize(NormalizationForm.FormD)
                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark))
                 .Normalize(NormalizationForm.FormC);
@@ -74,12 +73,9 @@ namespace xediep.webControl
         public static bool TimKiem(NguoiDung nguoi, string keyword)
         {
             if (nguoi == null || string.IsNullOrWhiteSpace(keyword)) return false;
-
             string keywordNormalized = RemoveDiacritics(keyword.ToLower());
-
             return RemoveDiacritics(nguoi.HoTen.ToString().ToLower()).Contains(keywordNormalized) ||
                    RemoveDiacritics(nguoi.EMai.ToString().ToLower()).Contains(keywordNormalized);
-
         }
         public static bool TimKiem(DiemDonTraKhach diem, string keyword)
         {
